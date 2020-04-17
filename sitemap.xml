@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hualei.online/contact/index.html</loc>
+    
+    <lastmod>2020-04-17T01:46:24.801Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hualei.online/about/index.html</loc>
+    
+    <lastmod>2020-04-17T01:42:26.641Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hualei.online/2019/08/27/blog-open-source/</loc>
     
     <lastmod>2019-10-04T03:57:55.000Z</lastmod>
@@ -10,13 +24,6 @@
   
   <url>
     <loc>https://hualei.online/404.html</loc>
-    
-    <lastmod>2019-10-04T03:57:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hualei.online/about/index.html</loc>
     
     <lastmod>2019-10-04T03:57:55.000Z</lastmod>
     
@@ -37,6 +44,13 @@
   </url>
   
   <url>
+    <loc>https://hualei.online/friends/index.html</loc>
+    
+    <lastmod>2019-10-04T03:57:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hualei.online/categories/index.html</loc>
     
     <lastmod>2019-10-04T03:57:55.000Z</lastmod>
@@ -44,21 +58,7 @@
   </url>
   
   <url>
-    <loc>https://hualei.online/contact/index.html</loc>
-    
-    <lastmod>2019-10-04T03:57:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://hualei.online/tags/index.html</loc>
-    
-    <lastmod>2019-10-04T03:57:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hualei.online/friends/index.html</loc>
     
     <lastmod>2019-10-04T03:57:55.000Z</lastmod>
     
