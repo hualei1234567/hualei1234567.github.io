@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2019-10-04T03:57:55.000Z</updated>
+  <updated>2020-04-17T03:09:19.959Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring框架的使用</title>
+    <link href="https://hualei.online/2020/04/17/spring-kuang-jia-de-shi-yong/"/>
+    <id>https://hualei.online/2020/04/17/spring-kuang-jia-de-shi-yong/</id>
+    <published>2020-04-17T02:40:14.000Z</published>
+    <updated>2020-04-17T03:09:19.959Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简短介绍&quot;&gt;&lt;a href=&quot;#简短介绍&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术的学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="博客" scheme="https://hualei.online/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="IT" scheme="https://hualei.online/tags/IT/"/>
+    
+      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="程序" scheme="https://hualei.online/tags/%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>博客开源</title>
