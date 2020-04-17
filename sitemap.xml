@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hualei.online/2019/08/27/blog-open-source/</loc>
+    
+    <lastmod>2020-04-17T07:34:10.263Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hualei.online/2020/04/17/spring-kuang-jia-de-shi-yong/</loc>
     
     <lastmod>2020-04-17T03:09:19.959Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://hualei.online/about/index.html</loc>
     
     <lastmod>2020-04-17T01:42:26.641Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hualei.online/2019/08/27/blog-open-source/</loc>
-    
-    <lastmod>2019-10-04T03:57:55.000Z</lastmod>
     
   </url>
   
@@ -58,14 +58,14 @@
   </url>
   
   <url>
-    <loc>https://hualei.online/friends/index.html</loc>
+    <loc>https://hualei.online/tags/index.html</loc>
     
     <lastmod>2019-10-04T03:57:55.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hualei.online/tags/index.html</loc>
+    <loc>https://hualei.online/friends/index.html</loc>
     
     <lastmod>2019-10-04T03:57:55.000Z</lastmod>
     
