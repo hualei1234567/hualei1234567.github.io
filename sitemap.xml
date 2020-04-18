@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hualei.online/AV/music/index.html</loc>
+    
+    <lastmod>2020-04-18T06:35:22.538Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hualei.online/AV/movies/index.html</loc>
+    
+    <lastmod>2020-04-18T06:34:45.461Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hualei.online/posts/7c5b.html</loc>
     
     <lastmod>2020-04-18T01:40:18.791Z</lastmod>
@@ -44,13 +58,6 @@
   </url>
   
   <url>
-    <loc>https://hualei.online/archives/index.html</loc>
-    
-    <lastmod>2019-10-04T03:57:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://hualei.online/categories/index.html</loc>
     
     <lastmod>2019-10-04T03:57:55.000Z</lastmod>
@@ -58,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://hualei.online/friends/index.html</loc>
+    <loc>https://hualei.online/archives/index.html</loc>
     
     <lastmod>2019-10-04T03:57:55.000Z</lastmod>
     
@@ -66,6 +73,13 @@
   
   <url>
     <loc>https://hualei.online/tags/index.html</loc>
+    
+    <lastmod>2019-10-04T03:57:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hualei.online/friends/index.html</loc>
     
     <lastmod>2019-10-04T03:57:55.000Z</lastmod>
     
