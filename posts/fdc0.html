@@ -6,11 +6,10 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="MySQL分库分表方案汇总, UESTC CV DeepLearning MachineLearning 华磊 hualei Java开发">
+    <meta name="keywords" content="一招搞定GitHub下载加速!, UESTC CV DeepLearning MachineLearning 华磊 hualei Java开发">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="一、数据库瓶颈不管是IO瓶颈，还是CPU瓶颈，最终都会导致数据库的活跃连接数增加，进而逼近甚至达到数据库可承载活跃连接数的阈值。在业务Service来看就是，可用数据库连接少甚至无连接可用。接下来就可以想象了吧（并发量、吞吐量、崩溃）。
-1">
+    <meta name="description" content="一个痛点众所周知，GitHub是一个巨大的开源宝库，以及程序员和编程爱好者的聚集地，包括我之前推荐的诸多优秀的开源项目全部都是位于GitHub上。但是每当我们看到优秀的开源项目，准备去下（bai）载（piao）时，会发现 git clone">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>MySQL分库分表方案汇总 | 烂人不该拥有</title>
+    <title>一招搞定GitHub下载加速! | 烂人不该拥有</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -619,13 +618,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        MySQL分库分表方案汇总
+                        一招搞定GitHub下载加速!
                     </div>
                 </div>
             </div>
@@ -741,8 +740,8 @@
                                 <span class="chip bg-color">技术</span>
                             </a>
                         
-                            <a href="/tags/IT/" target="_blank">
-                                <span class="chip bg-color">IT</span>
+                            <a href="/tags/软件/" target="_blank">
+                                <span class="chip bg-color">软件</span>
                             </a>
                         
                     </div>
@@ -753,8 +752,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
-                                数据库
+                            <a href="/categories/软件使用/" class="post-category" target="_blank">
+                                软件使用
                             </a>
                         
                     </div>
@@ -765,7 +764,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-18
+                    2020-04-19
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -779,14 +778,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.5k
+                        792
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        2 分
                     </div>
                     
                 
@@ -803,24 +802,11 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、数据库瓶颈"><a href="#一、数据库瓶颈" class="headerlink" title="一、数据库瓶颈"></a>一、数据库瓶颈</h1><p>不管是IO瓶颈，还是CPU瓶颈，最终都会导致数据库的活跃连接数增加，进而逼近甚至达到数据库可承载活跃连接数的阈值。在业务Service来看就是，可用数据库连接少甚至无连接可用。接下来就可以想象了吧（并发量、吞吐量、崩溃）。</p>
-<h2 id="1、IO瓶颈"><a href="#1、IO瓶颈" class="headerlink" title="1、IO瓶颈"></a>1、IO瓶颈</h2><p>第一种：磁盘读IO瓶颈，热点数据太多，数据库缓存放不下，每次查询时会产生大量的IO，降低查询速度 -&gt; 分库和垂直分表。<br>第二种：网络IO瓶颈，请求的数据太多，网络带宽不够 -&gt; 分库。</p>
-<h2 id="2、CPU瓶颈"><a href="#2、CPU瓶颈" class="headerlink" title="2、CPU瓶颈"></a>2、CPU瓶颈</h2><p>第一种：SQL问题，如SQL中包含join，group by，order by，非索引字段条件查询等，增加CPU运算的操作 -&gt; SQL优化，建立合适的索引，在业务Service层进行业务计算。<br>第二种：单表数据量太大，查询时扫描的行太多，SQL效率低，CPU率先出现瓶颈 -&gt; 水平分表。</p>
-<hr>
-<h1 id="二、分库分表"><a href="#二、分库分表" class="headerlink" title="二、分库分表"></a>二、分库分表</h1><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E6%95%B0%E6%8D%AE%E5%BA%931.jpg" alt="数据库1"></p>
-<h2 id="1、水平分库"><a href="#1、水平分库" class="headerlink" title="1、水平分库"></a>1、水平分库</h2><p>概念：以字段为依据，按照一定策略（hash、range等），将一个库中的数据拆分到多个库中。</p>
-<p>结果：<br>每个库的结构都一样；<br>每个库的数据都不一样，没有交集；<br>所有库的并集是全量数据；</p>
-<p>场景：系统绝对并发量上来了，分表难以根本上解决问题，并且还没有明显的业务归属来垂直分库。<br>分析：库多了，io和cpu的压力自然可以成倍缓解。</p>
-<h2 id="2、水平分表"><a href="#2、水平分表" class="headerlink" title="2、水平分表"></a>2、水平分表</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E6%95%B0%E6%8D%AE%E5%BA%932.jpg" alt="数据库2"><br>概念：以字段为依据，按照一定策略（hash、range等），将一个表中的数据拆分到多个表中。</p>
-<p>结果：<br>每个表的结构都一样；<br>每个表的数据都不一样，没有交集；<br>所有表的并集是全量数据；<br>场景：系统绝对并发量并没有上来，只是单表的数据量太多，影响了SQL效率，加重了CPU负担，以至于成为瓶颈。推荐：一次SQL查询优化原理分析<br>分析：表的数据量少了，单次SQL执行效率高，自然减轻了CPU的负担。</p>
-<h2 id="3、垂直分库"><a href="#3、垂直分库" class="headerlink" title="3、垂直分库"></a>3、垂直分库</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E6%95%B0%E6%8D%AE%E5%BA%933.jpg" alt="数据库3"><br>概念：以表为依据，按照业务归属不同，将不同的表拆分到不同的库中。</p>
-<p>结果：<br>每个库的结构都不一样；<br>每个库的数据也不一样，没有交集；<br>所有库的并集是全量数据；<br>场景：系统绝对并发量上来了，并且可以抽象出单独的业务模块。<br>分析：到这一步，基本上就可以服务化了。例如，随着业务的发展一些公用的配置表、字典表等越来越多，这时可以将这些表拆到单独的库中，甚至可以服务化。再有，随着业务的发展孵化出了一套业务模式，这时可以将相关的表拆到单独的库中，甚至可以服务化。</p>
-<h2 id="4、垂直分表"><a href="#4、垂直分表" class="headerlink" title="4、垂直分表"></a>4、垂直分表</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E6%95%B0%E6%8D%AE%E5%BA%934.jpg" alt="数据库4"><br>概念：以字段为依据，按照字段的活跃性，将表中字段拆到不同的表（主表和扩展表）中。</p>
-<p>结果：<br>每个表的结构都不一样；<br>每个表的数据也不一样，一般来说，每个表的字段至少有一列交集，一般是主键，用于关联数据；<br>所有表的并集是全量数据；<br>场景：系统绝对并发量并没有上来，表的记录并不多，但是字段多，并且热点数据和非热点数据在一起，单行数据所需的存储空间较大。以至于数据库缓存的数据行减少，查询时会去读磁盘数据产生大量的随机读IO，产生IO瓶颈。<br>分析：可以用列表页和详情页来帮助理解。垂直分表的拆分原则是将热点数据（可能会冗余经常一起查询的数据）放在一起作为主表，非热点数据放在一起作为扩展表。这样更多的热点数据就能被缓存下来，进而减少了随机读IO。拆了之后，要想获得全部数据就需要关联两个表来取数据。<br>但记住，千万别用join，因为join不仅会增加CPU负担并且会讲两个表耦合在一起（必须在一个数据库实例上）。关联数据，应该在业务Service层做文章，分别获取主表和扩展表数据然后用关联字段关联得到全部数据。</p>
-<hr>
-<h1 id="三、分库分表工具"><a href="#三、分库分表工具" class="headerlink" title="三、分库分表工具"></a>三、分库分表工具</h1><p>1.sharding-sphere：jar，前身是sharding-jdbc；<br>2.TDDL：jar，Taobao Distribute Data Layer；<br>3.Mycat：中间件。<br>    注：工具的利弊，请自行调研，官网和社区优先。</p>
-<h1 id="四、分库分表步骤"><a href="#四、分库分表步骤" class="headerlink" title="四、分库分表步骤"></a>四、分库分表步骤</h1><p>根据容量（当前容量和增长量）评估分库或分表个数 -&gt; 选key（均匀）-&gt; 分表规则（hash或range等）-&gt; 执行（一般双写）-&gt; 扩容问题（尽量减少数据的移动）。<br>扩展：MySQL：分库分表与分区的区别和思考</p>
-<h1 id="五、分库分表总结"><a href="#五、分库分表总结" class="headerlink" title="五、分库分表总结"></a>五、分库分表总结</h1><p>分库分表，首先得知道瓶颈在哪里，然后才能合理地拆分（分库还是分表？水平还是垂直？分几个？）。且不可为了分库分表而拆分。<br>选key很重要，既要考虑到拆分均匀，也要考虑到非partition key的查询。<br>只要能满足需求，拆分规则越简单越好。</p>
+                <h1 id="一个痛点"><a href="#一个痛点" class="headerlink" title="一个痛点"></a>一个痛点</h1><p>众所周知，GitHub是一个巨大的开源宝库，以及程序员和编程爱好者的聚集地，包括我之前推荐的诸多优秀的开源项目全部都是位于GitHub上。但是每当我们看到优秀的开源项目，准备去下（bai）载（piao）时，会发现 git clone的速度异常之慢！就我个人而言，在我家里200M移动宽带的环境下，我克隆开源项目就没发现速度大于过 20.00KiB/s的时候，这简直太难受了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E5%9B%BE%E7%89%87%E4%B8%80.jpg" alt="图片一"><br>小项目倒还好，我等几分钟无所谓；一旦项目庞大起来，或者项目文件数目一多， git clone 大概率会失败！<br>当然网上常见的诸如修改hosts、代理等方式实际使用效果并不一定好，而且也不稳定。</p>
+<h1 id="码云”是个好东西"><a href="#码云”是个好东西" class="headerlink" title="码云”是个好东西"></a>码云”是个好东西</h1><p>接下来就介绍一种GitHub下载的加速方法：通过国内码云平台的转接，来完成GitHub上项目的下载加速。<br>##（1）首先确保码云上有账户，可以正常使用，没有的可以自行注册一下。<br>##（2）点击右上角新建仓库的加号 +，选择“从 GitHub/GitLab导入仓库”菜单<br><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E5%9B%BE%E7%89%87%E4%BA%8C.jpg" alt="图片二"></p>
+<h2 id="3-然后填写位于-GitHub上你想-clone的仓库地址并导入"><a href="#3-然后填写位于-GitHub上你想-clone的仓库地址并导入" class="headerlink" title="(3)然后填写位于 GitHub上你想 clone的仓库地址并导入"></a>(3)然后填写位于 GitHub上你想 clone的仓库地址并导入</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E5%9B%BE%E7%89%87%E4%B8%89.jpg" alt="图片三"><br>这一步交给码云来做速度是非常快的，一会儿功夫，码云就克隆出了一份和GitHub上一模一样的项目！<br><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E5%9B%BE%E7%89%87%E5%9B%9B.jpg" alt="图片四"></p>
+<h2 id="4）接下来我们通过码云上的项目地址，将项目-clone到本地，这时候的clone速度就很快了，几-MB-s的速度是没问题的，很快项目就下载下来了。"><a href="#4）接下来我们通过码云上的项目地址，将项目-clone到本地，这时候的clone速度就很快了，几-MB-s的速度是没问题的，很快项目就下载下来了。" class="headerlink" title="(4）接下来我们通过码云上的项目地址，将项目 clone到本地，这时候的clone速度就很快了，几 MB/s的速度是没问题的，很快项目就下载下来了。"></a>(4）接下来我们通过码云上的项目地址，将项目 clone到本地，这时候的clone速度就很快了，几 MB/s的速度是没问题的，很快项目就下载下来了。</h2><h2 id="按道理讲这时候我们的目的已经达到了，不过不要忘了，还有一件事没做。"><a href="#按道理讲这时候我们的目的已经达到了，不过不要忘了，还有一件事没做。" class="headerlink" title="按道理讲这时候我们的目的已经达到了，不过不要忘了，还有一件事没做。"></a>按道理讲这时候我们的目的已经达到了，不过不要忘了，还有一件事没做。</h2><h1 id="重新关联远端地址"><a href="#重新关联远端地址" class="headerlink" title="重新关联远端地址"></a>重新关联远端地址</h1><p>要知道，这时候克隆到本地的项目关联的是码云Gitee的地址，已经和原来的GitHub项目完全脱离了，是另外一个副本。<br>在必要情况下（比如我们就是要给GitHub上的某个项目提 PR），我们还需要重新将我们本地的项目关联到原来的GitHub项目上去，做法如下：<br>##（1）首先找到位于本地仓库目录下的隐藏文件夹 .git<br><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E5%9B%BE%E7%89%87%E4%BA%94.jpg" alt="图片五"><br>##（2）用文本编辑器打开 .git文件夹中的 config配置文件<br><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E5%9B%BE%E7%89%87%E5%85%AD.jpg" alt="图片六"><br>将配置文件中的 [remote “origin”].url字段重新关联到原来位于GitHub上的GitHub项目地址<br><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E5%9B%BE%E7%89%87%E4%B8%83.jpg" alt="图片七"><br>当然你也可以通过命令行来修改远端地址，效果一样的<br>至此大功告成，本地项目就相当于是 clone自GitHub，后续提代码，提 PR到GitHub上都没有问题。</p>
 <hr>
 <p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
 
@@ -829,6 +815,11 @@
     <td><img width="100" src="https://hualei.online/medias/reward/alipay.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/wechat.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/zan.png"></td>   
   </tr>
 </tbody></table>
+
+
+
+
+
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -997,7 +988,7 @@
                     </span>
                     <a href="https://hualei.online" class="b-link-green">烂人不该拥有</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/posts/fd29.html" class="b-link-green">MySQL分库分表方案汇总</a>
+                    <a href="/posts/fdc0.html" class="b-link-green">一招搞定GitHub下载加速!</a>
                 </p>
             </div>
 
@@ -1020,7 +1011,7 @@
         repo: 'blogtalk',
         owner: 'hualei1234567',
         admin: ["hualei1234567"],
-        id: 'posts/fd29.html',
+        id: 'posts/fdc0.html',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1339,9 +1330,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/fdc0.html">
                     <div class="card-image">
@@ -1359,9 +1351,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1374,6 +1366,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1396,31 +1389,31 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/7c5b.html">
+                <a href="/posts/fd29.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="SpringBoot框架的使用">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="MySQL分库分表方案汇总">
                         
-                        <span class="card-title">SpringBoot框架的使用</span>
+                        <span class="card-title">MySQL分库分表方案汇总</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            随着动态语言的流行（Ruby、Groovy、Scala、Node.js），Java的开发显得格外的笨重：繁多的配置、低下的开发效率、复杂的部署流程以及第三方技术集成难度大。在上述环境下，Springboot应运而生。它使用"习惯优于配置"的理念让你的项目快速运行起来,让你无须手动进行配置。
+                            数据库瓶颈不管是IO瓶颈，还是CPU瓶颈，最终都会导致数据库的活跃连接数增加，进而逼近甚至达到数据库可承载活跃连接数的阈值。在业务Service来看就是，可用数据库连接少甚至无连接可用。接下来就可以想象了吧（并发量、吞吐量、崩溃）。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-17
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-18
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/技术的学习/" class="post-category" target="_blank">
-                                    技术的学习
+                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                                    数据库
                                 </a>
                             
                             
@@ -1430,20 +1423,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/博客/" target="_blank">
-                        <span class="chip bg-color">博客</span>
-                    </a>
-                    
                     <a href="/tags/技术/" target="_blank">
                         <span class="chip bg-color">技术</span>
                     </a>
                     
                     <a href="/tags/IT/" target="_blank">
                         <span class="chip bg-color">IT</span>
-                    </a>
-                    
-                    <a href="/tags/程序/" target="_blank">
-                        <span class="chip bg-color">程序</span>
                     </a>
                     
                 </div>

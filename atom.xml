@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-04-18T23:53:00.875Z</updated>
+  <updated>2020-04-19T00:31:52.474Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>一招搞定GitHub下载加速!</title>
+    <link href="https://hualei.online/posts/fdc0.html"/>
+    <id>https://hualei.online/posts/fdc0.html</id>
+    <published>2020-04-19T00:16:17.000Z</published>
+    <updated>2020-04-19T00:31:52.474Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一个痛点&quot;&gt;&lt;a href=&quot;#一个痛点&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="软件使用" scheme="https://hualei.online/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
+    
+    
+      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="软件" scheme="https://hualei.online/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MySQL分库分表方案汇总</title>
     <link href="https://hualei.online/posts/fd29.html"/>
     <id>https://hualei.online/posts/fd29.html</id>
     <published>2020-04-18T07:13:34.000Z</published>
-    <updated>2020-04-18T23:53:00.875Z</updated>
+    <updated>2020-04-19T00:34:05.370Z</updated>
     
     <summary type="html">
     
