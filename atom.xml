@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>烂人不该拥有</title>
   
-  <subtitle>华磊的博客</subtitle>
+  <subtitle>华磊の博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
@@ -66,9 +66,9 @@
       <category term="数据库" scheme="https://hualei.online/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
-    
       <category term="IT" scheme="https://hualei.online/tags/IT/"/>
+    
+      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
@@ -96,9 +96,9 @@
     
       <category term="博客" scheme="https://hualei.online/tags/%E5%8D%9A%E5%AE%A2/"/>
     
-      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
-    
       <category term="IT" scheme="https://hualei.online/tags/IT/"/>
+    
+      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="程序" scheme="https://hualei.online/tags/%E7%A8%8B%E5%BA%8F/"/>
     
