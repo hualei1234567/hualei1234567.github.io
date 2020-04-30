@@ -13,14 +13,18 @@
       
       <categories>
           
-          <category> -集群搭建 </category>
+          <category> 集群搭建 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> -大数据 -Hadoop -技术 </tag>
+            <tag> 大数据 </tag>
+            
+            <tag> Hadoop </tag>
+            
+            <tag> 技术 </tag>
             
         </tags>
       
