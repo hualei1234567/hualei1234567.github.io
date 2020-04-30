@@ -649,16 +649,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/技术/" target="_blank">
-                                <span class="chip bg-color">技术</span>
-                            </a>
-                        
                             <a href="/tags/大数据/" target="_blank">
                                 <span class="chip bg-color">大数据</span>
                             </a>
                         
                             <a href="/tags/Hadoop/" target="_blank">
                                 <span class="chip bg-color">Hadoop</span>
+                            </a>
+                        
+                            <a href="/tags/技术/" target="_blank">
+                                <span class="chip bg-color">技术</span>
                             </a>
                         
                     </div>
@@ -732,8 +732,7 @@
 <p>拷贝整个zookeeper目录到hadoop2，hadoop3并修改myid文件分别为2,3<br>scp -r zookeeper-3.4.8 hadoop2:/home/app</p>
 <h3 id="1-4-7-安装和配置01节点的hadoop"><a href="#1-4-7-安装和配置01节点的hadoop" class="headerlink" title="1.4.7    安装和配置01节点的hadoop"></a>1.4.7    安装和配置01节点的hadoop</h3><p>创建/home/app目录<br>解压安装包</p>
 <h3 id="1-4-8-配置hadoop-env-sh"><a href="#1-4-8-配置hadoop-env-sh" class="headerlink" title="1.4.8    配置hadoop-env.sh"></a>1.4.8    配置hadoop-env.sh</h3><p>cd etc/hadoop<br>配置 hadoop-env.sh<br>vim hadoop-env.sh<br>JDK安装目录，虽然系统配置了JAVA_HOME，但有时无法正确识别，最后进行配置<br>export JAVA_HOME=/home/app/jdk1.8.0_65<br>指定hadoop的配置文件目录，不运行hadoop可以不指定<br>export HADOOP_CONF_DIR=/home/app/hadoop-2.7.1/etc/hadoop<br>配置jdk安装所在目录<br>配置hadoop配置文件所在目录</p>
-<h3 id="1-4-9-配置core-site-xml"><a href="#1-4-9-配置core-site-xml" class="headerlink" title="1.4.9    配置core-site.xml"></a>1.4.9    配置core-site.xml</h3><configuration>
-<!--用来指定hdfs的老大，ns为固定属性名，表示两个namenode-->
+<h3 id="1-4-9-配置core-site-xml"><a href="#1-4-9-配置core-site-xml" class="headerlink" title="1.4.9    配置core-site.xml"></a>1.4.9    配置core-site.xml</h3><pre><code>&lt;configuration&gt;</code></pre><!--用来指定hdfs的老大，ns为固定属性名，表示两个namenode-->
 <property>
 <name>fs.defaultFS</name>
 <value>hdfs://ns</value>
@@ -748,9 +747,9 @@
 <name>ha.zookeeper.quorum</name>
 <value>hadoop1:2181,hadoop2:2181,hadoop3:2181</value>
 </property>
-</configuration>
+    
 
-<h3 id="1-4-10-配置01节点的hdfs-site-xml"><a href="#1-4-10-配置01节点的hdfs-site-xml" class="headerlink" title="1.4.10    配置01节点的hdfs-site.xml"></a>1.4.10    配置01节点的hdfs-site.xml</h3><p>配置<br><configuration></configuration></p>
+<h3 id="1-4-10-配置01节点的hdfs-site-xml"><a href="#1-4-10-配置01节点的hdfs-site-xml" class="headerlink" title="1.4.10    配置01节点的hdfs-site.xml"></a>1.4.10    配置01节点的hdfs-site.xml</h3><p>配置<br>    <configuration></configuration></p>
 <!--执行hdfs的nameservice为ns,和core-site.xml保持一致-->
 <property>
 <name>dfs.nameservices</name>
@@ -835,12 +834,12 @@
 <name>dfs.permissions</name>
 <value>false</value>
 </property>
+    
 
-
-<h3 id="1-4-11-配置-mapred-site-xml"><a href="#1-4-11-配置-mapred-site-xml" class="headerlink" title="1.4.11    配置 mapred-site.xml"></a>1.4.11    配置 mapred-site.xml</h3><p>配置代码：<br><configuration><br><property></property></configuration></p>
+<h3 id="1-4-11-配置-mapred-site-xml"><a href="#1-4-11-配置-mapred-site-xml" class="headerlink" title="1.4.11    配置 mapred-site.xml"></a>1.4.11    配置 mapred-site.xml</h3><p>配置代码：<br>    <configuration><br><property></property></configuration></p>
 <!--指定mapreduce运行在yarn上-->
-<p><name>mapreduce.framework.name</name><br><value>yarn</value><br><br></p>
-<h3 id="1-4-12-配置yarn-site-xml"><a href="#1-4-12-配置yarn-site-xml" class="headerlink" title="1.4.12    配置yarn-site.xml"></a>1.4.12    配置yarn-site.xml</h3><p>配置代码：<br><configuration></configuration></p>
+<p><name>mapreduce.framework.name</name><br><value>yarn</value><br><br>    </p>
+<h3 id="1-4-12-配置yarn-site-xml"><a href="#1-4-12-配置yarn-site-xml" class="headerlink" title="1.4.12    配置yarn-site.xml"></a>1.4.12    配置yarn-site.xml</h3><p>配置代码：<br>    <configuration></configuration></p>
 <!--开启YARN HA -->
 <property>
 <name>yarn.resourcemanager.ha.enabled</name>
@@ -891,7 +890,7 @@
 <name>yarn.nodemanager.aux-services</name>
 <value>mapreduce_shuffle</value>
 </property>
-
+    
 
 <h3 id="1-4-13-配置slaves文件"><a href="#1-4-13-配置slaves文件" class="headerlink" title="1.4.13    配置slaves文件"></a>1.4.13    配置slaves文件</h3><p>配置代码：<br>hadoop4<br>hadoop5<br>hadoop6</p>
 <h3 id="1-4-14-根据配置文件，创建相关的文件夹，用来存放对应数据"><a href="#1-4-14-根据配置文件，创建相关的文件夹，用来存放对应数据" class="headerlink" title="1.4.14    根据配置文件，创建相关的文件夹，用来存放对应数据"></a>1.4.14    根据配置文件，创建相关的文件夹，用来存放对应数据</h3><p>在hadoop-2.7.1目录下创建:<br>①journal目录<br>②创建tmp目录<br>③在tmp目录下，分别创建namenode目录和datanode目录</p>
@@ -1455,16 +1454,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/技术/" target="_blank">
-                        <span class="chip bg-color">技术</span>
-                    </a>
-                    
                     <a href="/tags/大数据/" target="_blank">
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
                     <a href="/tags/Hadoop/" target="_blank">
                         <span class="chip bg-color">Hadoop</span>
+                    </a>
+                    
+                    <a href="/tags/技术/" target="_blank">
+                        <span class="chip bg-color">技术</span>
                     </a>
                     
                 </div>
