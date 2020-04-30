@@ -695,14 +695,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.7k
+                        2.7k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        8 分
+                        13 分
                     </div>
                     
                 
@@ -732,167 +732,168 @@
 <p>拷贝整个zookeeper目录到hadoop2，hadoop3并修改myid文件分别为2,3<br>scp -r zookeeper-3.4.8 hadoop2:/home/app</p>
 <h3 id="1-4-7-安装和配置01节点的hadoop"><a href="#1-4-7-安装和配置01节点的hadoop" class="headerlink" title="1.4.7    安装和配置01节点的hadoop"></a>1.4.7    安装和配置01节点的hadoop</h3><p>创建/home/app目录<br>解压安装包</p>
 <h3 id="1-4-8-配置hadoop-env-sh"><a href="#1-4-8-配置hadoop-env-sh" class="headerlink" title="1.4.8    配置hadoop-env.sh"></a>1.4.8    配置hadoop-env.sh</h3><p>cd etc/hadoop<br>配置 hadoop-env.sh<br>vim hadoop-env.sh<br>JDK安装目录，虽然系统配置了JAVA_HOME，但有时无法正确识别，最后进行配置<br>export JAVA_HOME=/home/app/jdk1.8.0_65<br>指定hadoop的配置文件目录，不运行hadoop可以不指定<br>export HADOOP_CONF_DIR=/home/app/hadoop-2.7.1/etc/hadoop<br>配置jdk安装所在目录<br>配置hadoop配置文件所在目录</p>
-<h3 id="1-4-9-配置core-site-xml"><a href="#1-4-9-配置core-site-xml" class="headerlink" title="1.4.9    配置core-site.xml"></a>1.4.9    配置core-site.xml</h3><pre><code>&lt;configuration&gt;</code></pre><!--用来指定hdfs的老大，ns为固定属性名，表示两个namenode-->
-<property>
-<name>fs.defaultFS</name>
-<value>hdfs://ns</value>
-</property>
-<!--用来指定hadoop运行时产生文件的存放目录-->
-<property>
-<name>hadoop.tmp.dir</name>
-<value>/home/app/hadoop-2.7.1/tmp</value>
-</property>
-<!--执行zookeeper地址-->
-<property>
-<name>ha.zookeeper.quorum</name>
-<value>hadoop1:2181,hadoop2:2181,hadoop3:2181</value>
-</property>
-    
-
-<h3 id="1-4-10-配置01节点的hdfs-site-xml"><a href="#1-4-10-配置01节点的hdfs-site-xml" class="headerlink" title="1.4.10    配置01节点的hdfs-site.xml"></a>1.4.10    配置01节点的hdfs-site.xml</h3><p>配置<br>    <configuration></configuration></p>
-<!--执行hdfs的nameservice为ns,和core-site.xml保持一致-->
-<property>
-<name>dfs.nameservices</name>
-<value>ns</value>
-</property>
-<!--ns下有两个namenode,分别是nn1,nn2-->
-<property>
-<name>dfs.ha.namenodes.ns</name>
-<value>nn1,nn2</value>
-</property>
-<!--nn1 的 RPC 通信地址-->
-<property>
-<name>dfs.namenode.rpc-address.ns.nn1</name>
-<value>hadoop1:9000</value>
-</property>
-<!--nn1的http通信地址-->
-<property>
-<name>dfs.namenode.http-address.ns.nn1</name>
-<value>hadoop1:50070</value>
-</property>
-<!--nn2的RPC通信地址-->
-<property>
-<name>dfs.namenode.rpc-address.ns.nn2</name>
-<value>hadoop2:9000</value>
-</property>
-<!--nn2 的 http 通信地址-->
-<property>
-<name>dfs.namenode.http-address.ns.nn2</name>
-<value>hadoop2:50070</value>
-</property>
-<!--指定namenode的元数据在JournalNode上的存放位置,这样，namenode2可以
+<h3 id="1-4-9-配置core-site-xml"><a href="#1-4-9-配置core-site-xml" class="headerlink" title="1.4.9    配置core-site.xml"></a>1.4.9    配置core-site.xml</h3><pre><code>&lt;configuration&gt;
+&lt;!--用来指定hdfs的老大，ns为固定属性名，表示两个namenode--&gt;
+&lt;property&gt;
+&lt;name&gt;fs.defaultFS&lt;/name&gt;
+&lt;value&gt;hdfs://ns&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--用来指定hadoop运行时产生文件的存放目录--&gt;
+&lt;property&gt;
+&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+&lt;value&gt;/home/app/hadoop-2.7.1/tmp&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--执行zookeeper地址--&gt;
+&lt;property&gt;
+&lt;name&gt;ha.zookeeper.quorum&lt;/name&gt;
+&lt;value&gt;hadoop1:2181,hadoop2:2181,hadoop3:2181&lt;/value&gt;
+&lt;/property&gt;
+    &lt;/configuration&gt;</code></pre><h3 id="1-4-10-配置01节点的hdfs-site-xml"><a href="#1-4-10-配置01节点的hdfs-site-xml" class="headerlink" title="1.4.10    配置01节点的hdfs-site.xml"></a>1.4.10    配置01节点的hdfs-site.xml</h3><p>配置</p>
+<pre><code>&lt;configuration&gt;
+&lt;!--执行hdfs的nameservice为ns,和core-site.xml保持一致--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.nameservices&lt;/name&gt;
+&lt;value&gt;ns&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--ns下有两个namenode,分别是nn1,nn2--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.ha.namenodes.ns&lt;/name&gt;
+&lt;value&gt;nn1,nn2&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--nn1 的 RPC 通信地址--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.namenode.rpc-address.ns.nn1&lt;/name&gt;
+&lt;value&gt;hadoop1:9000&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--nn1的http通信地址--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.namenode.http-address.ns.nn1&lt;/name&gt;
+&lt;value&gt;hadoop1:50070&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--nn2的RPC通信地址--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.namenode.rpc-address.ns.nn2&lt;/name&gt;
+&lt;value&gt;hadoop2:9000&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--nn2 的 http 通信地址--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.namenode.http-address.ns.nn2&lt;/name&gt;
+&lt;value&gt;hadoop2:50070&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--指定namenode的元数据在JournalNode上的存放位置,这样，namenode2可以
  从 jn 集群里获取
-          最新的namenode的信息，达到热备的效果-->
-<property>
-<name>dfs.namenode.shared.edits.dir</name>
-<value>qjournal://hadoop4:8485;hadoop5:8485;hadoop6:8485/ns</value>
-</property>
-<!--指定 JournalNode 存放数据的位置-->
-<property>
-<name>dfs.journalnode.edits.dir</name>
-<value>/home/app/hadoop-2.7.1/journal</value>
-</property>
-<!--开启namenode故障时自动切换-->
-<property>
-<name>dfs.ha.automatic-failover.enabled</name>
-<value>true</value>
-</property>
-<!--配置切换的实现方式-->
-<property>
-<name>dfs.client.failover.proxy.provider.ns</name>
-<value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
-</property>
-<!--配置隔离机制-->
-<property>
-<name>dfs.ha.fencing.methods</name>
-<value>sshfence</value>
-</property>
-<!--配置隔离机制的ssh登录秘钥所在的位置-->
-<property>
-<name>dfs.ha.fencing.ssh.private-key-files</name>
-<value>/root/.ssh/id_rsa</value>
-</property>
-<!--配置namenode数据存放的位置,可以不配置，如果不配置，默认用的是
-          core-site.xml里配置的hadoop.tmp.dir的路径-->
-<property>
-<name>dfs.namenode.name.dir</name>
-<value>file:///home/app/hadoop-2.7.1/tmp/namenode</value>
-</property>
-<!--配置datanode数据存放的位置,可以不配置，如果不配置，默认用的是
-               core-site.xml 里配置的 hadoop.tmp.dir 的路径-->
-<property>
-<name>dfs.datanode.data.dir</name>
-<value>file:///home/app/hadoop-2.7.1/tmp/datanode</value>
-</property>
-<!--配置 block 副本数量-->
-<property>
-<name>dfs.replication</name>
-<value>3</value>
-</property>
-<!--设置hdfs的操作权限，false表示任何用户都可以在hdfs上操作文件-->
-<property>
-<name>dfs.permissions</name>
-<value>false</value>
-</property>
-    
-
-<h3 id="1-4-11-配置-mapred-site-xml"><a href="#1-4-11-配置-mapred-site-xml" class="headerlink" title="1.4.11    配置 mapred-site.xml"></a>1.4.11    配置 mapred-site.xml</h3><p>配置代码：<br>    <configuration><br><property></property></configuration></p>
-<!--指定mapreduce运行在yarn上-->
-<p><name>mapreduce.framework.name</name><br><value>yarn</value><br><br>    </p>
-<h3 id="1-4-12-配置yarn-site-xml"><a href="#1-4-12-配置yarn-site-xml" class="headerlink" title="1.4.12    配置yarn-site.xml"></a>1.4.12    配置yarn-site.xml</h3><p>配置代码：<br>    <configuration></configuration></p>
-<!--开启YARN HA -->
-<property>
-<name>yarn.resourcemanager.ha.enabled</name>
-<value>true</value>
-</property>
-  <!--指定两个resourcemanager的名称-->
-<property>
-<name>yarn.resourcemanager.ha.rm-ids</name>
-<value>rm1,rm2</value>
-</property>
-<!--配置rm1，rm2的主机-->
-<property>
-<name>yarn.resourcemanager.hostname.rm1</name>
-<value>hadoop1</value>
-</property>
-<property>
-<name>yarn.resourcemanager.hostname.rm2</name>
-<value>hadoop3</value>
-</property>
-<!--开启yarn恢复机制-->
-<property>
-<name>yarn.resourcemanager.recovery.enabled</name>
-<value>true</value>
-</property>
-<!--执行rm恢复机制实现类-->
-<property>
-<name>yarn.resourcemanager.store.class</name>
-<value>org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore</value>
-</property>
-<!--配置zookeeper的地址-->
-<property>
-<name>yarn.resourcemanager.zk-address</name>
-<value>hadoop1:2181,hadoop2:2181,hadoop3:2181</value>
-<description>For multiple zk services, separate them with comma</description>
-</property>
-<!--指定YARN HA的名称-->
-<property>
-<name>yarn.resourcemanager.cluster-id</name>
-<value>yarn-ha</value>
-</property>
-<!--指定 yarn 的老大 resoucemanager 的地址-->
-<property>
-<name>yarn.resourcemanager.hostname</name>
-<value>hadoop1</value>
-</property>
-<!--NodeManager获取数据的方式-->
-<property>
-<name>yarn.nodemanager.aux-services</name>
-<value>mapreduce_shuffle</value>
-</property>
-    
-
-<h3 id="1-4-13-配置slaves文件"><a href="#1-4-13-配置slaves文件" class="headerlink" title="1.4.13    配置slaves文件"></a>1.4.13    配置slaves文件</h3><p>配置代码：<br>hadoop4<br>hadoop5<br>hadoop6</p>
+          最新的namenode的信息，达到热备的效果--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.namenode.shared.edits.dir&lt;/name&gt;
+&lt;value&gt;qjournal://hadoop4:8485;hadoop5:8485;hadoop6:8485/ns&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--指定 JournalNode 存放数据的位置--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.journalnode.edits.dir&lt;/name&gt;
+&lt;value&gt;/home/app/hadoop-2.7.1/journal&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--开启namenode故障时自动切换--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.ha.automatic-failover.enabled&lt;/name&gt;
+&lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--配置切换的实现方式--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.client.failover.proxy.provider.ns&lt;/name&gt;
+&lt;value&gt;org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--配置隔离机制--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.ha.fencing.methods&lt;/name&gt;
+&lt;value&gt;sshfence&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--配置隔离机制的ssh登录秘钥所在的位置--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.ha.fencing.ssh.private-key-files&lt;/name&gt;
+&lt;value&gt;/root/.ssh/id_rsa&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--配置namenode数据存放的位置,可以不配置，如果不配置，默认用的是
+          core-site.xml里配置的hadoop.tmp.dir的路径--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+&lt;value&gt;file:///home/app/hadoop-2.7.1/tmp/namenode&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--配置datanode数据存放的位置,可以不配置，如果不配置，默认用的是
+               core-site.xml 里配置的 hadoop.tmp.dir 的路径--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+&lt;value&gt;file:///home/app/hadoop-2.7.1/tmp/datanode&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--配置 block 副本数量--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.replication&lt;/name&gt;
+&lt;value&gt;3&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--设置hdfs的操作权限，false表示任何用户都可以在hdfs上操作文件--&gt;
+&lt;property&gt;
+&lt;name&gt;dfs.permissions&lt;/name&gt;
+&lt;value&gt;false&lt;/value&gt;
+&lt;/property&gt;
+    &lt;/configuration&gt;</code></pre><h3 id="1-4-11-配置-mapred-site-xml"><a href="#1-4-11-配置-mapred-site-xml" class="headerlink" title="1.4.11    配置 mapred-site.xml"></a>1.4.11    配置 mapred-site.xml</h3><p>配置代码：</p>
+<pre><code>    &lt;configuration&gt;
+&lt;property&gt;
+&lt;!--指定mapreduce运行在yarn上--&gt;
+&lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+&lt;value&gt;yarn&lt;/value&gt;
+&lt;/property&gt;
+    &lt;/configuration&gt;</code></pre><h3 id="1-4-12-配置yarn-site-xml"><a href="#1-4-12-配置yarn-site-xml" class="headerlink" title="1.4.12    配置yarn-site.xml"></a>1.4.12    配置yarn-site.xml</h3><p>配置代码：</p>
+<pre><code>    &lt;configuration&gt;
+&lt;!--开启YARN HA --&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.resourcemanager.ha.enabled&lt;/name&gt;
+&lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+  &lt;!--指定两个resourcemanager的名称--&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.resourcemanager.ha.rm-ids&lt;/name&gt;
+&lt;value&gt;rm1,rm2&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--配置rm1，rm2的主机--&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.resourcemanager.hostname.rm1&lt;/name&gt;
+&lt;value&gt;hadoop1&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.resourcemanager.hostname.rm2&lt;/name&gt;
+&lt;value&gt;hadoop3&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--开启yarn恢复机制--&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.resourcemanager.recovery.enabled&lt;/name&gt;
+&lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--执行rm恢复机制实现类--&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.resourcemanager.store.class&lt;/name&gt;
+&lt;value&gt;org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--配置zookeeper的地址--&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.resourcemanager.zk-address&lt;/name&gt;
+&lt;value&gt;hadoop1:2181,hadoop2:2181,hadoop3:2181&lt;/value&gt;
+&lt;description&gt;For multiple zk services, separate them with comma&lt;/description&gt;
+&lt;/property&gt;
+&lt;!--指定YARN HA的名称--&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.resourcemanager.cluster-id&lt;/name&gt;
+&lt;value&gt;yarn-ha&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--指定 yarn 的老大 resoucemanager 的地址--&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
+&lt;value&gt;hadoop1&lt;/value&gt;
+&lt;/property&gt;
+&lt;!--NodeManager获取数据的方式--&gt;
+&lt;property&gt;
+&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+&lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+&lt;/property&gt;
+    &lt;/configuration&gt;</code></pre><h3 id="1-4-13-配置slaves文件"><a href="#1-4-13-配置slaves文件" class="headerlink" title="1.4.13    配置slaves文件"></a>1.4.13    配置slaves文件</h3><p>配置代码：<br>hadoop4<br>hadoop5<br>hadoop6</p>
 <h3 id="1-4-14-根据配置文件，创建相关的文件夹，用来存放对应数据"><a href="#1-4-14-根据配置文件，创建相关的文件夹，用来存放对应数据" class="headerlink" title="1.4.14    根据配置文件，创建相关的文件夹，用来存放对应数据"></a>1.4.14    根据配置文件，创建相关的文件夹，用来存放对应数据</h3><p>在hadoop-2.7.1目录下创建:<br>①journal目录<br>②创建tmp目录<br>③在tmp目录下，分别创建namenode目录和datanode目录</p>
 <h3 id="1-4-15-配置-hadoop-的环境变量（可不配）"><a href="#1-4-15-配置-hadoop-的环境变量（可不配）" class="headerlink" title="1.4.15    配置 hadoop 的环境变量（可不配）"></a>1.4.15    配置 hadoop 的环境变量（可不配）</h3><p>JAVA_HOME=/home/app/jdk1.8.0_65<br>JAVA_BIN=/home/app/jdk1.8.0_65/bin<br>HADOOP_HOME=/home/app/hadoop-2.7.1<br>PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH<br>CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar<br>export JAVA_HOME JAVA_BIN HADOOP_HOME PATH CLASSPATH</p>
 <h3 id="1-4-16-通过scp-命令，将hadoop安装目录远程copy到其他5台机器上"><a href="#1-4-16-通过scp-命令，将hadoop安装目录远程copy到其他5台机器上" class="headerlink" title="1.4.16    通过scp 命令，将hadoop安装目录远程copy到其他5台机器上"></a>1.4.16    通过scp 命令，将hadoop安装目录远程copy到其他5台机器上</h3><p>比如向hadoop02节点传输：<br>scp -r hadoop-2.7.1 root@hadoop2:/home/app</p>
@@ -1598,7 +1599,7 @@
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">6.2k</span> 字
+                <span class="white-color">7.1k</span> 字
             
 
             
