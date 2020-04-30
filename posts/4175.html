@@ -6,11 +6,10 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="MySQL分库分表方案汇总, BigData IT DeepLearning MachineLearning 华磊 hualei Java开发">
+    <meta name="keywords" content="Hadoop2.0完全分布式HA搭建, BigData IT DeepLearning MachineLearning 华磊 hualei Java开发">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="一、数据库瓶颈不管是IO瓶颈，还是CPU瓶颈，最终都会导致数据库的活跃连接数增加，进而逼近甚至达到数据库可承载活跃连接数的阈值。在业务Service来看就是，可用数据库连接少甚至无连接可用。接下来就可以想象了吧（并发量、吞吐量、崩溃）。
-1">
+    <meta name="description" content="1    Hadoop2.0 HA搭建步骤##1.1    准备工作6台虚拟机，内存512M，hadoop1~6修改静态IP：192.168.65.121 ~ 126##1.2    架构图 ##1.3    集群节点分配    hado">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>MySQL分库分表方案汇总 | 烂人不该拥有</title>
+    <title>Hadoop2.0完全分布式HA搭建 | 烂人不该拥有</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -619,13 +618,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        MySQL分库分表方案汇总
+                        Hadoop2.0完全分布式HA搭建
                     </div>
                 </div>
             </div>
@@ -635,99 +634,10 @@
 
 
 
-<main class="post-container content">
+<main class="container content">
 
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
-
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        margin: 35px 0 15px 0;
-        padding-left: 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #toc-content .is-active-link::before {
-        background-color: #42b983;
-    }
-
-    #floating-toc-btn {
-        position: fixed;
-        right: 20px;
-        bottom: 76px;
-        padding-top: 15px;
-        margin-bottom: 0;
-        z-index: 998;
-    }
-
-    #floating-toc-btn .btn-floating {
-        width: 48px;
-        height: 48px;
-    }
-
-    #floating-toc-btn .btn-floating i {
-        line-height: 48px;
-        font-size: 1.4rem;
-    }
-</style>
-<div class="row">
-    <div id="main-content" class="col s12 m12 l9">
-        <!-- shw2018 洪卫  modify 2019.08.15-->
+    <!-- shw2018 洪卫  modify 2019.08.15-->
 <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
@@ -737,12 +647,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/技术/" target="_blank">
-                                <span class="chip bg-color">技术</span>
-                            </a>
-                        
-                            <a href="/tags/IT/" target="_blank">
-                                <span class="chip bg-color">IT</span>
+                            <a href="/tags/大数据-Hadoop-技术/" target="_blank">
+                                <span class="chip bg-color">-大数据 -Hadoop -技术</span>
                             </a>
                         
                     </div>
@@ -753,8 +659,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
-                                数据库
+                            <a href="/categories/集群搭建/" class="post-category" target="_blank">
+                                -集群搭建
                             </a>
                         
                     </div>
@@ -765,7 +671,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-18
+                    2020-04-30
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -779,14 +685,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.5k
+                        1.7k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        8 分
                     </div>
                     
                 
@@ -803,24 +709,202 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、数据库瓶颈"><a href="#一、数据库瓶颈" class="headerlink" title="一、数据库瓶颈"></a>一、数据库瓶颈</h1><p>不管是IO瓶颈，还是CPU瓶颈，最终都会导致数据库的活跃连接数增加，进而逼近甚至达到数据库可承载活跃连接数的阈值。在业务Service来看就是，可用数据库连接少甚至无连接可用。接下来就可以想象了吧（并发量、吞吐量、崩溃）。</p>
-<h2 id="1、IO瓶颈"><a href="#1、IO瓶颈" class="headerlink" title="1、IO瓶颈"></a>1、IO瓶颈</h2><p>第一种：磁盘读IO瓶颈，热点数据太多，数据库缓存放不下，每次查询时会产生大量的IO，降低查询速度 -&gt; 分库和垂直分表。<br>第二种：网络IO瓶颈，请求的数据太多，网络带宽不够 -&gt; 分库。</p>
-<h2 id="2、CPU瓶颈"><a href="#2、CPU瓶颈" class="headerlink" title="2、CPU瓶颈"></a>2、CPU瓶颈</h2><p>第一种：SQL问题，如SQL中包含join，group by，order by，非索引字段条件查询等，增加CPU运算的操作 -&gt; SQL优化，建立合适的索引，在业务Service层进行业务计算。<br>第二种：单表数据量太大，查询时扫描的行太多，SQL效率低，CPU率先出现瓶颈 -&gt; 水平分表。</p>
-<hr>
-<h1 id="二、分库分表"><a href="#二、分库分表" class="headerlink" title="二、分库分表"></a>二、分库分表</h1><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E6%95%B0%E6%8D%AE%E5%BA%931.jpg" alt="数据库1"></p>
-<h2 id="1、水平分库"><a href="#1、水平分库" class="headerlink" title="1、水平分库"></a>1、水平分库</h2><p>概念：以字段为依据，按照一定策略（hash、range等），将一个库中的数据拆分到多个库中。</p>
-<p>结果：<br>每个库的结构都一样；<br>每个库的数据都不一样，没有交集；<br>所有库的并集是全量数据；</p>
-<p>场景：系统绝对并发量上来了，分表难以根本上解决问题，并且还没有明显的业务归属来垂直分库。<br>分析：库多了，io和cpu的压力自然可以成倍缓解。</p>
-<h2 id="2、水平分表"><a href="#2、水平分表" class="headerlink" title="2、水平分表"></a>2、水平分表</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E6%95%B0%E6%8D%AE%E5%BA%932.jpg" alt="数据库2"><br>概念：以字段为依据，按照一定策略（hash、range等），将一个表中的数据拆分到多个表中。</p>
-<p>结果：<br>每个表的结构都一样；<br>每个表的数据都不一样，没有交集；<br>所有表的并集是全量数据；<br>场景：系统绝对并发量并没有上来，只是单表的数据量太多，影响了SQL效率，加重了CPU负担，以至于成为瓶颈。推荐：一次SQL查询优化原理分析<br>分析：表的数据量少了，单次SQL执行效率高，自然减轻了CPU的负担。</p>
-<h2 id="3、垂直分库"><a href="#3、垂直分库" class="headerlink" title="3、垂直分库"></a>3、垂直分库</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E6%95%B0%E6%8D%AE%E5%BA%933.jpg" alt="数据库3"><br>概念：以表为依据，按照业务归属不同，将不同的表拆分到不同的库中。</p>
-<p>结果：<br>每个库的结构都不一样；<br>每个库的数据也不一样，没有交集；<br>所有库的并集是全量数据；<br>场景：系统绝对并发量上来了，并且可以抽象出单独的业务模块。<br>分析：到这一步，基本上就可以服务化了。例如，随着业务的发展一些公用的配置表、字典表等越来越多，这时可以将这些表拆到单独的库中，甚至可以服务化。再有，随着业务的发展孵化出了一套业务模式，这时可以将相关的表拆到单独的库中，甚至可以服务化。</p>
-<h2 id="4、垂直分表"><a href="#4、垂直分表" class="headerlink" title="4、垂直分表"></a>4、垂直分表</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/%E6%95%B0%E6%8D%AE%E5%BA%934.jpg" alt="数据库4"><br>概念：以字段为依据，按照字段的活跃性，将表中字段拆到不同的表（主表和扩展表）中。</p>
-<p>结果：<br>每个表的结构都不一样；<br>每个表的数据也不一样，一般来说，每个表的字段至少有一列交集，一般是主键，用于关联数据；<br>所有表的并集是全量数据；<br>场景：系统绝对并发量并没有上来，表的记录并不多，但是字段多，并且热点数据和非热点数据在一起，单行数据所需的存储空间较大。以至于数据库缓存的数据行减少，查询时会去读磁盘数据产生大量的随机读IO，产生IO瓶颈。<br>分析：可以用列表页和详情页来帮助理解。垂直分表的拆分原则是将热点数据（可能会冗余经常一起查询的数据）放在一起作为主表，非热点数据放在一起作为扩展表。这样更多的热点数据就能被缓存下来，进而减少了随机读IO。拆了之后，要想获得全部数据就需要关联两个表来取数据。<br>但记住，千万别用join，因为join不仅会增加CPU负担并且会讲两个表耦合在一起（必须在一个数据库实例上）。关联数据，应该在业务Service层做文章，分别获取主表和扩展表数据然后用关联字段关联得到全部数据。</p>
-<hr>
-<h1 id="三、分库分表工具"><a href="#三、分库分表工具" class="headerlink" title="三、分库分表工具"></a>三、分库分表工具</h1><p>1.sharding-sphere：jar，前身是sharding-jdbc；<br>2.TDDL：jar，Taobao Distribute Data Layer；<br>3.Mycat：中间件。<br>    注：工具的利弊，请自行调研，官网和社区优先。</p>
-<h1 id="四、分库分表步骤"><a href="#四、分库分表步骤" class="headerlink" title="四、分库分表步骤"></a>四、分库分表步骤</h1><p>根据容量（当前容量和增长量）评估分库或分表个数 -&gt; 选key（均匀）-&gt; 分表规则（hash或range等）-&gt; 执行（一般双写）-&gt; 扩容问题（尽量减少数据的移动）。<br>扩展：MySQL：分库分表与分区的区别和思考</p>
-<h1 id="五、分库分表总结"><a href="#五、分库分表总结" class="headerlink" title="五、分库分表总结"></a>五、分库分表总结</h1><p>分库分表，首先得知道瓶颈在哪里，然后才能合理地拆分（分库还是分表？水平还是垂直？分几个？）。且不可为了分库分表而拆分。<br>选key很重要，既要考虑到拆分均匀，也要考虑到非partition key的查询。<br>只要能满足需求，拆分规则越简单越好。</p>
+                <h1 id="1-Hadoop2-0-HA搭建步骤"><a href="#1-Hadoop2-0-HA搭建步骤" class="headerlink" title="1    Hadoop2.0 HA搭建步骤"></a>1    Hadoop2.0 HA搭建步骤</h1><p>##1.1    准备工作<br>6台虚拟机，内存512M，hadoop1~6<br>修改静态IP：192.168.65.121 ~ 126<br>##1.2    架构图<br> <img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/1.png" alt="1"><br>##1.3    集群节点分配<br>    hadoop1<br>Zookeeper<br>NameNode(active)<br>Resourcemanager (active)<br>    hadoop2<br>Zookeeper<br>NameNode (standby)<br>    hadoop3<br>Zookeeper<br>ResourceManager(standby)<br>    hadoop4<br>DataNode<br>NodeManager<br>JournalNode<br>    hadoop5<br>DataNode<br>NodeManager<br>JournalNode<br>    hadoop6<br>DataNode<br>NodeManager<br>JournalNode<br>##1.4    安装步骤<br>###1.4.1    固化IP<br>修改配置文件<br>cd /etc/sysconfig/network-scripts    #进入网络配置目录<br>dir ifcfg*                                #找到网卡配置文件<br>ifcfg-ens16777736  ifcfg-lo<br>vi ifcfg-ens16777736<br>配置文件内容<br>TYPE=Ethernet<br>BOOTPROTO=static                                    #改成static，针对NAT<br>NAME=eno16777736<br>UUID=4cc9c89b-cf9e-4847-b9ea-ac713baf4cc8<br>DEVICE=eno16777736<br>ONBOOT=yes                    #开机启动此网卡<br>IPADDR=192.168.163.129    #固定IP地址<br>NETMASK=255.255.255.0        #子网掩码<br>GATEWAY=192.168.163.2        #网关和NAT自动配置的相同，不同则无法登录<br>DNS1=192.168.163.2            #和网关相同<br>重启网络<br>service network restart<br>ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p>###1.4.2    永久关闭每台机器的防火墙<br>systemctl stop firewalld.service            #关闭防火墙服务<br>systemctl disable firewalld.service        #禁止防火墙开启启动<br>firewall-cmd –state                        #检查防火墙状态<br>###1.4.3    为每台机器配置主机名*<br>hadoop1,hadoop2 ……<br>以及hosts文件<br>配置主机名<br>执行：vim /etc/hostname 修改为hadoop1~6<br>然后执行 hostname 主机名<br>达到不重启生效目的<br>配置hosts文件<br>执行：vim /etc/hosts<br>示例：<br>127.0.0.1 localhost<br>::1 localhost<br>192.168.65.121 hadoop1<br>192.168.65.122 hadoop2<br>192.168.65.123 hadoop3<br>192.168.65.124 hadoop4<br>192.168.65.125 hadoop5<br>192.168.65.126 hadoop6<br>###1.4.4    为每台机器配置ssh免秘钥登录<br>执行：ssh-keygen<br>ssh-copy-id root@hadoop1 （分别发送到6台节点上）<br>vim /root/.ssh/known_hosts 检查是否配置成功<br>###1.4.5    为每台机器安装jdk和配置JAVA_HOME<br>vim /etc/profile<br>在尾行添加<br>JAVA_HOME=/home/app/jdk1.8.0_65<br>JAVA_BIN=/home/app/jdk1.8.0_65/bin<br>HADOOP_HOME=/home/app/hadoop-2.7.1<br>PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH<br>CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar<br>export JAVA_HOME JAVA_BIN HADOOP_HOME PATH CLASSPATH</p>
+<p>###1.4.6    前三台机器安装和配置zookeeper<br>解压安装包 tar -xvf zookeeper-3.4.8.tar.gz<br>进入conf目录 cd zookeeper-3.4.8/conf/<br>复制zoo_sample.cfg 为zoo.cfg:  cp zoo_sample.cfg zoo.cfg<br>编辑zoo.cfg：vim zoo.cfg<br> <img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/2.png" alt="2"><br> <img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/3.png" alt="3"><br> <img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/4.png" alt="4">    </p>
+<p>Zookeeper根目录中创建tmp文件夹，tmp文件夹中创建myid文件，编辑文本：1（2,3）</p>
+<p>拷贝整个zookeeper目录到hadoop2，hadoop3并修改myid文件分别为2,3<br>scp -r zookeeper-3.4.8 hadoop2:/home/app</p>
+<p>###1.4.7    安装和配置01节点的hadoop<br>创建/home/app目录<br>解压安装包<br>###1.4.8    配置hadoop-env.sh<br>cd etc/hadoop<br>配置 hadoop-env.sh<br>vim hadoop-env.sh<br>#JDK安装目录，虽然系统配置了JAVA_HOME，但有时无法正确识别，最后进行配置<br>export JAVA_HOME=/home/app/jdk1.8.0_65<br>#指定hadoop的配置文件目录，不运行hadoop可以不指定<br>export HADOOP_CONF_DIR=/home/app/hadoop-2.7.1/etc/hadoop<br>配置jdk安装所在目录<br>配置hadoop配置文件所在目录<br>###1.4.9    配置core-site.xml<br><configuration></configuration></p>
+<!--用来指定hdfs的老大，ns为固定属性名，表示两个namenode-->
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://ns</value>
+</property>
+<!--用来指定hadoop运行时产生文件的存放目录-->
+<property>
+<name>hadoop.tmp.dir</name>
+<value>/home/app/hadoop-2.7.1/tmp</value>
+</property>
+<!--执行zookeeper地址-->
+<property>
+<name>ha.zookeeper.quorum</name>
+<value>hadoop1:2181,hadoop2:2181,hadoop3:2181</value>
+</property>
+
+###1.4.10    配置01节点的hdfs-site.xml
+配置
+<configuration>
+<!--执行hdfs的nameservice为ns,和core-site.xml保持一致-->
+<property>
+<name>dfs.nameservices</name>
+<value>ns</value>
+</property>
+<!--ns下有两个namenode,分别是nn1,nn2-->
+<property>
+<name>dfs.ha.namenodes.ns</name>
+<value>nn1,nn2</value>
+</property>
+<!--nn1 的 RPC 通信地址-->
+<property>
+<name>dfs.namenode.rpc-address.ns.nn1</name>
+<value>hadoop1:9000</value>
+</property>
+<!--nn1的http通信地址-->
+<property>
+<name>dfs.namenode.http-address.ns.nn1</name>
+<value>hadoop1:50070</value>
+</property>
+<!--nn2的RPC通信地址-->
+<property>
+<name>dfs.namenode.rpc-address.ns.nn2</name>
+<value>hadoop2:9000</value>
+</property>
+<!--nn2 的 http 通信地址-->
+<property>
+<name>dfs.namenode.http-address.ns.nn2</name>
+<value>hadoop2:50070</value>
+</property>
+<!--指定namenode的元数据在JournalNode上的存放位置,这样，namenode2可以
+ 从 jn 集群里获取
+          最新的namenode的信息，达到热备的效果-->
+<property>
+<name>dfs.namenode.shared.edits.dir</name>
+<value>qjournal://hadoop4:8485;hadoop5:8485;hadoop6:8485/ns</value>
+</property>
+<!--指定 JournalNode 存放数据的位置-->
+<property>
+<name>dfs.journalnode.edits.dir</name>
+<value>/home/app/hadoop-2.7.1/journal</value>
+</property>
+<!--开启namenode故障时自动切换-->
+<property>
+<name>dfs.ha.automatic-failover.enabled</name>
+<value>true</value>
+</property>
+<!--配置切换的实现方式-->
+<property>
+<name>dfs.client.failover.proxy.provider.ns</name>
+<value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+<!--配置隔离机制-->
+<property>
+<name>dfs.ha.fencing.methods</name>
+<value>sshfence</value>
+</property>
+<!--配置隔离机制的ssh登录秘钥所在的位置-->
+<property>
+<name>dfs.ha.fencing.ssh.private-key-files</name>
+<value>/root/.ssh/id_rsa</value>
+</property>
+<!--配置namenode数据存放的位置,可以不配置，如果不配置，默认用的是
+          core-site.xml里配置的hadoop.tmp.dir的路径-->
+<property>
+<name>dfs.namenode.name.dir</name>
+<value>file:///home/app/hadoop-2.7.1/tmp/namenode</value>
+</property>
+<!--配置datanode数据存放的位置,可以不配置，如果不配置，默认用的是
+               core-site.xml 里配置的 hadoop.tmp.dir 的路径-->
+<property>
+<name>dfs.datanode.data.dir</name>
+<value>file:///home/app/hadoop-2.7.1/tmp/datanode</value>
+</property>
+<!--配置 block 副本数量-->
+<property>
+<name>dfs.replication</name>
+<value>3</value>
+</property>
+<!--设置hdfs的操作权限，false表示任何用户都可以在hdfs上操作文件-->
+<property>
+<name>dfs.permissions</name>
+<value>false</value>
+</property>
+</configuration>
+###1.4.11    配置 mapred-site.xml
+配置代码：
+<configuration>
+<property>
+<!--指定mapreduce运行在yarn上-->
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+</configuration>
+###1.4.12    配置yarn-site.xml
+配置代码：
+<configuration>
+<!--开启YARN HA -->
+<property>
+<name>yarn.resourcemanager.ha.enabled</name>
+<value>true</value>
+</property>
+  <!--指定两个resourcemanager的名称-->
+<property>
+<name>yarn.resourcemanager.ha.rm-ids</name>
+<value>rm1,rm2</value>
+</property>
+<!--配置rm1，rm2的主机-->
+<property>
+<name>yarn.resourcemanager.hostname.rm1</name>
+<value>hadoop1</value>
+</property>
+<property>
+<name>yarn.resourcemanager.hostname.rm2</name>
+<value>hadoop3</value>
+</property>
+<!--开启yarn恢复机制-->
+<property>
+<name>yarn.resourcemanager.recovery.enabled</name>
+<value>true</value>
+</property>
+<!--执行rm恢复机制实现类-->
+<property>
+<name>yarn.resourcemanager.store.class</name>
+<value>org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore</value>
+</property>
+<!--配置zookeeper的地址-->
+<property>
+<name>yarn.resourcemanager.zk-address</name>
+<value>hadoop1:2181,hadoop2:2181,hadoop3:2181</value>
+<description>For multiple zk services, separate them with comma</description>
+</property>
+<!--指定YARN HA的名称-->
+<property>
+<name>yarn.resourcemanager.cluster-id</name>
+<value>yarn-ha</value>
+</property>
+<!--指定 yarn 的老大 resoucemanager 的地址-->
+<property>
+<name>yarn.resourcemanager.hostname</name>
+<value>hadoop1</value>
+</property>
+<!--NodeManager获取数据的方式-->
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce_shuffle</value>
+</property>
+</configuration>
+###1.4.13    配置slaves文件
+配置代码：
+hadoop4
+hadoop5
+hadoop6
+###1.4.14    根据配置文件，创建相关的文件夹，用来存放对应数据
+在hadoop-2.7.1目录下创建:
+①journal目录
+②创建tmp目录
+③在tmp目录下，分别创建namenode目录和datanode目录
+###1.4.15    配置 hadoop 的环境变量（可不配）
+JAVA_HOME=/home/app/jdk1.8.0_65
+JAVA_BIN=/home/app/jdk1.8.0_65/bin
+HADOOP_HOME=/home/app/hadoop-2.7.1
+PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME JAVA_BIN HADOOP_HOME PATH CLASSPATH
+
+<p>###1.4.16    通过scp 命令，将hadoop安装目录远程copy到其他5台机器上<br>比如向hadoop02节点传输：<br>scp -r hadoop-2.7.1 root@hadoop2:/home/app<br>###1.4.17    启动zookeeper集群<br>在Zookeeper安装目录的bin目录下执行：sh zkServer.sh start<br>sh zkServer.sh status  验证是否启动成功，如成功，两台从节点一台主节点<br>###1.4.18    格式化zookeeper<br>在zk的leader节点上执行：<br>hdfs zkfc -formatZK，这个指令的作用是在zookeeper集群上生成ha节点 （ns节点）<br>注：18–24步可以用一步来替代：进入hadoop安装目录的sbin目录，执行： sh start-dfs.sh 。 但建议还是按部就班来执行，比较可靠。<br>###1.4.19    启动journalnode集群<br>在4、5、6节点上执行：<br>切换到hadoop安装目录的sbin目录下，执行：<br>sh hadoop-daemons.sh start journalnode<br>然后执行jps命令查看进程。<br>###1.4.20    格式化1节点的namenode<br>在1节点上执行：<br>hadoop namenode -format<br>###1.4.21    启动1节点的namenode<br>在 1 节点上执行：<br>sh hadoop-daemon.sh start namenode<br>###1.4.22    把2节点的namenode节点变为standby namenode节点<br>在2节点上执行：<br>hdfs namenode -bootstrapStandby<br>###1.4.23    启动 2 节点的 namenode 节点<br>在2节点上执行：<br>sh hadoop-daemon.sh start namenode<br>###1.4.24    在4,5,6节点上启动datanode节点<br>在 4,5,6 节点上执行： sh hadoop-daemon.sh start datanode<br>###1.4.25    启动zkfc（启动FalioverControllerActive)<br>在1,2节点上执行：<br>sh hadoop-daemon.sh start zkfc<br>###1.4.26    在1节点上启动主Resourcemanager<br>在1节点上执行：start-yarn.sh<br>启动成功后，4,5,6节点上应该有nodemanager 的进程<br>###1.4.27    在 3 节点上启动副 Resoucemanager<br>在3节点上执行：sh yarn-daemon.sh start resourcemanager<br>##1.5    测试<br>输入地址： <a href="http://192.168.65.121:50070" target="_blank" rel="noopener">http://192.168.65.121:50070</a> ，查看 namenode 的信息，是active状态<br><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/5.png" alt="5"></p>
+<p>输入地址：<a href="http://192.168.65.122:50070查看namenode的信息，是standby状态" target="_blank" rel="noopener">http://192.168.65.122:50070查看namenode的信息，是standby状态</a><br><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/6.png" alt="6"></p>
+<p>然后停掉01节点的namenode,此时发现standby的namenode变为active。<br>如果出现standby节点不能正确替代active的情况检查fuser是否正常<br>yum provides “*/fuser”</p>
+<p>在启动namenode的两台节点上安装fuser,分别执行<br>yum -y install psmisc</p>
+<p><a href="http://f.dataguru.cn/hadoop-707122-1-1.html" target="_blank" rel="noopener">http://f.dataguru.cn/hadoop-707122-1-1.html</a></p>
 <hr>
 <p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
 
@@ -829,6 +913,12 @@
     <td><img width="100" src="https://hualei.online/medias/reward/alipay.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/wechat.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/zan.png"></td>   
   </tr>
 </tbody></table>
+
+
+
+
+
+
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -997,7 +1087,7 @@
                     </span>
                     <a href="https://hualei.online" class="b-link-green">烂人不该拥有</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/posts/fd29.html" class="b-link-green">MySQL分库分表方案汇总</a>
+                    <a href="/posts/4175.html" class="b-link-green">Hadoop2.0完全分布式HA搭建</a>
                 </p>
             </div>
 
@@ -1317,9 +1407,60 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/4175.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Hadoop2.0完全分布式HA搭建">
+                        
+                        <span class="card-title">Hadoop2.0完全分布式HA搭建</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1    Hadoop2.0 HA搭建步骤##1.1    准备工作6台虚拟机，内存512M，hadoop1~6修改静态IP：192.168.65.121 ~ 126##1.2    架构图 ##1.3    集群节点分配    hado
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/集群搭建/" class="post-category" target="_blank">
+                                    -集群搭建
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/大数据-Hadoop-技术/" target="_blank">
+                        <span class="chip bg-color">-大数据 -Hadoop -技术</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/posts/fdc0.html">
                     <div class="card-image">
@@ -1337,9 +1478,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1361,67 +1502,6 @@
                     
                     <a href="/tags/软件/" target="_blank">
                         <span class="chip bg-color">软件</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/7c5b.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="SpringBoot框架的使用">
-                        
-                        <span class="card-title">SpringBoot框架的使用</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            随着动态语言的流行（Ruby、Groovy、Scala、Node.js），Java的开发显得格外的笨重：繁多的配置、低下的开发效率、复杂的部署流程以及第三方技术集成难度大。在上述环境下，Springboot应运而生。它使用"习惯优于配置"的理念让你的项目快速运行起来,让你无须手动进行配置。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-17
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/技术的学习/" class="post-category" target="_blank">
-                                    技术的学习
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/博客/" target="_blank">
-                        <span class="chip bg-color">博客</span>
-                    </a>
-                    
-                    <a href="/tags/技术/" target="_blank">
-                        <span class="chip bg-color">技术</span>
-                    </a>
-                    
-                    <a href="/tags/IT/" target="_blank">
-                        <span class="chip bg-color">IT</span>
-                    </a>
-                    
-                    <a href="/tags/程序/" target="_blank">
-                        <span class="chip bg-color">程序</span>
                     </a>
                     
                 </div>
@@ -1472,99 +1552,6 @@
 </script>
 
 
-    </div>
-    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
-        <div class="toc-widget">
-            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
-            <div id="toc-content"></div>
-        </div>
-    </div>
-</div>
-
-<!-- TOC 悬浮按钮. -->
-
-<div id="floating-toc-btn" class="hide-on-med-and-down">
-    <a class="btn-floating btn-large bg-color">
-        <i class="fa fa-list"></i>
-    </a>
-</div>
-
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            // headingsOffset: -205,
-            headingSelector: 'h1, h2, h3, h4, h5'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-
-        
-        /* 修复文章卡片 div 的宽度. */
-        let fixPostCardWidth = function (srcId, targetId) {
-            let srcDiv = $('#' + srcId);
-            if (srcDiv.length === 0) {
-                return;
-            }
-
-            let w = srcDiv.width();
-            if (w >= 450) {
-                w = w + 21;
-            } else if (w >= 350 && w < 450) {
-                w = w + 18;
-            } else if (w >= 300 && w < 350) {
-                w = w + 16;
-            } else {
-                w = w + 14;
-            }
-            $('#' + targetId).width(w);
-        };
-
-        // 切换TOC目录展开收缩的相关操作.
-        const expandedClass = 'expanded';
-        let $tocAside = $('#toc-aside');
-        let $mainContent = $('#main-content');
-        $('#floating-toc-btn .btn-floating').click(function () {
-            if ($tocAside.hasClass(expandedClass)) {
-                $tocAside.removeClass(expandedClass).slideUp(500);
-                $mainContent.removeClass('l9');
-            } else {
-                $tocAside.addClass(expandedClass).slideDown(500);
-                $mainContent.addClass('l9');
-            }
-            fixPostCardWidth('artDetail', 'prenext-posts');
-        });
-        
-    });
-</script>
     
 
 </main>

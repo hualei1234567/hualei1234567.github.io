@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-04-19T00:46:01.613Z</updated>
+  <updated>2020-04-30T11:01:03.072Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hadoop2.0完全分布式HA搭建</title>
+    <link href="https://hualei.online/posts/4175.html"/>
+    <id>https://hualei.online/posts/4175.html</id>
+    <published>2020-04-30T10:45:09.000Z</published>
+    <updated>2020-04-30T11:01:03.072Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;1-Hadoop2-0-HA搭建步骤&quot;&gt;&lt;a href=&quot;#1-Hadoop2-0-HA搭建步骤&quot; class=&quot;headerlink&quot; title=&quot;1    Hadoop2.0 HA搭建步骤&quot;&gt;&lt;/a&gt;1    Hadoop2.0
+        
+      
+    
+    </summary>
+    
+      <category term="-集群搭建" scheme="https://hualei.online/categories/%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="-大数据 -Hadoop -技术" scheme="https://hualei.online/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-Hadoop-%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>一招搞定GitHub下载加速!</title>
@@ -66,9 +92,9 @@
       <category term="数据库" scheme="https://hualei.online/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="IT" scheme="https://hualei.online/tags/IT/"/>
-    
       <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="IT" scheme="https://hualei.online/tags/IT/"/>
     
   </entry>
   
@@ -96,9 +122,9 @@
     
       <category term="博客" scheme="https://hualei.online/tags/%E5%8D%9A%E5%AE%A2/"/>
     
-      <category term="IT" scheme="https://hualei.online/tags/IT/"/>
-    
       <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="IT" scheme="https://hualei.online/tags/IT/"/>
     
       <category term="程序" scheme="https://hualei.online/tags/%E7%A8%8B%E5%BA%8F/"/>
     
