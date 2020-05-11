@@ -784,14 +784,14 @@ http://www.runoob.com/linux/Linux-intro.html必须学会的命令1.man和page1.�
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.8k
+                        2.9k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        12 分
+                        13 分
                     </div>
                     
                 
@@ -912,159 +912,434 @@ tar -jcvf /tmp/hadoop.tar.bz2 hadoop
 
 将/tmp/hadoop.tar.bz2解压到/usr目录下面
 tar -jxvf hadoop.tar.bz2 -C /usr/
-</code></pre><ol start="2">
-<li>文件命令<br>```</li>
-<li>进入到用户根目录<br>cd ~ 或者 cd<br>cd ~hadoop<br>回到原来路径<br>cd -</li>
-</ol>
-<p>2.查看文件详情<br>stat a.txt</p>
-<p>3.移动<br>mv a.txt /ect/<br>改名<br>mv b.txt a.txt<br>移动并改名<br>mv a.txt ../b.txt</p>
-<p>4拷贝并改名<br>cp a.txt /etc/b.txt</p>
-<p>5.vi撤销修改<br>ctrl + u (undo)<br>恢复<br>ctrl + r (redo)</p>
-<p>6.名令设置别名(重启后无效)<br>alias ll=”ls -l”<br>取消<br>unalias ll</p>
-<p>7.如果想让别名重启后仍然有效需要修改<br>vi ~/.bashrc</p>
-<p>8.添加用户<br>useradd hadoop<br>passwd hadoop</p>
-<p>9创建多个文件<br>touch a.txt b.txt<br>touch /home/{a.txt,b.txt}</p>
-<p>10.将一个文件的内容复制到里另一个文件中<br>cat a.txt &gt; b.txt<br>追加内容<br>cat a.txt &gt;&gt; b.txt </p>
-<p>11.将a.txt 与b.txt设为其拥有者和其所属同一个组者可写入，但其他以外的人则不可写入:<br>chmod ug+w,o-w a.txt b.txt</p>
-<p>chmod a=wx c.txt</p>
-<p>12.将当前目录下的所有文件与子目录皆设为任何人可读取:<br>chmod -R a+r *</p>
-<p>13.将a.txt的用户拥有者设为users,组的拥有者设为jessie:<br>chown users:jessie a.txt</p>
-<p>14.将当前目录下的所有文件与子目录的用户的使用者为lamport,组拥有者皆设为users，<br>chown -R lamport:users *</p>
-<p>15.将所有的java语言程式拷贝至finished子目录中:<br>cp *.java finished</p>
-<p>16.将目前目录及其子目录下所有扩展名是java的文件列出来。<br>find -name “*.java”<br>查找当前目录下扩展名是java 的文件<br>find -name *.java</p>
-<p>17.删除当前目录下扩展名是java的文件<br>rm -f *.java</p>
-<pre><code>
-3.系统命令</code></pre><p>1.查看主机名<br>hostname</p>
-<p>2.修改主机名(重启后无效)<br>hostname hadoop</p>
-<p>3.修改主机名(重启后永久生效)<br>vi /ect/sysconfig/network</p>
-<p>4.修改IP(重启后无效)<br>ifconfig eth0 192.168.12.22</p>
-<p>5.修改IP(重启后永久生效)<br>vi /etc/sysconfig/network-scripts/ifcfg-eth0</p>
-<p>6.查看系统信息<br>uname -a<br>uname -r</p>
-<p>7.查看ID命令<br>id -u<br>id -g</p>
-<p>8.日期<br>date<br>date +%Y-%m-%d<br>date +%T<br>date +%Y-%m-%d” “%T</p>
-<p>9.日历<br>cal 2012</p>
-<p>10.查看文件信息<br>file filename</p>
-<p>11.挂载硬盘<br>mount<br>umount<br>加载windows共享<br>mount -t cifs //192.168.1.100/tools /mnt</p>
-<p>12.查看文件大小<br>du -h<br>du -ah</p>
-<p>13.查看分区<br>df -h</p>
-<p>14.ssh<br>ssh <a href="mailto:hadoop@192.168.1.1" target="_blank" rel="noopener">hadoop@192.168.1.1</a></p>
-<p>15.关机<br>shutdown -h now /init 0<br>shutdown -r now /reboot</p>
-<pre><code>
-4.用户和组
-</code></pre><p>添加一个tom用户，设置它属于users组，并添加注释信息<br>分步完成：useradd tom<br>          usermod -g users tom<br>          usermod -c “hr tom” tom<br>一步完成：useradd -g users -c “hr tom” tom</p>
-<p>设置tom用户的密码<br>passwd tom</p>
-<p>修改tom用户的登陆名为tomcat<br>usermod -l tomcat tom</p>
-<p>将tomcat添加到sys和root组中<br>usermod -G sys,root tomcat</p>
-<p>查看tomcat的组信息<br>groups tomcat</p>
-<p>添加一个jerry用户并设置密码<br>useradd jerry<br>passwd jerry</p>
-<p>添加一个交america的组<br>groupadd america</p>
-<p>将jerry添加到america组中<br>usermod -g america jerry</p>
-<p>将tomcat用户从root组和sys组删除<br>gpasswd -d tomcat root<br>gpasswd -d tomcat sys</p>
-<p>将america组名修改为am<br>groupmod -n am america</p>
-<pre><code>
-5. 权限
-</code></pre><p>创建a.txt和b.txt文件，将他们设为其拥有者和所在组可写入，但其他以外的人则不可写入:<br>chmod ug+w,o-w a.txt b.txt</p>
-<p>创建c.txt文件所有人都可以写和执行<br>chmod a=wx c.txt 或chmod 666 c.txt</p>
-<p>将/hadoop目录下的所有文件与子目录皆设为任何人可读取<br>chmod -R a+r /hadoop</p>
-<p>将/hadoop目录下的所有文件与子目录的拥有者设为root，用户拥有组为users<br>chown -R root:users /hadoop</p>
-<p>将当前目录下的所有文件与子目录的用户皆设为hadoop，组设为users<br>chown -R hadoop:users *</p>
-<pre><code>
-6.目录属性
-</code></pre><p>1.查看文件夹属性<br>ls -ld test</p>
-<p>2.文件夹的rwx<br>–x:可以cd进去<br>r-x:可以cd进去并ls<br>-wx:可以cd进去并touch，rm自己的文件，并且可以vi其他用户的文件<br>-wt:可以cd进去并touch，rm自己的文件</p>
-<p>ls -ld /tmp<br>drwxrwxrwt的权限值是1777(sticky)</p>
-<pre><code>
-7.软件安装
-</code></pre><p>1.安装JDK<br>    *添加执行权限<br>        chmod u+x jdk-6u45-linux-i586.bin<br>    *解压<br>        ./jdk-6u45-linux-i586.bin<br>    *在/usr目录下创建java目录<br>        mkdir /usr/java<br>    *将/soft目录下的解压的jdk1.6.0_45剪切到/usr/java目录下<br>        mv jdk1.6.0_45/ /usr/java/<br>    *添加环境变量<br>        vim /etc/profile<br>        *在/etc/profile文件最后添加<br>            export JAVA_HOME=/usr/java/jdk1.6.0_45<br>            export CLASSPATH=$JAVA_HOME/lib<br>            export PATH=$PATH:$JAVA_HOME/bin<br>    *更新配置<br>        source /etc/profile</p>
-<p>2.安装tomcat<br>    tar -zxvf /soft/apache-tomcat-7.0.47.tar.gz -C /programs/<br>    cd /programs/apache-tomcat-7.0.47/bin/<br>    ./startup.sh</p>
-<p>3.安装eclipse</p>
-<pre><code>8.vim</code></pre><p>i<br>a/A<br>o/O<br>r + ?替换</p>
-<p>0:文件当前行的开头<br>$:文件当前行的末尾<br>G:文件的最后一行开头<br>1 + G到第一行<br>9 + G到第九行 = :9</p>
-<p>dd:删除一行<br>3dd：删除3行<br>yy:复制一行<br>3yy:复制3行<br>p:粘贴<br>u:undo<br>ctrl + r:redo</p>
-<p>“a剪切板a<br>“b剪切板b</p>
-<p>“ap粘贴剪切板a的内容</p>
-<p>每次进入vi就有行号<br>vi ~/.vimrc<br>set nu</p>
-<p>:w a.txt另存为<br>:w &gt;&gt; a.txt内容追加到a.txt</p>
-<p>:e!恢复到最初状态</p>
-<p>:1,$s/hadoop/root/g 将第一行到追后一行的hadoop替换为root<br>:1,$s/hadoop/root/c 将第一行到追后一行的hadoop替换为root(有提示)</p>
-<pre><code>
-9.查找
-</code></pre><p>1.查找可执行的命令：<br>which ls</p>
-<p>2.查找可执行的命令和帮助的位置：<br>whereis ls</p>
-<p>3.查找文件(需要更新库:updatedb)<br>locate hadoop.txt</p>
-<p>4.从某个文件夹开始查找<br>find / -name “hadooop*”<br>find / -name “hadooop*” -ls</p>
-<p>5.查找并删除<br>find / -name “hadooop*” -ok rm {} ;<br>find / -name “hadooop*” -exec rm {} ;</p>
-<p>6.查找用户为hadoop的文件<br>find /usr -user hadoop -ls</p>
-<p>7.查找用户为hadoop并且(-a)拥有组为root的文件<br>find /usr -user hadoop -a -group root -ls</p>
-<p>8.查找用户为hadoop或者(-o)拥有组为root并且是文件夹类型的文件<br>find /usr -user hadoop -o -group root -a -type d</p>
-<p>9.查找权限为777的文件<br>find / -perm -777 -type d -ls</p>
-<p>10.显示命令历史<br>history</p>
-<p>11.grep<br>grep hadoop /etc/password</p>
-<pre><code>
-10.打包与压缩
-</code></pre><p>1.gzip压缩<br>gzip a.txt</p>
-<p>2.解压<br>gunzip a.txt.gz<br>gzip -d a.txt.gz</p>
-<p>3.bzip2压缩<br>bzip2 a</p>
-<p>4.解压<br>bunzip2 a.bz2<br>bzip2 -d a.bz2</p>
-<p>5.将当前目录的文件打包<br>tar -cvf bak.tar .<br>将/etc/password追加文件到bak.tar中(r)<br>tar -rvf bak.tar /etc/password</p>
-<p>6.解压<br>tar -xvf bak.tar</p>
-<p>7.打包并压缩gzip<br>tar -zcvf a.tar.gz</p>
-<p>8.解压缩<br>tar -zxvf a.tar.gz<br>解压到/usr/下<br>tar -zxvf a.tar.gz -C /usr</p>
-<p>9.查看压缩包内容<br>tar -ztvf a.tar.gz</p>
-<p>zip/unzip</p>
-<p>10.打包并压缩成bz2<br>tar -jcvf a.tar.bz2</p>
-<p>11.解压bz2<br>tar -jxvf a.tar.bz2</p>
-<pre><code>
-11.正则
-</code></pre><p>1.cut截取以:分割保留第七段<br>grep hadoop /etc/passwd | cut -d: -f7</p>
-<p>2.排序<br>du | sort -n </p>
-<p>3.查询不包含hadoop的<br>grep -v hadoop /etc/passwd</p>
-<p>4.正则表达包含hadoop<br>grep ‘hadoop’ /etc/passwd</p>
-<p>5.正则表达(点代表任意一个字符)<br>grep ‘h.*p’ /etc/passwd</p>
-<p>6.正则表达以hadoop开头<br>grep ‘^hadoop’ /etc/passwd</p>
-<p>7.正则表达以hadoop结尾<br>grep ‘hadoop$’ /etc/passwd</p>
-<p>规则：<br>.  : 任意一个字符<br>a* : 任意多个a(零个或多个a)<br>a? : 零个或一个a<br>a+ : 一个或多个a<br>.* : 任意多个任意字符<br>. : 转义.<br>&lt;h.*p&gt; ：以h开头，p结尾的一个单词<br>o{2} : o重复两次</p>
-<p>grep ‘^i.{18}n$’ /usr/share/dict/words</p>
-<p>查找不是以#开头的行<br>grep -v ‘^#’ a.txt | grep -v ‘^$’ </p>
-<p>以h或r开头的<br>grep ‘^[hr]’ /etc/passwd</p>
-<p>不是以h和r开头的<br>grep ‘^[^hr]’ /etc/passwd</p>
-<p>不是以h到r开头的<br>grep ‘^[^h-r]’ /etc/passwd</p>
-<pre><code>
-12.输入输出重定向及管道
-</code></pre><p>1.新建一个文件<br>touch a.txt</p>
-<blockquote>
-<p>b.txt</p>
-</blockquote>
-<p>2.错误重定向:2&gt;<br>find /etc -name zhaoxing.txt 2&gt; error.txt</p>
-<p>3.将正确或错误的信息都输入到log.txt中<br>find /etc -name passwd &gt; /tmp/log.txt 2&gt;&amp;1<br>find /etc -name passwd &amp;&gt; /tmp/log.txt</p>
-<p>4.追加&gt;&gt;</p>
-<p>5.将小写转为大写（输入重定向）<br>tr “a-z” “A-Z” &lt; /etc/passwd</p>
-<p>6.自动创建文件<br>cat &gt; log.txt &lt;&lt; EXIT</p>
-<blockquote>
-<p>ccc<br>ddd<br>EXI</p>
-</blockquote>
-<p>7.查看/etc下的文件有多少个？<br>ls -l /etc/ | grep ‘^d’ | wc -l</p>
-<p>8.查看/etc下的文件有多少个，并将文件详情输入到result.txt中<br>ls -l /etc/ | grep ‘^d’ | tee result.txt | wc -l</p>
-<pre><code>
-13.进程控制
-</code></pre><p>1.查看用户最近登录情况<br>last<br>lastlog</p>
-<p>2.查看硬盘使用情况<br>df</p>
-<p>3.查看文件大小<br>du</p>
-<p>4.查看内存使用情况<br>free</p>
-<p>5.查看文件系统<br>/proc</p>
-<p>6.查看日志<br>ls /var/log/</p>
-<p>7.查看系统报错日志<br>tail /var/log/messages</p>
-<p>8.查看进程<br>top</p>
-<p>9.结束进程<br>kill 1234<br>kill -9 4333</p>
-<pre><code>
-**持续更新中...，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～**
+</code></pre><h4 id="2-1-文件命令"><a href="#2-1-文件命令" class="headerlink" title="2.1. 文件命令"></a>2.1. 文件命令</h4><pre><code>1.进入到用户根目录
+cd ~ 或者 cd
+cd ~hadoop
+回到原来路径
+cd -
+
+2.查看文件详情
+stat a.txt
+
+3.移动
+mv a.txt /ect/
+改名
+mv b.txt a.txt
+移动并改名
+mv a.txt ../b.txt
+
+4拷贝并改名
+cp a.txt /etc/b.txt
+
+5.vi撤销修改
+ctrl + u (undo)
+恢复
+ctrl + r (redo)
+
+6.名令设置别名(重启后无效)
+alias ll="ls -l"
+取消
+unalias ll
+
+7.如果想让别名重启后仍然有效需要修改
+vi ~/.bashrc
+
+8.添加用户
+useradd hadoop
+passwd hadoop
+
+9创建多个文件
+touch a.txt b.txt
+touch /home/{a.txt,b.txt}
+
+10.将一个文件的内容复制到里另一个文件中
+cat a.txt &gt; b.txt
+追加内容
+cat a.txt &gt;&gt; b.txt 
+
+
+11.将a.txt 与b.txt设为其拥有者和其所属同一个组者可写入，但其他以外的人则不可写入:
+chmod ug+w,o-w a.txt b.txt
+
+chmod a=wx c.txt
+
+12.将当前目录下的所有文件与子目录皆设为任何人可读取:
+chmod -R a+r *
+
+13.将a.txt的用户拥有者设为users,组的拥有者设为jessie:
+chown users:jessie a.txt
+
+14.将当前目录下的所有文件与子目录的用户的使用者为lamport,组拥有者皆设为users，
+chown -R lamport:users *
+
+15.将所有的java语言程式拷贝至finished子目录中:
+cp *.java finished
+
+16.将目前目录及其子目录下所有扩展名是java的文件列出来。
+find -name "*.java"
+查找当前目录下扩展名是java 的文件
+find -name *.java
+
+17.删除当前目录下扩展名是java的文件
+rm -f *.java
+
+</code></pre><h4 id="2-2-系统命令"><a href="#2-2-系统命令" class="headerlink" title="2.2.系统命令"></a>2.2.系统命令</h4><pre><code>1.查看主机名
+hostname
+
+2.修改主机名(重启后无效)
+hostname hadoop
+
+3.修改主机名(重启后永久生效)
+vi /ect/sysconfig/network
+
+4.修改IP(重启后无效)
+ifconfig eth0 192.168.12.22
+
+5.修改IP(重启后永久生效)
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+
+6.查看系统信息
+uname -a
+uname -r
+
+7.查看ID命令
+id -u
+id -g
+
+8.日期
+date
+date +%Y-%m-%d
+date +%T
+date +%Y-%m-%d" "%T
+
+9.日历
+cal 2012
+
+10.查看文件信息
+file filename
+
+11.挂载硬盘
+mount
+umount
+加载windows共享
+mount -t cifs //192.168.1.100/tools /mnt
+
+12.查看文件大小
+du -h
+du -ah
+
+13.查看分区
+df -h
+
+14.ssh
+ssh hadoop@192.168.1.1
+
+15.关机
+shutdown -h now /init 0
+shutdown -r now /reboot
+</code></pre><h4 id="2-3-用户和组"><a href="#2-3-用户和组" class="headerlink" title="2.3.用户和组"></a>2.3.用户和组</h4><pre><code>添加一个tom用户，设置它属于users组，并添加注释信息
+分步完成：useradd tom
+          usermod -g users tom
+          usermod -c "hr tom" tom
+一步完成：useradd -g users -c "hr tom" tom
+
+设置tom用户的密码
+passwd tom
+
+修改tom用户的登陆名为tomcat
+usermod -l tomcat tom
+
+将tomcat添加到sys和root组中
+usermod -G sys,root tomcat
+
+查看tomcat的组信息
+groups tomcat
+
+添加一个jerry用户并设置密码
+useradd jerry
+passwd jerry
+
+添加一个交america的组
+groupadd america
+
+将jerry添加到america组中
+usermod -g america jerry
+
+将tomcat用户从root组和sys组删除
+gpasswd -d tomcat root
+gpasswd -d tomcat sys
+
+将america组名修改为am
+groupmod -n am america
+</code></pre><h4 id="2-4-权限"><a href="#2-4-权限" class="headerlink" title="2.4. 权限"></a>2.4. 权限</h4><pre><code>创建a.txt和b.txt文件，将他们设为其拥有者和所在组可写入，但其他以外的人则不可写入:
+chmod ug+w,o-w a.txt b.txt
+
+创建c.txt文件所有人都可以写和执行
+chmod a=wx c.txt 或chmod 666 c.txt
+
+将/hadoop目录下的所有文件与子目录皆设为任何人可读取
+chmod -R a+r /hadoop
+
+将/hadoop目录下的所有文件与子目录的拥有者设为root，用户拥有组为users
+chown -R root:users /hadoop
+
+将当前目录下的所有文件与子目录的用户皆设为hadoop，组设为users
+chown -R hadoop:users *
+</code></pre><h4 id="2-5-目录属性"><a href="#2-5-目录属性" class="headerlink" title="2.5. 目录属性"></a>2.5. 目录属性</h4><pre><code>1.查看文件夹属性
+ls -ld test
+
+2.文件夹的rwx
+--x:可以cd进去
+r-x:可以cd进去并ls
+-wx:可以cd进去并touch，rm自己的文件，并且可以vi其他用户的文件
+-wt:可以cd进去并touch，rm自己的文件
+
+ls -ld /tmp
+drwxrwxrwt的权限值是1777(sticky)
+</code></pre><h4 id="2-6-软件安装"><a href="#2-6-软件安装" class="headerlink" title="2.6. 软件安装"></a>2.6. 软件安装</h4><pre><code>1.安装JDK
+    *添加执行权限 
+        chmod u+x jdk-6u45-linux-i586.bin
+    *解压
+        ./jdk-6u45-linux-i586.bin
+    *在/usr目录下创建java目录
+        mkdir /usr/java
+    *将/soft目录下的解压的jdk1.6.0_45剪切到/usr/java目录下
+        mv jdk1.6.0_45/ /usr/java/
+    *添加环境变量
+        vim /etc/profile
+        *在/etc/profile文件最后添加
+            export JAVA_HOME=/usr/java/jdk1.6.0_45
+            export CLASSPATH=$JAVA_HOME/lib
+            export PATH=$PATH:$JAVA_HOME/bin
+    *更新配置
+        source /etc/profile
+
+2.安装tomcat
+    tar -zxvf /soft/apache-tomcat-7.0.47.tar.gz -C /programs/
+    cd /programs/apache-tomcat-7.0.47/bin/
+    ./startup.sh
+
+3.安装eclipse
+
+</code></pre><h4 id="2-7-vim"><a href="#2-7-vim" class="headerlink" title="2.7. vim"></a>2.7. vim</h4><pre><code>i
+a/A
+o/O
+r + ?替换
+
+0:文件当前行的开头
+$:文件当前行的末尾
+G:文件的最后一行开头
+1 + G到第一行 
+9 + G到第九行 = :9
+
+dd:删除一行
+3dd：删除3行
+yy:复制一行
+3yy:复制3行
+p:粘贴
+u:undo
+ctrl + r:redo
+
+"a剪切板a
+"b剪切板b
+
+"ap粘贴剪切板a的内容
+
+每次进入vi就有行号
+vi ~/.vimrc
+set nu
+
+:w a.txt另存为
+:w &gt;&gt; a.txt内容追加到a.txt
+
+:e!恢复到最初状态
+
+:1,$s/hadoop/root/g 将第一行到追后一行的hadoop替换为root
+:1,$s/hadoop/root/c 将第一行到追后一行的hadoop替换为root(有提示)
+
+</code></pre><h4 id="2-8-查找"><a href="#2-8-查找" class="headerlink" title="2.8. 查找"></a>2.8. 查找</h4><pre><code>1.查找可执行的命令：
+which ls
+
+2.查找可执行的命令和帮助的位置：
+whereis ls
+
+3.查找文件(需要更新库:updatedb)
+locate hadoop.txt
+
+4.从某个文件夹开始查找
+find / -name "hadooop*"
+find / -name "hadooop*" -ls
+
+5.查找并删除
+find / -name "hadooop*" -ok rm {} \;
+find / -name "hadooop*" -exec rm {} \;
+
+6.查找用户为hadoop的文件
+find /usr -user hadoop -ls
+
+7.查找用户为hadoop并且(-a)拥有组为root的文件
+find /usr -user hadoop -a -group root -ls
+
+8.查找用户为hadoop或者(-o)拥有组为root并且是文件夹类型的文件
+find /usr -user hadoop -o -group root -a -type d
+
+9.查找权限为777的文件
+find / -perm -777 -type d -ls
+
+10.显示命令历史
+history
+
+11.grep
+grep hadoop /etc/password
+</code></pre><h4 id="2-9-打包与压缩"><a href="#2-9-打包与压缩" class="headerlink" title="2.9. 打包与压缩"></a>2.9. 打包与压缩</h4><pre><code>1.gzip压缩
+gzip a.txt
+
+2.解压
+gunzip a.txt.gz
+gzip -d a.txt.gz
+
+3.bzip2压缩
+bzip2 a
+
+4.解压
+bunzip2 a.bz2
+bzip2 -d a.bz2
+
+5.将当前目录的文件打包
+tar -cvf bak.tar .
+将/etc/password追加文件到bak.tar中(r)
+tar -rvf bak.tar /etc/password
+
+6.解压
+tar -xvf bak.tar
+
+7.打包并压缩gzip
+tar -zcvf a.tar.gz
+
+8.解压缩
+tar -zxvf a.tar.gz
+解压到/usr/下
+tar -zxvf a.tar.gz -C /usr
+
+9.查看压缩包内容
+tar -ztvf a.tar.gz
+
+zip/unzip
+
+10.打包并压缩成bz2
+tar -jcvf a.tar.bz2
+
+11.解压bz2
+tar -jxvf a.tar.bz2
+
+</code></pre><h4 id="2-10-正则"><a href="#2-10-正则" class="headerlink" title="2.10. 正则"></a>2.10. 正则</h4><pre><code>1.cut截取以:分割保留第七段
+grep hadoop /etc/passwd | cut -d: -f7
+
+2.排序
+du | sort -n 
+
+3.查询不包含hadoop的
+grep -v hadoop /etc/passwd
+
+4.正则表达包含hadoop
+grep 'hadoop' /etc/passwd
+
+5.正则表达(点代表任意一个字符)
+grep 'h.*p' /etc/passwd
+
+6.正则表达以hadoop开头
+grep '^hadoop' /etc/passwd
+
+7.正则表达以hadoop结尾
+grep 'hadoop$' /etc/passwd
+
+规则：
+.  : 任意一个字符
+a* : 任意多个a(零个或多个a)
+a? : 零个或一个a
+a+ : 一个或多个a
+.* : 任意多个任意字符
+\. : 转义.
+\&lt;h.*p\&gt; ：以h开头，p结尾的一个单词
+o\{2\} : o重复两次
+
+grep '^i.\{18\}n$' /usr/share/dict/words
+
+查找不是以#开头的行
+grep -v '^#' a.txt | grep -v '^$' 
+
+以h或r开头的
+grep '^[hr]' /etc/passwd
+
+不是以h和r开头的
+grep '^[^hr]' /etc/passwd
+
+不是以h到r开头的
+grep '^[^h-r]' /etc/passwd
+</code></pre><h4 id="2-11-输入输出重定向及管道"><a href="#2-11-输入输出重定向及管道" class="headerlink" title="2.11. 输入输出重定向及管道"></a>2.11. 输入输出重定向及管道</h4><pre><code>1.新建一个文件
+touch a.txt
+&gt; b.txt
+
+2.错误重定向:2&gt;
+find /etc -name zhaoxing.txt 2&gt; error.txt
+
+3.将正确或错误的信息都输入到log.txt中
+find /etc -name passwd &gt; /tmp/log.txt 2&gt;&amp;1 
+find /etc -name passwd &amp;&gt; /tmp/log.txt
+
+4.追加&gt;&gt;
+
+5.将小写转为大写（输入重定向）
+tr "a-z" "A-Z" &lt; /etc/passwd
+
+6.自动创建文件
+cat &gt; log.txt &lt;&lt; EXIT
+&gt; ccc
+&gt; ddd
+&gt; EXI
+
+7.查看/etc下的文件有多少个？
+ls -l /etc/ | grep '^d' | wc -l
+
+8.查看/etc下的文件有多少个，并将文件详情输入到result.txt中
+ls -l /etc/ | grep '^d' | tee result.txt | wc -l
+</code></pre><h4 id="2-12-进程控制"><a href="#2-12-进程控制" class="headerlink" title="2.12. 进程控制"></a>2.12. 进程控制</h4><pre><code>1.查看用户最近登录情况
+last
+lastlog
+
+2.查看硬盘使用情况
+df
+
+3.查看文件大小
+du
+
+4.查看内存使用情况
+free
+
+5.查看文件系统
+/proc
+
+6.查看日志
+ls /var/log/
+
+7.查看系统报错日志
+tail /var/log/messages
+
+8.查看进程
+top
+
+9.结束进程
+kill 1234
+kill -9 4333</code></pre><hr>
+<p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
 
 <table>
   <tbody><tr>
     <td><img width="100" src="https://hualei.online/medias/reward/alipay.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/wechat.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/zan.png"></td>   
   </tr>
 </tbody></table>
-</code></pre><script>
+
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1831,7 +2106,7 @@ tar -jxvf hadoop.tar.bz2 -C /usr/
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">14.1k</span> 字
+                <span class="white-color">14.2k</span> 字
             
 
             
