@@ -741,12 +741,12 @@ Hadoop是ASF(Apache">
                                 <span class="chip bg-color">大数据</span>
                             </a>
                         
-                            <a href="/tags/Hadoop/" target="_blank">
-                                <span class="chip bg-color">Hadoop</span>
-                            </a>
-                        
                             <a href="/tags/互联网/" target="_blank">
                                 <span class="chip bg-color">互联网</span>
+                            </a>
+                        
+                            <a href="/tags/Hadoop/" target="_blank">
+                                <span class="chip bg-color">Hadoop</span>
                             </a>
                         
                     </div>
@@ -827,7 +827,7 @@ Hadoop是ASF(Apache">
 <p>注意:分布式文件系统和分布式数据存储的界线是模糊的，但一般来说，分布式文件系统是被设计用在局域网，比较强调的是传统文件系统概念的延伸，并通过软件方法来达成容错的目的。而分布式数据存储，则是泛指应用分布式运算技术的文件和数据库等提供数据存储服务的系统。</p>
 <h3 id="HDFS-1"><a href="#HDFS-1" class="headerlink" title="HDFS"></a>HDFS</h3><p>HDFS正是Hadoop中负责分布式文件系统的。HDFS采用master/slave架构。一个HDFS集群是由一个Namenode和一定数目的Datanodes组成。Namenode是一个中心服务器，负责管理文件系统的命名空间以及文件的访问控制。集群中的Datanode一般是一个设备上部署一个，负责管理它所在节点上的存储。HDFS暴露了文件系统的命名空间，用户能够以文件的形式在上面存储数据。实际上，一个文件会被分成一个或多个数据块，这些块存储在一组Datanode上。Namenode执行文件系统的命名空间操作，比如打开、关闭、重命名文件或目录。它也负责确定数据块到具体Datanode设备的映射。Datanode负责处理文件系统客户端的读写请求。在Namenode的统一调度下进行数据块的创建、删除和复制。为了保证文件系统的高可靠，往往需要另一个Standby的Namenode在Actived Namenode出现问题后，立刻接管文件系统。</p>
 <p>网络上有很多关于hdfs的安装配置手册，本文就不再复述。只提供一个以前项目中应用过的部署架构仅供大家参考。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/posts/0.htm/1558787234954.jpg" alt="d5ca565f7d2f845320da67b0b90fb62e"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/Hadoop%E6%9E%81%E7%AE%80%E5%85%A5%E9%97%A8/%E5%9B%BE%E7%89%87%E4%B8%80.jpg" alt="图片一"></p>
 <p>这个高可用的HDFS架构是由3台zookeeper设备、2台域名服务(DNS)和时间服务(NTP)设备、2台Namenode设备(如果必要Standby可以更多)、一个共享存储设备(NFS)和N个DataNode组成。</p>
 <p>Zookeeper负责接受NameNode的心跳，当Actived namenode不向zookeeper报告心跳时，Standby Namenode的监控进程会收到这个消息，从而激活Standby NameNode并接管Active NameNode的工作。</p>
 <p>NFS负责为2个NameNode存储EditLog文件，(NameNode 在执行 HDFS 客户端提交的创建文件或者移动文件这样的写操作时，会首先把这些操作记录在 EditLog 文件之中，然后再更新内存中的文件系统镜像，最终再刷新到磁盘。 EditLog 只是在数据恢复的时候起作用。记录在 EditLog 之中的每一个操作又称为一个事务，每个事务有一个整数形式的事务 id 作为编号。EditLog 会被切割为很多段，每一段称为一个 Segment)当发生NameNode切换的情况时，Standby NameNode接管后，会根据EditLog中把未完成的写操作继续下去并开使向EditLog写入新的写操作记录。(此外，hadoop还提供了另一种QJM的EditLog方案)</p>
@@ -837,7 +837,7 @@ Hadoop是ASF(Apache">
 <p>通常，MapReduce框架和HDFS是运行在一相同的设备集群上的，也就是说，计算设备和存储设备通常在一起。这种配置允许框架在那些已经存好数据的设备上高效地调度任务，这可以使整个集群的网络带宽被非常高效地利用。</p>
 <p>MapReduce框架由一个单独的master JobTracker 和每个集群设备一个slave TaskTracker共同组成。master负责调度构成一个作业的所有任务，这些任务分布在不同的slave上，master监控它们的执行，重新执行已经失败的任务。而slave仅负责执行由master指派的任务。</p>
 <p>用户编写的MapReduce应用程序应该指明输入/输出的文件位置(路径)，并通过实现合适的接口或抽象类提供map和reduce函数。再加上其他作业的参数，就构成了作业配置(job configuration)。然后，job client提交作业(jar包/可执行程序等)和配置信息给JobTracker，后者负责分发这些软件和配置信息给slave、调度任务并监控它们的执行，同时提供状态和诊断信息给job-client。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/posts/0.htm/1558787253396.jpg" alt="cd1528eceb1199009fdb11b1e8432a5b"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/Hadoop%E6%9E%81%E7%AE%80%E5%85%A5%E9%97%A8/%E5%9B%BE%E7%89%87%E4%BA%8C.jpg" alt="图片二"></p>
 <p>在抽象的层面上MapReduce是由两个函数Map和Reduce组成的。简单来说，一个Map函数就是对一些独立元素组成的概念上的列表的每一个元素进行指定的操作。事实上，每个元素都是被独立操作的，而原始列表没有被更改，因为这里创建了一个新的列表来保存操作结果。这就是说，Map操作是可以高度并行的。而Reduce函数指的是对Map函数的结果（中间经过洗牌的过程，会把map的结果进行分组）分组后多个列表的元素进行适当的归并。</p>
 <p>注意:虽然Hadoop框架是用JavaTM实现的，但MapReduce应用程序则不一定要用 Java来写 。至少Scala是可以写的哟。</p>
 <p>附上Scala实现的计算词频的Scala源码</p>
@@ -893,7 +893,7 @@ context.write(key, new IntWritable(values.map(x=&gt;x.get()).reduce(_+_)));
 }
 }</code></pre><h3 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h3><p>YARN(Yet Another Resource Negotiator)是Hadoop的设备资源管理器，它是一个通用资源管理系统，MapReduce和其他上层应用提供统一的资源管理和调度，它为集群在利用率、资源统一管理和数据共享等方面提供了巨大的帮助。</p>
 <p>Yarn由ResourceManager、NodeManager、ApplicationMaster和Containe四个概念构成。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/posts/0.htm/1558787271436.jpg" alt="b8685cf68532773d51876a447537fdef"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/Hadoop%E6%9E%81%E7%AE%80%E5%85%A5%E9%97%A8/%E5%9B%BE%E7%89%87%E4%B8%89.jpg" alt="图片三"></p>
 <p>ResourceManager是一个全局的资源管理器，负责整个系统的资源管理和分配。它主要由两个组件构成:调度器(Scheduler)和应用程序管理器(Applications Manager)。调度器根据容量、队列等限制条件，将系统中的资源分配给各个正在运行的MapReduce程序。应用程序管理器负责管理整个系统中所有MapReduce程序，包括提交、与调度器协商资源以启动ApplicationMaster、监控ApplicationMaster运行状态并在失败时重新启动它等。</p>
 <p>用户提交的每个MapReduce程序均包含一个ApplicationMaster，主要功能包括：与ResourceManager调度器协商以获取资源(用Container表示)；将得到的任务进一步分配给内部的任务(资源的二次分配)；与NodeManager通信以启动/停止任务；监控所有任务运行状态，并在任务运行失败时重新为任务申请资源以重启任务。</p>
 <p>NodeManager是每个设备上的资源和任务管理器，一方面，它会定时地向ResourceManager汇报本设备上的资源使用情况和各个Container的运行状态；另一方面，它接收并处理来自ApplicationMaster的Container启动/停止等各种请求。</p>
@@ -1439,12 +1439,12 @@ context.write(key, new IntWritable(values.map(x=&gt;x.get()).reduce(_+_)));
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
-                    <a href="/tags/Hadoop/" target="_blank">
-                        <span class="chip bg-color">Hadoop</span>
-                    </a>
-                    
                     <a href="/tags/互联网/" target="_blank">
                         <span class="chip bg-color">互联网</span>
+                    </a>
+                    
+                    <a href="/tags/Hadoop/" target="_blank">
+                        <span class="chip bg-color">Hadoop</span>
                     </a>
                     
                 </div>
@@ -1945,5 +1945,5 @@ if (windowWidth > 768) {
 	 
 
 		
-    <script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":true},"react":{"opacity":0.7}});</script><script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
 </html>
