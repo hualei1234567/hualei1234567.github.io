@@ -142,7 +142,7 @@
             
             <i class="fa fa-user-circle"></i>
             
-            <span>个人信息</span>
+            <span>关于我</span>
         </a>
     </li>
     
@@ -269,7 +269,7 @@
                 
                   <i class="fa fa-user-circle"></i>
                 
-                <span>个人信息</span>
+                <span>关于我</span>
                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
               </a>
 
@@ -280,7 +280,7 @@
                     
                       <i class="fa fa-user-circle-o" style="margin-top: -20px;"></i>
                     
-                    <span>关于我</span>
+                    <span>博主信息</span>
                   </a>
                 </li>
               
@@ -400,7 +400,7 @@
                 
                 <i class="fa fa-fw fa-user-circle"></i>
                 
-                个人信息
+                关于我
             </a>
         </li>
         
@@ -520,7 +520,7 @@
                             
                             <i class="fa fa-fw fa-user-circle"></i>
                             
-                            个人信息
+                            关于我
                             <span class="m-icon"><i class="fa fa-chevron-right"></i></span>
                     </a>
                 <ul>
@@ -530,7 +530,7 @@
                            
                             <i class="fa fa-user-circle-o" style="left: 18px; position: absolute;"></i>
                        
-                       <span>关于我</span>
+                       <span>博主信息</span>
                       </a>
                     </li>
                   
@@ -702,10 +702,28 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
+                <a href="/categories/技术学习/" title="技术学习: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #F5EEF8;">技术学习
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/categories/集群搭建/" title="集群搭建: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F5EEF8;">集群搭建
+                            style="background-color: #D5F5E3;">集群搭建
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/数据库/" title="数据库: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #E8F8F5;">数据库
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -714,25 +732,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 <a href="/categories/技术的学习/" title="技术的学习: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">技术的学习
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/技术学习/" title="技术学习: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #E8F8F5;">技术学习
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/数据库/" title="数据库: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #FEF9E7;">数据库
+                            style="background-color: #FEF9E7;">技术的学习
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -788,7 +788,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     color: '#3C4858'
                 }
             },
-            indicator: [{"name":"软件安装与配置","max":3},{"name":"集群搭建","max":3},{"name":"技术的学习","max":3},{"name":"技术学习","max":3},{"name":"数据库","max":3},{"name":"软件使用","max":3}],
+            indicator: [{"name":"软件安装与配置","max":3},{"name":"技术学习","max":3},{"name":"集群搭建","max":3},{"name":"数据库","max":3},{"name":"技术的学习","max":3},{"name":"软件使用","max":3}],
             nameGap: 5,
             center: ['50%','55%'],
             radius: '66%'
@@ -799,7 +799,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data : [
                 {
-                    value : [1,1,1,2,1,1],
+                    value : [1,2,1,1,1,1],
                     name : '文章分类数量'
                 }
             ]
