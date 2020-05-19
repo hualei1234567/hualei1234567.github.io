@@ -48,6 +48,36 @@
   </entry>
   
   <entry>
+    <title>JVM内存结构</title>
+    <link href="https://hualei.online/posts/6c2c.html"/>
+    <id>https://hualei.online/posts/6c2c.html</id>
+    <published>2020-05-11T09:30:02.000Z</published>
+    <updated>2020-05-19T10:47:47.611Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;JVM-内存结构&quot;&gt;&lt;a href=&quot;#JVM-内存结构&quot; class=&quot;headerlink&quot; title=&quot;JVM 内存结构&quot;&gt;&lt;/a&gt;JVM 内存结构&lt;/h1&gt;&lt;p&gt;Java 虚拟机的内存空间分为 5
+        
+      
+    
+    </summary>
+    
+      <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+      <category term="Java" scheme="https://hualei.online/tags/Java/"/>
+    
+      <category term="JVM" scheme="https://hualei.online/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Linux基础和命令</title>
     <link href="https://hualei.online/posts/1792.html"/>
     <id>https://hualei.online/posts/1792.html</id>
