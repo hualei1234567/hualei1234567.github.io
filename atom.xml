@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-05-11T09:58:27.083Z</updated>
+  <updated>2020-05-19T10:56:48.492Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JVM内存结构</title>
+    <link href="https://hualei.online/posts/6c2c.html"/>
+    <id>https://hualei.online/posts/6c2c.html</id>
+    <published>2020-05-19T10:30:02.000Z</published>
+    <updated>2020-05-19T10:56:48.492Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;JVM-内存结构&quot;&gt;&lt;a href=&quot;#JVM-内存结构&quot; class=&quot;headerlink&quot; title=&quot;JVM 内存结构&quot;&gt;&lt;/a&gt;JVM 内存结构&lt;/h1&gt;&lt;p&gt;Java 虚拟机的内存空间分为 5
+        
+      
+    
+    </summary>
+    
+      <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+      <category term="Java" scheme="https://hualei.online/tags/Java/"/>
+    
+      <category term="JVM" scheme="https://hualei.online/tags/JVM/"/>
+    
+  </entry>
   
   <entry>
     <title>Hadoop极简入门</title>
@@ -41,39 +71,9 @@
     
       <category term="大数据" scheme="https://hualei.online/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
       <category term="Hadoop" scheme="https://hualei.online/tags/Hadoop/"/>
     
-  </entry>
-  
-  <entry>
-    <title>JVM内存结构</title>
-    <link href="https://hualei.online/posts/6c2c.html"/>
-    <id>https://hualei.online/posts/6c2c.html</id>
-    <published>2020-05-11T09:30:02.000Z</published>
-    <updated>2020-05-19T10:47:47.611Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;JVM-内存结构&quot;&gt;&lt;a href=&quot;#JVM-内存结构&quot; class=&quot;headerlink&quot; title=&quot;JVM 内存结构&quot;&gt;&lt;/a&gt;JVM 内存结构&lt;/h1&gt;&lt;p&gt;Java 虚拟机的内存空间分为 5
-        
-      
-    
-    </summary>
-    
-      <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
-    
-    
       <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
-      <category term="Java" scheme="https://hualei.online/tags/Java/"/>
-    
-      <category term="JVM" scheme="https://hualei.online/tags/JVM/"/>
     
   </entry>
   
@@ -99,9 +99,9 @@
       <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
       <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
     
       <category term="Linux" scheme="https://hualei.online/tags/Linux/"/>
     
