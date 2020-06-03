@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> 互联网 </tag>
+            
+            <tag> Java </tag>
             
             <tag> JVM </tag>
             
@@ -49,11 +49,11 @@
       
         <tags>
             
-            <tag> 互联网 </tag>
-            
             <tag> 大数据 </tag>
             
             <tag> Hadoop </tag>
+            
+            <tag> 互联网 </tag>
             
         </tags>
       
@@ -78,9 +78,9 @@
       
         <tags>
             
-            <tag> 互联网 </tag>
-            
             <tag> 技术 </tag>
+            
+            <tag> 互联网 </tag>
             
             <tag> Linux </tag>
             
