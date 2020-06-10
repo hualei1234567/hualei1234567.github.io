@@ -776,8 +776,7 @@ Apache-Kafka核心组件">
 <p><a href="http://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzU3MzgwNTU2Mg%3D%3D%26mid%3D100000474%26idx%3D1%26sn%3Dc9b9d8fbb942f5299eb1d23a9363c0a4%26chksm%3D7d3d444f4a4acd597607e33ee59aad92db50084a5ab7edb84449df6f2f3ecc504e97f05977bb%23rd" target="_blank" rel="noopener">Apache-Kafka 核心组件和流程-控制器</a></p>
 <p><a href="http://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzU3MzgwNTU2Mg%3D%3D%26mid%3D100000478%26idx%3D1%26sn%3Deeb3310214d7fa24ca86c4afad421baa%26chksm%3D7d3d444b4a4acd5d1987dc78f89d40a20833cec682b30b9f1a0735a26681f681a38853a6ff63%23rd" target="_blank" rel="noopener">Apache-Kafka核心组件和流程-日志管理器</a></p>
 <p>….</p>
-<p><strong>kafka的定位</strong></p>
-<p>提到kafka，不太熟悉或者稍有接触的开发人员，第一想法可能会觉得它是一个消息系统。其实Kafka的定位并不止于此。</p>
+<h3 id="kafka的定位"><a href="#kafka的定位" class="headerlink" title="kafka的定位"></a><strong>kafka的定位</strong></h3><p>提到kafka，不太熟悉或者稍有接触的开发人员，第一想法可能会觉得它是一个消息系统。其实Kafka的定位并不止于此。</p>
 <p>Kafka官方文档介绍说，Apache Kafka是一个分布式流平台，并给出了如下解释：</p>
 <p>流平台有三个关键的能力：</p>
 <ul>
@@ -794,22 +793,19 @@ Apache-Kafka核心组件">
 <p>其实不管kafka给自己的定位如何，他都逃脱不了发布订阅消息的底层机制。本文讲解的重点，也是kafka发布订阅消息的特性。</p>
 <p>Kafka和大多数消息系统一样，搭建好kafka集群后，生产者向特定的topic生产消息，而消费者通过订阅topic，能够准实时的拉取到该topic新消息，进行消费。如下图：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-eabf90da50c94506.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
-<p><strong>Kafka特性</strong></p>
-<p>kafka和有以下主要的特性：</p>
+<h3 id="Kafka特性"><a href="#Kafka特性" class="headerlink" title="Kafka特性"></a><strong>Kafka特性</strong></h3><p>kafka和有以下主要的特性：</p>
 <ul>
 <li>消息持久化</li>
 <li>高吞吐量</li>
 <li>可扩展性</li>
 </ul>
 <p>尤其是高吞吐量，是他的最大卖点。kafka之所以能够实现高吞吐量，是基于他自身优良的设计，及集群的可扩展性。后面章节会展开来分析。</p>
-<p><strong>Kafka应用场景</strong></p>
-<ul>
+<h3 id="Kafka应用场景"><a href="#Kafka应用场景" class="headerlink" title="Kafka应用场景"></a><strong>Kafka应用场景</strong></h3><ul>
 <li>消息系统</li>
 <li>日志系统</li>
 <li>流处理</li>
 </ul>
-<p><strong>单机环境</strong></p>
-<p>官方建议使用JDK 1.8版本，因此本文使用的环境都是JDK1.8。关于JDK的安装，本文不再详述，默认Java环境已经具备。</p>
+<h3 id="单机环境"><a href="#单机环境" class="headerlink" title="单机环境"></a><strong>单机环境</strong></h3><p>官方建议使用JDK 1.8版本，因此本文使用的环境都是JDK1.8。关于JDK的安装，本文不再详述，默认Java环境已经具备。</p>
 <p>由于Kafka依赖zookeeper，kafka通过zookeeper现实分布式系统的协调，所以我们需要先安装zookeeper。</p>
 <p>接下来我们按照如下步骤，一步步来安装kafka：</p>
 <p>1、下载zookeeper，解压。</p>
@@ -870,7 +866,6 @@ Apache-Kafka核心组件">
 <p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-148e5147382d1712.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
 <p>至此我们走完了一个发送消息的流程，可以看到我们经历了创建topic、启动生产者、消费者、生产者生产消息、消费者消费消息，这几个步骤。</p>
 <p>小结：通过本章节学习，相信你已经能够成功搭建起kafka单机环境，甚至集群环境。然后通过kafka自带的工具，直观的感受了kafka运转的整个过程。接下来的章节我们将会进入kafka的核心领域，也是本教程的重点章节，只有理解了kafka内在的设计理念和原理，才能做到活学活用。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-2349cea8df6b9d79.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
 <p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
 
 <table>
@@ -1463,12 +1458,12 @@ Apache-Kafka核心组件">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/" target="_blank">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
                     <a href="/tags/互联网/" target="_blank">
                         <span class="chip bg-color">互联网</span>
+                    </a>
+                    
+                    <a href="/tags/Java/" target="_blank">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                     <a href="/tags/JVM/" target="_blank">
