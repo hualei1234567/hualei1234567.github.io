@@ -6,12 +6,15 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux基础和命令, BigData IT DeepLearning MachineLearning 华磊 hualei Java开发">
+    <meta name="keywords" content="kafka简介及其使用, BigData IT DeepLearning MachineLearning 华磊 hualei Java开发">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="Linux命令我是小白，我从来没玩过Linux,请点这里：
-http://www.runoob.com/linux/Linux-intro.html必须学会的命令1.0 man和page1.内部命令：echo
-查看内部命令帮助：help e">
+    <meta name="description" content="您可能感兴趣的文章:
+Apache-Kafka核心概念
+Apache-Kafka核心组件和流程-协调器
+Apache-Kafka核心组件和流程(副本管理器)
+Apache-Kafka 核心组件和流程-控制器
+Apache-Kafka核心组件">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +22,7 @@ http://www.runoob.com/linux/Linux-intro.html必须学会的命令1.0 man和page1
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Linux基础和命令 | 烂人不该拥有</title>
+    <title>kafka简介及其使用 | 烂人不该拥有</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -578,13 +581,13 @@ http://www.runoob.com/linux/Linux-intro.html必须学会的命令1.0 man和page1
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Linux基础和命令
+                        kafka简介及其使用
                     </div>
                 </div>
             </div>
@@ -696,16 +699,16 @@ http://www.runoob.com/linux/Linux-intro.html必须学会的命令1.0 man和page1
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/技术/" target="_blank">
-                                <span class="chip bg-color">技术</span>
+                            <a href="/tags/大数据/" target="_blank">
+                                <span class="chip bg-color">大数据</span>
                             </a>
                         
                             <a href="/tags/互联网/" target="_blank">
                                 <span class="chip bg-color">互联网</span>
                             </a>
                         
-                            <a href="/tags/Linux/" target="_blank">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/Kafka/" target="_blank">
+                                <span class="chip bg-color">Kafka</span>
                             </a>
                         
                     </div>
@@ -728,7 +731,7 @@ http://www.runoob.com/linux/Linux-intro.html必须学会的命令1.0 man和page1
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-11
+                    2020-06-08
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -742,14 +745,14 @@ http://www.runoob.com/linux/Linux-intro.html必须学会的命令1.0 man和page1
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.9k
+                        1.8k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        13 分
+                        6 分
                     </div>
                     
                 
@@ -766,529 +769,108 @@ http://www.runoob.com/linux/Linux-intro.html必须学会的命令1.0 man和page1
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a>Linux命令</h2><p>我是小白，我从来没玩过Linux,请点这里：</p>
-<pre><code>http://www.runoob.com/linux/Linux-intro.html</code></pre><h2 id="必须学会的命令"><a href="#必须学会的命令" class="headerlink" title="必须学会的命令"></a>必须学会的命令</h2><h3 id="1-0-man和page"><a href="#1-0-man和page" class="headerlink" title="1.0 man和page"></a>1.0 man和page</h3><pre><code>1.内部命令：echo
-查看内部命令帮助：help echo 或者 man echo
-
-2.外部命令：ls
-查看外部命令帮助：ls --help 或者 man ls 或者 info ls
-
-3.man文档的类型(1~9)
-man 7 man
-man 5 passwd
-
-4.快捷键：
-ctrl + c：停止进程
-
-ctrl + l：清屏
-
-ctrl + r：搜索历史命令
-
-ctrl + q：退出
-
-5.善于用tab键
-</code></pre><h3 id="2-0-常用"><a href="#2-0-常用" class="headerlink" title="2.0. 常用"></a>2.0. 常用</h3><pre><code>说明：安装linux时，创建一个hadoop用户，然后使用root用户登陆系统
-
-1.进入到用户根目录
-cd ~ 或 cd
-
-2.查看当前所在目录
-pwd
-
-3.进入到hadoop用户根目录
-cd ~hadoop
-
-4.返回到原来目录
-cd -
-
-5.返回到上一级目录
-cd ..
-
-6.查看hadoop用户根目录下的所有文件
-ls -la
-
-7.在根目录下创建一个hadoop的文件夹
-mkdir /hadoop
-
-8.在/hadoop目录下创建src和WebRoot两个文件夹
-分别创建：mkdir /hadoop/src
-          mkdir /hadoop/WebRoot
-同时创建：mkdir /hadoop/{src,WebRoot}
-
-进入到/hadoop目录，在该目录下创建.classpath和README文件
-分别创建：touch .classpath
-          touch README
-同时创建：touch {.classpath,README}
-
-查看/hadoop目录下面的所有文件
-ls -la
-
-在/hadoop目录下面创建一个test.txt文件,同时写入内容"this is test"
-echo "this is test" &gt; test.txt
-
-查看一下test.txt的内容
-cat test.txt
-more test.txt
-less test.txt
-
-向README文件追加写入"please read me first"
-echo "please read me first" &gt;&gt; README
-
-将test.txt的内容追加到README文件中
-cat test.txt &gt;&gt; README
-
-拷贝/hadoop目录下的所有文件到/hadoop-bak
-cp -r /hadoop /hadoop-bak
-
-进入到/hadoop-bak目录，将test.txt移动到src目录下，并修改文件名为Student.java
-mv test.txt src/Student.java
-
-在src目录下创建一个struts.xml
-&gt; struts.xml
-
-删除所有的xml类型的文件
-rm -rf *.xml
-
-删除/hadoop-bak目录和下面的所有文件
-rm -rf /hadoop-bak
-
-返回到/hadoop目录，查看一下README文件有多单词，多少个少行
-wc -w README
-wc -l README
-
-返回到根目录，将/hadoop目录先打包，再用gzip压缩
-分步完成：tar -cvf hadoop.tar hadoop
-          gzip hadoop.tar
-一步完成：tar -zcvf hadoop.tar.gz hadoop
-
-将其解压缩，再取消打包
-分步完成：gzip -d hadoop.tar.gz 或 gunzip hadoop.tar.gz
-一步完成：tar -zxvf hadoop.tar.gz
-
-将/hadoop目录先打包，同时用bzip2压缩，并保存到/tmp目录下
-tar -jcvf /tmp/hadoop.tar.bz2 hadoop
-
-将/tmp/hadoop.tar.bz2解压到/usr目录下面
-tar -jxvf hadoop.tar.bz2 -C /usr/
-</code></pre><h4 id="2-1-文件命令"><a href="#2-1-文件命令" class="headerlink" title="2.1 文件命令"></a>2.1 文件命令</h4><pre><code>1.进入到用户根目录
-cd ~ 或者 cd
-cd ~hadoop
-回到原来路径
-cd -
-
-2.查看文件详情
-stat a.txt
-
-3.移动
-mv a.txt /ect/
-改名
-mv b.txt a.txt
-移动并改名
-mv a.txt ../b.txt
-
-4拷贝并改名
-cp a.txt /etc/b.txt
-
-5.vi撤销修改
-ctrl + u (undo)
-恢复
-ctrl + r (redo)
-
-6.名令设置别名(重启后无效)
-alias ll="ls -l"
-取消
-unalias ll
-
-7.如果想让别名重启后仍然有效需要修改
-vi ~/.bashrc
-
-8.添加用户
-useradd hadoop
-passwd hadoop
-
-9创建多个文件
-touch a.txt b.txt
-touch /home/{a.txt,b.txt}
-
-10.将一个文件的内容复制到里另一个文件中
-cat a.txt &gt; b.txt
-追加内容
-cat a.txt &gt;&gt; b.txt 
-
-
-11.将a.txt 与b.txt设为其拥有者和其所属同一个组者可写入，但其他以外的人则不可写入:
-chmod ug+w,o-w a.txt b.txt
-
-chmod a=wx c.txt
-
-12.将当前目录下的所有文件与子目录皆设为任何人可读取:
-chmod -R a+r *
-
-13.将a.txt的用户拥有者设为users,组的拥有者设为jessie:
-chown users:jessie a.txt
-
-14.将当前目录下的所有文件与子目录的用户的使用者为lamport,组拥有者皆设为users，
-chown -R lamport:users *
-
-15.将所有的java语言程式拷贝至finished子目录中:
-cp *.java finished
-
-16.将目前目录及其子目录下所有扩展名是java的文件列出来。
-find -name "*.java"
-查找当前目录下扩展名是java 的文件
-find -name *.java
-
-17.删除当前目录下扩展名是java的文件
-rm -f *.java
-
-</code></pre><h4 id="2-2-系统命令"><a href="#2-2-系统命令" class="headerlink" title="2.2 系统命令"></a>2.2 系统命令</h4><pre><code>1.查看主机名
-hostname
-
-2.修改主机名(重启后无效)
-hostname hadoop
-
-3.修改主机名(重启后永久生效)
-vi /ect/sysconfig/network
-
-4.修改IP(重启后无效)
-ifconfig eth0 192.168.12.22
-
-5.修改IP(重启后永久生效)
-vi /etc/sysconfig/network-scripts/ifcfg-eth0
-
-6.查看系统信息
-uname -a
-uname -r
-
-7.查看ID命令
-id -u
-id -g
-
-8.日期
-date
-date +%Y-%m-%d
-date +%T
-date +%Y-%m-%d" "%T
-
-9.日历
-cal 2012
-
-10.查看文件信息
-file filename
-
-11.挂载硬盘
-mount
-umount
-加载windows共享
-mount -t cifs //192.168.1.100/tools /mnt
-
-12.查看文件大小
-du -h
-du -ah
-
-13.查看分区
-df -h
-
-14.ssh
-ssh hadoop@192.168.1.1
-
-15.关机
-shutdown -h now /init 0
-shutdown -r now /reboot
-</code></pre><h4 id="2-3-用户和组"><a href="#2-3-用户和组" class="headerlink" title="2.3 用户和组"></a>2.3 用户和组</h4><pre><code>添加一个tom用户，设置它属于users组，并添加注释信息
-分步完成：useradd tom
-          usermod -g users tom
-          usermod -c "hr tom" tom
-一步完成：useradd -g users -c "hr tom" tom
-
-设置tom用户的密码
-passwd tom
-
-修改tom用户的登陆名为tomcat
-usermod -l tomcat tom
-
-将tomcat添加到sys和root组中
-usermod -G sys,root tomcat
-
-查看tomcat的组信息
-groups tomcat
-
-添加一个jerry用户并设置密码
-useradd jerry
-passwd jerry
-
-添加一个交america的组
-groupadd america
-
-将jerry添加到america组中
-usermod -g america jerry
-
-将tomcat用户从root组和sys组删除
-gpasswd -d tomcat root
-gpasswd -d tomcat sys
-
-将america组名修改为am
-groupmod -n am america
-</code></pre><h4 id="2-4-权限"><a href="#2-4-权限" class="headerlink" title="2.4 权限"></a>2.4 权限</h4><pre><code>创建a.txt和b.txt文件，将他们设为其拥有者和所在组可写入，但其他以外的人则不可写入:
-chmod ug+w,o-w a.txt b.txt
-
-创建c.txt文件所有人都可以写和执行
-chmod a=wx c.txt 或chmod 666 c.txt
-
-将/hadoop目录下的所有文件与子目录皆设为任何人可读取
-chmod -R a+r /hadoop
-
-将/hadoop目录下的所有文件与子目录的拥有者设为root，用户拥有组为users
-chown -R root:users /hadoop
-
-将当前目录下的所有文件与子目录的用户皆设为hadoop，组设为users
-chown -R hadoop:users *
-</code></pre><h4 id="2-5-目录属性"><a href="#2-5-目录属性" class="headerlink" title="2.5 目录属性"></a>2.5 目录属性</h4><pre><code>1.查看文件夹属性
-ls -ld test
-
-2.文件夹的rwx
---x:可以cd进去
-r-x:可以cd进去并ls
--wx:可以cd进去并touch，rm自己的文件，并且可以vi其他用户的文件
--wt:可以cd进去并touch，rm自己的文件
-
-ls -ld /tmp
-drwxrwxrwt的权限值是1777(sticky)
-</code></pre><h4 id="2-6-软件安装"><a href="#2-6-软件安装" class="headerlink" title="2.6 软件安装"></a>2.6 软件安装</h4><pre><code>1.安装JDK
-    *添加执行权限 
-        chmod u+x jdk-6u45-linux-i586.bin
-    *解压
-        ./jdk-6u45-linux-i586.bin
-    *在/usr目录下创建java目录
-        mkdir /usr/java
-    *将/soft目录下的解压的jdk1.6.0_45剪切到/usr/java目录下
-        mv jdk1.6.0_45/ /usr/java/
-    *添加环境变量
-        vim /etc/profile
-        *在/etc/profile文件最后添加
-            export JAVA_HOME=/usr/java/jdk1.6.0_45
-            export CLASSPATH=$JAVA_HOME/lib
-            export PATH=$PATH:$JAVA_HOME/bin
-    *更新配置
-        source /etc/profile
-
-2.安装tomcat
-    tar -zxvf /soft/apache-tomcat-7.0.47.tar.gz -C /programs/
-    cd /programs/apache-tomcat-7.0.47/bin/
-    ./startup.sh
-
-3.安装eclipse
-
-</code></pre><h4 id="2-7-vim"><a href="#2-7-vim" class="headerlink" title="2.7 vim"></a>2.7 vim</h4><pre><code>i
-a/A
-o/O
-r + ?替换
-
-0:文件当前行的开头
-$:文件当前行的末尾
-G:文件的最后一行开头
-1 + G到第一行 
-9 + G到第九行 = :9
-
-dd:删除一行
-3dd：删除3行
-yy:复制一行
-3yy:复制3行
-p:粘贴
-u:undo
-ctrl + r:redo
-
-"a剪切板a
-"b剪切板b
-
-"ap粘贴剪切板a的内容
-
-每次进入vi就有行号
-vi ~/.vimrc
-set nu
-
-:w a.txt另存为
-:w &gt;&gt; a.txt内容追加到a.txt
-
-:e!恢复到最初状态
-
-:1,$s/hadoop/root/g 将第一行到追后一行的hadoop替换为root
-:1,$s/hadoop/root/c 将第一行到追后一行的hadoop替换为root(有提示)
-
-</code></pre><h4 id="2-8-查找"><a href="#2-8-查找" class="headerlink" title="2.8 查找"></a>2.8 查找</h4><pre><code>1.查找可执行的命令：
-which ls
-
-2.查找可执行的命令和帮助的位置：
-whereis ls
-
-3.查找文件(需要更新库:updatedb)
-locate hadoop.txt
-
-4.从某个文件夹开始查找
-find / -name "hadooop*"
-find / -name "hadooop*" -ls
-
-5.查找并删除
-find / -name "hadooop*" -ok rm {} \;
-find / -name "hadooop*" -exec rm {} \;
-
-6.查找用户为hadoop的文件
-find /usr -user hadoop -ls
-
-7.查找用户为hadoop并且(-a)拥有组为root的文件
-find /usr -user hadoop -a -group root -ls
-
-8.查找用户为hadoop或者(-o)拥有组为root并且是文件夹类型的文件
-find /usr -user hadoop -o -group root -a -type d
-
-9.查找权限为777的文件
-find / -perm -777 -type d -ls
-
-10.显示命令历史
-history
-
-11.grep
-grep hadoop /etc/password
-</code></pre><h4 id="2-9-打包与压缩"><a href="#2-9-打包与压缩" class="headerlink" title="2.9 打包与压缩"></a>2.9 打包与压缩</h4><pre><code>1.gzip压缩
-gzip a.txt
-
-2.解压
-gunzip a.txt.gz
-gzip -d a.txt.gz
-
-3.bzip2压缩
-bzip2 a
-
-4.解压
-bunzip2 a.bz2
-bzip2 -d a.bz2
-
-5.将当前目录的文件打包
-tar -cvf bak.tar .
-将/etc/password追加文件到bak.tar中(r)
-tar -rvf bak.tar /etc/password
-
-6.解压
-tar -xvf bak.tar
-
-7.打包并压缩gzip
-tar -zcvf a.tar.gz
-
-8.解压缩
-tar -zxvf a.tar.gz
-解压到/usr/下
-tar -zxvf a.tar.gz -C /usr
-
-9.查看压缩包内容
-tar -ztvf a.tar.gz
-
-zip/unzip
-
-10.打包并压缩成bz2
-tar -jcvf a.tar.bz2
-
-11.解压bz2
-tar -jxvf a.tar.bz2
-
-</code></pre><h4 id="2-10-正则"><a href="#2-10-正则" class="headerlink" title="2.10 正则"></a>2.10 正则</h4><pre><code>1.cut截取以:分割保留第七段
-grep hadoop /etc/passwd | cut -d: -f7
-
-2.排序
-du | sort -n 
-
-3.查询不包含hadoop的
-grep -v hadoop /etc/passwd
-
-4.正则表达包含hadoop
-grep 'hadoop' /etc/passwd
-
-5.正则表达(点代表任意一个字符)
-grep 'h.*p' /etc/passwd
-
-6.正则表达以hadoop开头
-grep '^hadoop' /etc/passwd
-
-7.正则表达以hadoop结尾
-grep 'hadoop$' /etc/passwd
-
-规则：
-.  : 任意一个字符
-a* : 任意多个a(零个或多个a)
-a? : 零个或一个a
-a+ : 一个或多个a
-.* : 任意多个任意字符
-\. : 转义.
-\&lt;h.*p\&gt; ：以h开头，p结尾的一个单词
-o\{2\} : o重复两次
-
-grep '^i.\{18\}n$' /usr/share/dict/words
-
-查找不是以#开头的行
-grep -v '^#' a.txt | grep -v '^$' 
-
-以h或r开头的
-grep '^[hr]' /etc/passwd
-
-不是以h和r开头的
-grep '^[^hr]' /etc/passwd
-
-不是以h到r开头的
-grep '^[^h-r]' /etc/passwd
-</code></pre><h4 id="2-11-输入输出重定向及管道"><a href="#2-11-输入输出重定向及管道" class="headerlink" title="2.11 输入输出重定向及管道"></a>2.11 输入输出重定向及管道</h4><pre><code>1.新建一个文件
-touch a.txt
-&gt; b.txt
-
-2.错误重定向:2&gt;
-find /etc -name zhaoxing.txt 2&gt; error.txt
-
-3.将正确或错误的信息都输入到log.txt中
-find /etc -name passwd &gt; /tmp/log.txt 2&gt;&amp;1 
-find /etc -name passwd &amp;&gt; /tmp/log.txt
-
-4.追加&gt;&gt;
-
-5.将小写转为大写（输入重定向）
-tr "a-z" "A-Z" &lt; /etc/passwd
-
-6.自动创建文件
-cat &gt; log.txt &lt;&lt; EXIT
-&gt; ccc
-&gt; ddd
-&gt; EXI
-
-7.查看/etc下的文件有多少个？
-ls -l /etc/ | grep '^d' | wc -l
-
-8.查看/etc下的文件有多少个，并将文件详情输入到result.txt中
-ls -l /etc/ | grep '^d' | tee result.txt | wc -l
-</code></pre><h4 id="2-12-进程控制"><a href="#2-12-进程控制" class="headerlink" title="2.12 进程控制"></a>2.12 进程控制</h4><pre><code>1.查看用户最近登录情况
-last
-lastlog
-
-2.查看硬盘使用情况
-df
-
-3.查看文件大小
-du
-
-4.查看内存使用情况
-free
-
-5.查看文件系统
-/proc
-
-6.查看日志
-ls /var/log/
-
-7.查看系统报错日志
-tail /var/log/messages
-
-8.查看进程
-top
-
-9.结束进程
-kill 1234
-kill -9 4333</code></pre><hr>
+                <p><strong>您可能感兴趣的文章:</strong></p>
+<p><a href="http://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzU3MzgwNTU2Mg%3D%3D%26mid%3D100000472%26idx%3D1%26sn%3D99353b901d1174c3edd4a9ebbe394975%26chksm%3D7d3d444d4a4acd5bf0017210f55ec394abda01d163674d540988ca94863a51411be951711553%23rd" target="_blank" rel="noopener">Apache-Kafka核心概念</a></p>
+<p><a href="http://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzU3MzgwNTU2Mg%3D%3D%26mid%3D100000476%26idx%3D1%26sn%3D34b2127b1a09664087e3b2079844c2db%26chksm%3D7d3d44494a4acd5f3bc70d914ae2842409282780d19d57043d168895e55f160b3be7835e2446%23rd" target="_blank" rel="noopener">Apache-Kafka核心组件和流程-协调器</a></p>
+<p><a href="http://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzU3MzgwNTU2Mg%3D%3D%26mid%3D100000480%26idx%3D1%26sn%3D054cdf620eb82c4ecfaccd226d49d0e0%26chksm%3D7d3d44754a4acd638ca37afcfdaad802bb3dec01758b18cdf2c607ec494526832ee58ff43451%23rd" target="_blank" rel="noopener">Apache-Kafka核心组件和流程(副本管理器)</a></p>
+<p><a href="http://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzU3MzgwNTU2Mg%3D%3D%26mid%3D100000474%26idx%3D1%26sn%3Dc9b9d8fbb942f5299eb1d23a9363c0a4%26chksm%3D7d3d444f4a4acd597607e33ee59aad92db50084a5ab7edb84449df6f2f3ecc504e97f05977bb%23rd" target="_blank" rel="noopener">Apache-Kafka 核心组件和流程-控制器</a></p>
+<p><a href="http://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzU3MzgwNTU2Mg%3D%3D%26mid%3D100000478%26idx%3D1%26sn%3Deeb3310214d7fa24ca86c4afad421baa%26chksm%3D7d3d444b4a4acd5d1987dc78f89d40a20833cec682b30b9f1a0735a26681f681a38853a6ff63%23rd" target="_blank" rel="noopener">Apache-Kafka核心组件和流程-日志管理器</a></p>
+<p>….</p>
+<p><strong>kafka的定位</strong></p>
+<p>提到kafka，不太熟悉或者稍有接触的开发人员，第一想法可能会觉得它是一个消息系统。其实Kafka的定位并不止于此。</p>
+<p>Kafka官方文档介绍说，Apache Kafka是一个分布式流平台，并给出了如下解释：</p>
+<p>流平台有三个关键的能力：</p>
+<ul>
+<li>发布订阅记录流，和消息队列或者企业新消息系统类似。</li>
+<li>以可容错、持久的方式保存记录流</li>
+<li>当记录流产生时就进行处理</li>
+</ul>
+<p>Kafka通常用于应用中的两种广播类型：</p>
+<ul>
+<li>在系统和应用间建立实时的数据管道，能够可信赖的获取数据。</li>
+<li>建立实时的流应用，可以处理或者响应数据流。</li>
+</ul>
+<p>由此可见，kafka给自身的定位并不只是一个消息系统，而是通过发布订阅消息这种机制实现了流平台。</p>
+<p>其实不管kafka给自己的定位如何，他都逃脱不了发布订阅消息的底层机制。本文讲解的重点，也是kafka发布订阅消息的特性。</p>
+<p>Kafka和大多数消息系统一样，搭建好kafka集群后，生产者向特定的topic生产消息，而消费者通过订阅topic，能够准实时的拉取到该topic新消息，进行消费。如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-eabf90da50c94506.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p><strong>Kafka特性</strong></p>
+<p>kafka和有以下主要的特性：</p>
+<ul>
+<li>消息持久化</li>
+<li>高吞吐量</li>
+<li>可扩展性</li>
+</ul>
+<p>尤其是高吞吐量，是他的最大卖点。kafka之所以能够实现高吞吐量，是基于他自身优良的设计，及集群的可扩展性。后面章节会展开来分析。</p>
+<p><strong>Kafka应用场景</strong></p>
+<ul>
+<li>消息系统</li>
+<li>日志系统</li>
+<li>流处理</li>
+</ul>
+<p><strong>单机环境</strong></p>
+<p>官方建议使用JDK 1.8版本，因此本文使用的环境都是JDK1.8。关于JDK的安装，本文不再详述，默认Java环境已经具备。</p>
+<p>由于Kafka依赖zookeeper，kafka通过zookeeper现实分布式系统的协调，所以我们需要先安装zookeeper。</p>
+<p>接下来我们按照如下步骤，一步步来安装kafka：</p>
+<p>1、下载zookeeper，解压。</p>
+<p>下载地址：<a href="http://link.zhihu.com/?target=https%3A//zookeeper.apache.org/releases.html%23download" target="_blank" rel="noopener">https://zookeeper.apache.org/releases.html#download</a></p>
+<p>2、创建zookeeper配置文件</p>
+<p>在zookeeper解压后的目录下找到conf文件夹，进入后，复制文件zoo_sample.cfg，并命名为zoo.cfg</p>
+<p>zoo.cfg中一共四个配置项，可以使用默认配置。</p>
+<p>3、启动zookeeper。</p>
+<p>进入zookeeper根目录执行 bin/zkServer.sh start</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-45642ac6542526af.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>4、下载kafka，解压。</p>
+<p>kafka 2.0版本下载地址：<a href="http://link.zhihu.com/?target=https%3A//www.apache.org/dyn/closer.cgi%3Fpath%3D/kafka/2.0.0/kafka_2.11-2.0.0.tgz" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=/kafka/2.0.0/kafka_2.11-2.0.0.tgz</a></p>
+<p>5、修改kafka的配置文件</p>
+<p>进入kafka根目录下的config文件夹下，打开server.properties,修改如下配置</p>
+<p>zookeeper.connect=localhost:2181</p>
+<p>broker.id=0</p>
+<p>log.dirs=/tmp/kafka-logs</p>
+<p>zookeeper.connect是zookeeper的链接信息，broker.id是当前kafka实例的id，log.dirs是kafka存储消息内容的路径。</p>
+<p>6、启动kafka</p>
+<p>进入kafka根目录执行 bin/kafka-server-start.sh config/server.properties</p>
+<p>此命令告诉kaka启动时使用config/server.properties配置项</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-7daff2291823ea47.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>启动kafka后，如果控制台没有报错信息，那么kafka应该已经启动成功了，我们可以通过查看zookeeper中相关节点值来确认。步骤如下：</p>
+<p>1、启动zookeeper的client</p>
+<p>进入zookeeper根目录下，执行 bin/zkCli.sh -server 127.0.0.1:2181。启动成功后如下图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-e93e674f8687f166.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>2、输入命令 ls /brokers，回车，可以看到如下信息：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-332ed3a117128b6a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>这些子节点存储的就是kafka集群管理的数据。broker是kafka的一个服务单元实例</p>
+<p>3、我看看一下ids这个节点下的数据，输入命令 ls /brokers/ids，可以看到如下信息：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-d562b8ccbc167ca9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>还记得我们在配置单机环境时，修改的kafka配置项broker.id=0 吗？这里的0就是表示那个kafka的实例已经加入了kafka集群。</p>
+<h3 id="集群环境"><a href="#集群环境" class="headerlink" title="集群环境"></a><strong>集群环境</strong></h3><p>集群环境的搭建也很简单，在单机环境的基础上，让多个单机连接到同一个zookeeper即可。需要注意两点：</p>
+<p>1、每个实例设置不同的broker.id。</p>
+<p>2、如果多个实例部署在同一台服务器，还要注意修改log.dirs为不同目录，确保消息存储时不会有冲突。集群环境的具体搭建，在此精简教程中不再做详细讨论。</p>
+<p>发出你的第一条kafka消息</p>
+<p>我们通过kafka带的工具来创建一个topic，然后尝试发送和消费一个消息，直观的去感受下kafka。</p>
+<p>1、创建topic</p>
+<p>进入kafka根目录，执行如下命令：</p>
+<pre><code>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic study
+</code></pre><p>执行成功后，创建了study这个topic，如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-1ee1e88312b5607e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>此命令行有几个参数，分别指明了zookeeper的链接信息，分区和副本的数量等。关于分区和副本后续会仔细讲解，现在不用过多关注。</p>
+<p>2、启动消费者</p>
+<p>我们开启一个消费者并且订阅study这个topic，执行如下命令:</p>
+<pre><code>bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic study --from-beginning
+</code></pre><p>看到如下图，光标停留在最前面，没有任何信息输出，说明启动消费者成功，此时在等待新的消息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-4c9ec1250f2a7d52.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>3、开启生产者</p>
+<p>新打开一个命令窗口，输入命令</p>
+<pre><code>bin/kafka-console-producer.sh --broker-list localhost:9092 --topic study
+</code></pre><p>启动成功后，如下图，等待你输入新的消息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-1dc35a39b6a6c1a6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>4、发送你的第一条消息</p>
+<p>在上面生产者的窗口输入一条消息 hello kafka,点击回车，如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-aa03f34cc9fdc77d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>此时切换到消费者的窗口，可以看到消费者已经消费到这条消息，在窗口中打印了出来。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-148e5147382d1712.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>至此我们走完了一个发送消息的流程，可以看到我们经历了创建topic、启动生产者、消费者、生产者生产消息、消费者消费消息，这几个步骤。</p>
+<p>小结：通过本章节学习，相信你已经能够成功搭建起kafka单机环境，甚至集群环境。然后通过kafka自带的工具，直观的感受了kafka运转的整个过程。接下来的章节我们将会进入kafka的核心领域，也是本教程的重点章节，只有理解了kafka内在的设计理念和原理，才能做到活学活用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="http://upload-images.jianshu.io/upload_images/16241060-2349cea8df6b9d79.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
 <p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
 
 <table>
@@ -1296,7 +878,6 @@ kill -9 4333</code></pre><hr>
     <td><img width="100" src="https://hualei.online/medias/reward/alipay.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/wechat.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/zan.png"></td>   
   </tr>
 </tbody></table>
-
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1465,7 +1046,7 @@ kill -9 4333</code></pre><hr>
                     </span>
                     <a href="https://hualei.online" class="b-link-green">烂人不该拥有</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/posts/1792.html" class="b-link-green">Linux基础和命令</a>
+                    <a href="/posts/3bb2.html" class="b-link-green">kafka简介及其使用</a>
                 </p>
             </div>
 
@@ -1785,9 +1366,68 @@ kill -9 4333</code></pre><hr>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/3bb2.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="kafka简介及其使用">
+                        
+                        <span class="card-title">kafka简介及其使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            提到kafka，不太熟悉或者稍有接触的开发人员，第一想法可能会觉得它是一个消息系统。其实Kafka的定位并不止于此。Kafka官方文档介绍说，Apache Kafka是一个分布式流平台，并给出了如下解释
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/技术学习/" class="post-category" target="_blank">
+                                    技术学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/大数据/" target="_blank">
+                        <span class="chip bg-color">大数据</span>
+                    </a>
+                    
+                    <a href="/tags/互联网/" target="_blank">
+                        <span class="chip bg-color">互联网</span>
+                    </a>
+                    
+                    <a href="/tags/Kafka/" target="_blank">
+                        <span class="chip bg-color">Kafka</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/posts/6c2c.html">
                     <div class="card-image">
@@ -1805,9 +1445,9 @@ kill -9 4333</code></pre><hr>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1833,63 +1473,6 @@ kill -9 4333</code></pre><hr>
                     
                     <a href="/tags/JVM/" target="_blank">
                         <span class="chip bg-color">JVM</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/0.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Hadoop极简入门">
-                        
-                        <span class="card-title">Hadoop极简入门</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Hadoop诞生至今已经十多年了，网络上也充斥着关于Hadoop相关知识的的海量资源。但是，有时还是会使刚刚接触大数据领域的童鞋分不清hadoop、hdfs、Yarn和MapReduce等等技术词汇。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-11
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/技术学习/" class="post-category" target="_blank">
-                                    技术学习
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/大数据/" target="_blank">
-                        <span class="chip bg-color">大数据</span>
-                    </a>
-                    
-                    <a href="/tags/Hadoop/" target="_blank">
-                        <span class="chip bg-color">Hadoop</span>
-                    </a>
-                    
-                    <a href="/tags/互联网/" target="_blank">
-                        <span class="chip bg-color">互联网</span>
                     </a>
                     
                 </div>
