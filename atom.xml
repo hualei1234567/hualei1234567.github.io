@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-07-05T14:18:16.714Z</updated>
+  <updated>2020-07-05T14:21:04.137Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://hualei.online/posts/1754.html"/>
     <id>https://hualei.online/posts/1754.html</id>
     <published>2020-06-15T13:30:02.000Z</published>
-    <updated>2020-07-05T14:18:16.714Z</updated>
+    <updated>2020-07-05T14:21:04.137Z</updated>
     
     <summary type="html">
     
@@ -29,8 +29,7 @@
       
         
         
-          &lt;h1 id=&quot;弹性式数据集RDDs&quot;&gt;&lt;a href=&quot;#弹性式数据集RDDs&quot; class=&quot;headerlink&quot; title=&quot;弹性式数据集RDDs&quot;&gt;&lt;/a&gt;弹性式数据集RDDs&lt;/h1&gt;&lt;nav&gt;
-&lt;a
+          &lt;h1 id=&quot;弹性式数据集RDDs&quot;&gt;&lt;a href=&quot;#弹性式数据集RDDs&quot; class=&quot;headerlink&quot; title=&quot;弹性式数据集RDDs&quot;&gt;&lt;/a&gt;弹性式数据集RDDs&lt;/h1&gt;&lt;h2 id=&quot;一、RDD简介&quot;&gt;&lt;a href=&quot;#一、RDD简介&quot;
         
       
     
@@ -277,9 +276,9 @@
       <category term="技术的学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
-    
       <category term="博客" scheme="https://hualei.online/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="IT" scheme="https://hualei.online/tags/IT/"/>
     
