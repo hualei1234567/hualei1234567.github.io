@@ -825,7 +825,7 @@ dataRDD<span class="token punctuation">.</span>getNumPartitions
 <span class="token comment" spellcheck="true">// 明确指定分区数</span>
 <span class="token keyword">val</span> dataRDD <span class="token operator">=</span> sc<span class="token punctuation">.</span>parallelize<span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>执行结果如下：</p>
-<div align="center"> <img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/posts/1754.htm/pictures/scala-分区数.png"> </div>
+<div align="center"> <img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/scala-分区数.png"> </div>
 ### 2.2 引用外部存储系统中的数据集
 
 <p>引用外部存储系统中的数据集，例如本地文件系统，HDFS，HBase 或支持 Hadoop InputFormat 的任何数据源。</p>
@@ -902,7 +902,7 @@ fileRDD<span class="token punctuation">.</span>persist<span class="token punctua
 fileRDD<span class="token punctuation">.</span>cache<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="4-3-移除缓存"><a href="#4-3-移除缓存" class="headerlink" title="4.3 移除缓存"></a>4.3 移除缓存</h3><p>Spark 会自动监视每个节点上的缓存使用情况，并按照最近最少使用（LRU）的规则删除旧数据分区。当然，你也可以使用 <code>RDD.unpersist()</code> 方法进行手动删除。</p>
 <h2 id="五、理解shuffle"><a href="#五、理解shuffle" class="headerlink" title="五、理解shuffle"></a>五、理解shuffle</h2><h3 id="5-1-shuffle介绍"><a href="#5-1-shuffle介绍" class="headerlink" title="5.1 shuffle介绍"></a>5.1 shuffle介绍</h3><p>在 Spark 中，一个任务对应一个分区，通常不会跨分区操作数据。但如果遇到 <code>reduceByKey</code> 等操作，Spark 必须从所有分区读取数据，并查找所有键的所有值，然后汇总在一起以计算每个键的最终结果 ，这称为 <code>Shuffle</code>。</p>
-<div align="center"> <img width="600px" src="/posts/1754.htm/pictures/spark-reducebykey.png"> </div>
+<div align="center"> <img width="600px" src="https://hualei.online/medias/pictures/spark-reducebykey.png"> </div>
 
 
 <h3 id="5-2-Shuffle的影响"><a href="#5-2-Shuffle的影响" class="headerlink" title="5.2 Shuffle的影响"></a>5.2 Shuffle的影响</h3><p>Shuffle 是一项昂贵的操作，因为它通常会跨节点操作数据，这会涉及磁盘 I/O，网络 I/O，和数据序列化。某些 Shuffle 操作还会消耗大量的堆内存，因为它们使用堆内存来临时存储需要网络传输的数据。Shuffle 还会在磁盘上生成大量中间文件，从 Spark 1.3 开始，这些文件将被保留，直到相应的 RDD 不再使用并进行垃圾回收，这样做是为了避免在计算时重复创建 Shuffle 文件。如果应用程序长期保留对这些 RDD 的引用，则垃圾回收可能在很长一段时间后才会发生，这意味着长时间运行的 Spark 作业可能会占用大量磁盘空间，通常可以使用 <code>spark.local.dir</code> 参数来指定这些临时文件的存储目录。</p>
@@ -918,7 +918,7 @@ fileRDD<span class="token punctuation">.</span>cache<span class="token punctuati
 <li><strong>宽依赖 (wide dependency)</strong>：父 RDDs 的一个分区可以被子 RDDs 的多个子分区所依赖。</li>
 </ul>
 <p>如下图，每一个方框表示一个 RDD，带有颜色的矩形表示分区：</p>
-<div align="center"> <img width="600px" src="/posts/1754.htm/pictures/spark-窄依赖和宽依赖.png"> </div>
+<div align="center"> <img width="600px" src="https://hualei.online/medias/pictures/spark-窄依赖和宽依赖.png"> </div>
 
 
 <p>区分这两种依赖是非常有用的：</p>
@@ -931,7 +931,7 @@ fileRDD<span class="token punctuation">.</span>cache<span class="token punctuati
 <li>对于窄依赖，由于分区的依赖关系是确定的，其转换操作可以在同一个线程执行，所以可以划分到同一个执行阶段；</li>
 <li>对于宽依赖，由于 Shuffle 的存在，只能在父 RDD(s) 被 Shuffle 处理完成后，才能开始接下来的计算，因此遇到宽依赖就需要重新划分阶段。</li>
 </ul>
-<div align="center"> <img width="600px" height="600px" src="/posts/1754.htm/pictures/spark-DAG.png"> </div>
+<div align="center"> <img width="600px" height="600px" src="https://hualei.online/medias/pictures/spark-DAG.png"> </div>
 
 
 
@@ -1987,5 +1987,5 @@ if (windowWidth > 768) {
 	 
 
 		
-    <script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":true},"react":{"opacity":0.7}});</script><script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
 </html>

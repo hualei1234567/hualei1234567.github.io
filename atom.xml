@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-07-05T13:50:17.229Z</updated>
+  <updated>2020-07-05T14:18:16.714Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://hualei.online/posts/1754.html"/>
     <id>https://hualei.online/posts/1754.html</id>
     <published>2020-06-15T13:30:02.000Z</published>
-    <updated>2020-07-05T13:50:17.229Z</updated>
+    <updated>2020-07-05T14:18:16.714Z</updated>
     
     <summary type="html">
     
@@ -109,36 +109,6 @@
   </entry>
   
   <entry>
-    <title>Linux基础和命令</title>
-    <link href="https://hualei.online/posts/1792.html"/>
-    <id>https://hualei.online/posts/1792.html</id>
-    <published>2020-05-11T09:30:02.000Z</published>
-    <updated>2020-05-11T10:42:53.140Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Linux命令&quot;&gt;&lt;a href=&quot;#Linux命令&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
-      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="Linux" scheme="https://hualei.online/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Hadoop极简入门</title>
     <link href="https://hualei.online/posts/0.html"/>
     <id>https://hualei.online/posts/0.html</id>
@@ -166,6 +136,36 @@
       <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
     
       <category term="Hadoop" scheme="https://hualei.online/tags/Hadoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux基础和命令</title>
+    <link href="https://hualei.online/posts/1792.html"/>
+    <id>https://hualei.online/posts/1792.html</id>
+    <published>2020-05-11T09:30:02.000Z</published>
+    <updated>2020-05-11T10:42:53.140Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Linux命令&quot;&gt;&lt;a href=&quot;#Linux命令&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="Linux" scheme="https://hualei.online/tags/Linux/"/>
     
   </entry>
   
@@ -277,9 +277,9 @@
       <category term="技术的学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="博客" scheme="https://hualei.online/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
       <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="博客" scheme="https://hualei.online/tags/%E5%8D%9A%E5%AE%A2/"/>
     
       <category term="IT" scheme="https://hualei.online/tags/IT/"/>
     
