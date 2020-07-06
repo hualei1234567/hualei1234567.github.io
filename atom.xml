@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-07-06T11:40:48.403Z</updated>
+  <updated>2020-07-06T11:51:55.641Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://hualei.online/posts/9c96.html"/>
     <id>https://hualei.online/posts/9c96.html</id>
     <published>2020-06-20T14:30:02.000Z</published>
-    <updated>2020-07-06T11:40:48.403Z</updated>
+    <updated>2020-07-06T11:51:55.641Z</updated>
     
     <summary type="html">
     
@@ -306,9 +306,9 @@
       <category term="技术的学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
-    
       <category term="博客" scheme="https://hualei.online/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="IT" scheme="https://hualei.online/tags/IT/"/>
     
