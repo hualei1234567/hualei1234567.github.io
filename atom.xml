@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-07-05T14:21:04.137Z</updated>
+  <updated>2020-07-06T11:40:48.403Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MapReduce编程模型和计算框架架构原理</title>
+    <link href="https://hualei.online/posts/9c96.html"/>
+    <id>https://hualei.online/posts/9c96.html</id>
+    <published>2020-06-20T14:30:02.000Z</published>
+    <updated>2020-07-06T11:40:48.403Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Hadoop解决大规模数据分布式计算的方案是MapReduce。MapReduce既是一个编程模型，又是一个计算框架。也就是说，开发人员必须基于MapReduce编程模型进行编程开发，然后将程序通过MapReduce计算框架分发到Hadoop集群中运行。我们先看一下作为编程
+        
+      
+    
+    </summary>
+    
+      <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="大数据" scheme="https://hualei.online/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+      <category term="Hadoop" scheme="https://hualei.online/tags/Hadoop/"/>
+    
+  </entry>
   
   <entry>
     <title>Spark RDD简介及使用</title>
@@ -276,9 +306,9 @@
       <category term="技术的学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="博客" scheme="https://hualei.online/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
       <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="博客" scheme="https://hualei.online/tags/%E5%8D%9A%E5%AE%A2/"/>
     
       <category term="IT" scheme="https://hualei.online/tags/IT/"/>
     
