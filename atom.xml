@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-07-06T11:51:55.641Z</updated>
+  <updated>2020-07-08T13:09:42.678Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spark的shuffle介绍</title>
+    <link href="https://hualei.online/posts/d31f.html"/>
+    <id>https://hualei.online/posts/d31f.html</id>
+    <published>2020-06-25T13:30:02.000Z</published>
+    <updated>2020-07-08T13:09:42.678Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;spark的shuffle介绍&quot;&gt;&lt;a href=&quot;#spark的shuffle介绍&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="大数据" scheme="https://hualei.online/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+      <category term="Spark" scheme="https://hualei.online/tags/Spark/"/>
+    
+  </entry>
   
   <entry>
     <title>MapReduce编程模型和计算框架架构原理</title>
