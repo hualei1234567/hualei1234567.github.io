@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-09-27T13:29:58.720Z</updated>
+  <updated>2020-09-27T13:33:32.235Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Flink从入门到放弃(入门篇3)-DataSetAPI</title>
-    <link href="https://hualei.online/posts/c749.html"/>
-    <id>https://hualei.online/posts/c749.html</id>
+    <title>Flink从入门到放弃(入门篇4)-DataStreamAPI</title>
+    <link href="https://hualei.online/posts/26bb.html"/>
+    <id>https://hualei.online/posts/26bb.html</id>
     <published>2020-07-20T13:30:02.000Z</published>
-    <updated>2020-09-27T13:29:58.720Z</updated>
+    <updated>2020-09-27T13:33:32.235Z</updated>
     
     <summary type="html">
     
@@ -29,9 +29,8 @@
       
         
         
-          &lt;h2 id=&quot;编程结构&quot;&gt;&lt;a href=&quot;#编程结构&quot; class=&quot;headerlink&quot; title=&quot;编程结构&quot;&gt;&lt;/a&gt;编程结构&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;public class SocketTextStreamWordCount {
-
-    public
+          &lt;p&gt;DataStream算子将一个或多个DataStream转换为新DataStream。程序可以将多个转换组合成复杂的数据流拓扑。&lt;br&gt;DataStreamAPI和DataSetAPI主要的区别在于Transformation部分。&lt;/p&gt;
+&lt;h2
         
       
     
@@ -49,11 +48,11 @@
   </entry>
   
   <entry>
-    <title>Flink从入门到放弃(入门篇4)-DataStreamAPI</title>
-    <link href="https://hualei.online/posts/26bb.html"/>
-    <id>https://hualei.online/posts/26bb.html</id>
+    <title>Flink从入门到放弃(入门篇3)-DataSetAPI</title>
+    <link href="https://hualei.online/posts/c749.html"/>
+    <id>https://hualei.online/posts/c749.html</id>
     <published>2020-07-15T13:30:02.000Z</published>
-    <updated>2020-09-27T13:29:25.331Z</updated>
+    <updated>2020-09-27T13:33:42.576Z</updated>
     
     <summary type="html">
     
@@ -61,8 +60,9 @@
       
         
         
-          &lt;p&gt;DataStream算子将一个或多个DataStream转换为新DataStream。程序可以将多个转换组合成复杂的数据流拓扑。&lt;br&gt;DataStreamAPI和DataSetAPI主要的区别在于Transformation部分。&lt;/p&gt;
-&lt;h2
+          &lt;h2 id=&quot;编程结构&quot;&gt;&lt;a href=&quot;#编程结构&quot; class=&quot;headerlink&quot; title=&quot;编程结构&quot;&gt;&lt;/a&gt;编程结构&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;public class SocketTextStreamWordCount {
+
+    public
         
       
     
@@ -196,9 +196,9 @@
     
       <category term="大数据" scheme="https://hualei.online/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
       <category term="Hadoop" scheme="https://hualei.online/tags/Hadoop/"/>
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
     
   </entry>
   
@@ -318,9 +318,9 @@
     
       <category term="大数据" scheme="https://hualei.online/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
       <category term="Hadoop" scheme="https://hualei.online/tags/Hadoop/"/>
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
     
   </entry>
   
@@ -346,9 +346,9 @@
       <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
       <category term="技术" scheme="https://hualei.online/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
     
       <category term="Linux" scheme="https://hualei.online/tags/Linux/"/>
     
