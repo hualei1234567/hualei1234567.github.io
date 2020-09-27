@@ -6,14 +6,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Spark的shuffle介绍, BigData IT DeepLearning MachineLearning 华磊 hualei Java开发">
+    <meta name="keywords" content="Flink从入门到放弃(入门篇4)-DataStreamAPI, BigData IT DeepLearning MachineLearning 华磊 hualei Java开发">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="spark的shuffle介绍spark中的shuffle主要有3种:
-
-Hash Shuffle 2.0以后移除
-
-在map阶段(shuffle write)，每个map都会为下游stage的每个partition写一个临时文件，假如下游">
+    <meta name="description" content="DataStream算子将一个或多个DataStream转换为新DataStream。程序可以将多个转换组合成复杂的数据流拓扑。DataStreamAPI和DataSetAPI主要的区别在于Transformation部分。
+DataStr">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +18,7 @@ Hash Shuffle 2.0以后移除
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Spark的shuffle介绍 | 烂人不该拥有</title>
+    <title>Flink从入门到放弃(入门篇4)-DataStreamAPI | 烂人不该拥有</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -580,13 +577,13 @@ Hash Shuffle 2.0以后移除
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Spark的shuffle介绍
+                        Flink从入门到放弃(入门篇4)-DataStreamAPI
                     </div>
                 </div>
             </div>
@@ -706,8 +703,8 @@ Hash Shuffle 2.0以后移除
                                 <span class="chip bg-color">互联网</span>
                             </a>
                         
-                            <a href="/tags/Spark/" target="_blank">
-                                <span class="chip bg-color">Spark</span>
+                            <a href="/tags/Flink/" target="_blank">
+                                <span class="chip bg-color">Flink</span>
                             </a>
                         
                     </div>
@@ -730,7 +727,7 @@ Hash Shuffle 2.0以后移除
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-07-15
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -744,14 +741,14 @@ Hash Shuffle 2.0以后移除
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1k
+                        1.3k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        5 分
                     </div>
                     
                 
@@ -768,37 +765,153 @@ Hash Shuffle 2.0以后移除
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="spark的shuffle介绍"><a href="#spark的shuffle介绍" class="headerlink" title="spark的shuffle介绍"></a>spark的shuffle介绍</h2><p><strong>spark中的shuffle主要有3种:</strong></p>
+                <p>DataStream算子将一个或多个DataStream转换为新DataStream。程序可以将多个转换组合成复杂的数据流拓扑。<br>DataStreamAPI和DataSetAPI主要的区别在于Transformation部分。</p>
+<h2 id="DataStream-Transformation"><a href="#DataStream-Transformation" class="headerlink" title="DataStream Transformation"></a>DataStream Transformation</h2><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><ul>
+<li>DataStream→DataStream<br>用一个数据元生成一个数据元。一个map函数，它将输入流的值加倍：<pre><code>DataStream&lt;Integer&gt; dataStream = //...
+dataStream.map(new MapFunction&lt;Integer, Integer&gt;() {
+  @Override
+  public Integer map(Integer value) throws Exception {
+      return 2 * value;
+  }
+});</code></pre></li>
+</ul>
+<h3 id="FlatMap"><a href="#FlatMap" class="headerlink" title="FlatMap"></a>FlatMap</h3><ul>
+<li>DataStream→DataStream</li>
+</ul>
+<p>采用一个数据元并生成零个，一个或多个数据元。将句子分割为单词的flatmap函数：</p>
+<pre><code>dataStream.flatMap(new FlatMapFunction&lt;String, String&gt;() {
+    @Override
+    public void flatMap(String value, Collector&lt;String&gt; out)
+        throws Exception {
+        for(String word: value.split(" ")){
+            out.collect(word);
+        }
+    }
+});</code></pre><h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h3><ul>
+<li>DataStream→DataStream<br>计算每个数据元的布尔函数，并保存函数返回true的数据元。过滤掉零值的过滤器：</li>
+</ul>
+<pre><code>dataStream.filter(new FilterFunction&lt;Integer&gt;() {
+    @Override
+    public boolean filter(Integer value) throws Exception {
+        return value != 0;
+    }
+});</code></pre><h3 id="KeyBy"><a href="#KeyBy" class="headerlink" title="KeyBy"></a>KeyBy</h3><ul>
+<li>DataStream→KeyedStream</li>
+</ul>
+<p>逻辑上将流分区为不相交的分区。具有相同Keys的所有记录都分配给同一分区。在内部，keyBy（）是使用散列分区实现的。指定键有不同的方法。</p>
+<p>此转换返回KeyedStream，其中包括使用被Keys化状态所需的KeyedStream。</p>
+<pre><code>dataStream.keyBy("someKey") // Key by field "someKey"
+dataStream.keyBy(0) // Key by the first element of a Tuple</code></pre><p>🌺注意：</p>
+<p>如果出现以下情况，则类型不能成为key：</p>
 <ul>
-<li><p><strong>Hash Shuffle</strong> 2.0以后移除</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/spark-shuffle-v1.png" alt></p>
-<p>在map阶段(shuffle write)，每个map都会为下游stage的每个partition写一个临时文件，假如下游stage有1000个partition，那么每个map都会生成1000个临时文件，一般来说一个executor上会运行多个map task，这样下来，一个executor上会有非常多的临时文件，假如一个executor上运行M个map task，下游stage有N个partition，那么一个executor上会生成M<em>N个文件。另一方面，如果一个executor上有K个core，那么executor同时可运行K个task，这样一来，就会同时申请K</em>N个文件描述符，一旦partition数较多，势必会耗尽executor上的文件描述符，同时生成K*N个write handler也会带来大量内存的消耗。</p>
-<p>在reduce阶段(shuffle read)，每个reduce task都会拉取所有map对应的那部分partition数据，那么executor会打开所有临时文件准备网络传输，这里又涉及到大量文件描述符，另外，如果reduce阶段有combiner操作，那么它会把网络中拉到的数据保存在一个<code>HashMap</code>中进行合并操作，如果数据量较大，很容易引发OOM操作。</p>
+<li><p>它是POJO类型但不覆盖hashCode（）方法并依赖于Object.hashCode（）实现</p>
 </li>
-<li><p><strong>Sort Shuffle</strong> 1.1开始(sort shuffle也经历过优化升级,详细见参考文章1)</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/spark-shuffle-v3.png" alt></p>
-<p>在map阶段(shuffle write)，会按照partition id以及key对记录进行排序，将所有partition的数据写在同一个文件中，该文件中的记录首先是按照partition id排序一个一个分区的顺序排列，每个partition内部是按照key进行排序存放，map task运行期间会顺序写每个partition的数据，并通过一个索引文件记录每个partition的大小和偏移量。这样一来，每个map task一次只开两个文件描述符，一个写数据，一个写索引，大大减轻了Hash Shuffle大量文件描述符的问题，即使一个executor有K个core，那么最多一次性开K*2个文件描述符。</p>
-<p>在reduce阶段(shuffle read)，reduce task拉取数据做combine时不再是采用<code>HashMap</code>，而是采用<code>ExternalAppendOnlyMap</code>，该数据结构在做combine时，如果内存不足，会刷写磁盘，很大程度的保证了鲁棒性，避免大数据情况下的OOM。</p>
-</li>
-<li><p><strong>Unsafe Shuffle</strong> 1.5开始, 1.6与Sort shuffle合并</p>
-<p>从spark 1.5.0开始，spark开始了钨丝计划(Tungsten)，目的是优化内存和CPU的使用，进一步提升spark的性能。为此，引入Unsafe Shuffle，它的做法是将数据记录用二进制的方式存储，直接在序列化的二进制数据上sort而不是在java 对象上，这样一方面可以减少memory的使用和GC的开销，另一方面避免shuffle过程中频繁的序列化以及反序列化。在排序过程中，它提供cache-efficient sorter，使用一个8 bytes的指针，把排序转化成了一个指针数组的排序，极大的优化了排序性能.</p>
+<li><p>任何类型的数组</p>
 </li>
 </ul>
-<hr>
-<p><strong>现在2.1 分为三种writer， 分为 BypassMergeSortShuffleWriter， SortShuffleWriter 和 UnsafeShuffleWriter</strong></p>
-<h4 id="三种Writer的分类"><a href="#三种Writer的分类" class="headerlink" title="三种Writer的分类"></a>三种Writer的分类</h4><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/sparkShuffleWriter.jpg" alt></p>
-<p>上面是使用哪种 writer 的判断依据， 是否开启 mapSideCombine 这个判断，是因为有些算子会在 map 端先进行一次 combine， 减少传输数据。 因为 BypassMergeSortShuffleWriter 会临时输出Reducer个（分区数目）小文件，所以分区数必须要小于一个阀值，默认是小于200</p>
-<p>UnsafeShuffleWriter需要Serializer支持relocation，Serializer支持relocation：原始数据首先被序列化处理，并且再也不需要反序列，在其对应的元数据被排序后，需要Serializer支持relocation，在指定位置读取对应数据</p>
-<p><a href="http://sharkdtu.com/posts/spark-shuffle.html" target="_blank" rel="noopener">参考文章1</a></p>
-<p><a href="http://spark.coolplayer.net/?p=576" target="_blank" rel="noopener">参考文章2</a></p>
-<p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
+<h3 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a>Reduce</h3><p>KeyedStream→DataStream</p>
+<p>将当前数据元与最后一个Reduce的值组合并发出新值。<br>例如：reduce函数，用于创建部分和的流：</p>
+<pre><code>keyedStream.reduce(new ReduceFunction&lt;Integer&gt;() {
+    @Override
+    public Integer reduce(Integer value1, Integer value2)
+    throws Exception {
+        return value1 + value2;
+    }
+});   </code></pre><h3 id="Fold"><a href="#Fold" class="headerlink" title="Fold"></a>Fold</h3><p>KeyedStream→DataStream</p>
+<p>具有初始值的被Keys化数据流上的“滚动”折叠。将当前数据元与最后折叠的值组合并发出新值。 </p>
+<p>折叠函数，当应用于序列（1,2,3,4,5）时，发出序列“start-1”，“start-1-2”，“start-1-2-3”,. ..</p>
+<pre><code>DataStream&lt;String&gt; result =
+  keyedStream.fold("start", new FoldFunction&lt;Integer, String&gt;() {
+    @Override
+    public String fold(String current, Integer value) {
+        return current + "-" + value;
+    }
+  });</code></pre><h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><ul>
+<li>KeyedStream→DataStream</li>
+</ul>
+<p>在被Keys化数据流上滚动聚合。min和minBy之间的差异是min返回最小值，而minBy返回该字段中具有最小值的数据元(max和maxBy相同)。</p>
+<pre><code>keyedStream.sum(0);
+keyedStream.sum("key");
+keyedStream.min(0);
+keyedStream.min("key");
+keyedStream.max(0);
+keyedStream.max("key");
+keyedStream.minBy(0);
+keyedStream.minBy("key");
+keyedStream.maxBy(0);
+keyedStream.maxBy("key");</code></pre><h3 id="Window函数"><a href="#Window函数" class="headerlink" title="Window函数"></a>Window函数</h3><p>关于Flink的窗口概念，我们会在后面有详细介绍。</p>
+<ul>
+<li>Window<br>KeyedStream→WindowedStream</li>
+</ul>
+<p>可以在已经分区的KeyedStream上定义Windows。Windows根据某些特征（例如，在最后5秒内到达的数据）对每个Keys中的数据进行分组。</p>
+<pre><code>dataStream.keyBy(0)
+.window(TumblingEventTimeWindows
+.of(Time.seconds(5))); // Last 5 seconds of data
+</code></pre><ul>
+<li>Window Apply<br>WindowedStream→DataStream<br>AllWindowedStream→DataStream</li>
+</ul>
+<p>将一般函数应用于整个窗口。下面是一个手动求和窗口数据元的函数。</p>
+<p>注意：如果您正在使用windowAll转换，则需要使用AllWindowFunction。</p>
+<pre><code>windowedStream.apply (new WindowFunction&lt;Tuple2&lt;String,Integer&gt;, Integer, Tuple, Window&gt;() {
+    public void apply (Tuple tuple,
+            Window window,
+            Iterable&lt;Tuple2&lt;String, Integer&gt;&gt; values,
+            Collector&lt;Integer&gt; out) throws Exception {
+        int sum = 0;
+        for (value t: values) {
+            sum += t.f1;
+        }
+        out.collect (new Integer(sum));
+    }
+});
 
-<table>
-  <tbody><tr>
-    <td><img width="100" src="https://hualei.online/medias/reward/alipay.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/wechat.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/zan.png"></td>   
-  </tr>
-</tbody></table>
-
+// applying an AllWindowFunction on non-keyed window stream
+allWindowedStream.apply (new AllWindowFunction&lt;Tuple2&lt;String,Integer&gt;, Integer, Window&gt;() {
+    public void apply (Window window,
+            Iterable&lt;Tuple2&lt;String, Integer&gt;&gt; values,
+            Collector&lt;Integer&gt; out) throws Exception {
+        int sum = 0;
+        for (value t: values) {
+            sum += t.f1;
+        }
+        out.collect (new Integer(sum));
+    }
+});
+</code></pre><ul>
+<li>Window Reduce<br>WindowedStream→DataStream</li>
+</ul>
+<p>将reduce函数应用于窗口并返回reduce后的值。</p>
+<pre><code>windowedStream.reduce (new ReduceFunction&lt;Tuple2&lt;String,Integer&gt;&gt;() {
+    public Tuple2&lt;String, Integer&gt; reduce(Tuple2&lt;String, Integer&gt; value1, Tuple2&lt;String, Integer&gt; value2) throws Exception {
+        return new Tuple2&lt;String,Integer&gt;(value1.f0, value1.f1 + value2.f1);
+    }
+});</code></pre><ul>
+<li>提取时间戳<blockquote>
+<p>关于Time我们在后面有专门的章节进行介绍</p>
+</blockquote>
+</li>
+</ul>
+<p>DataStream→DataStream</p>
+<p>从记录中提取时间戳，以便使用使用事件时间语义的窗口。</p>
+<pre><code>stream.assignTimestamps (new TimeStampExtractor() {...});</code></pre><h3 id="Partition-分区"><a href="#Partition-分区" class="headerlink" title="Partition 分区"></a>Partition 分区</h3><ul>
+<li>自定义分区<br>DataStream→DataStream<br>使用用户定义的分区程序为每个数据元选择目标任务。</li>
+</ul>
+<pre><code>dataStream.partitionCustom(partitioner, "someKey");
+dataStream.partitionCustom(partitioner, 0);</code></pre><ul>
+<li><p>随机分区<br>DataStream→DataStream<br>根据均匀分布随机分配数据元。</p>
+<pre><code>dataStream.shuffle();</code></pre></li>
+<li><p>Rebalance （循环分区）<br>DataStream→DataStream<br>分区数据元循环，每个分区创建相等的负载。在存在数据倾斜时用于性能优化。</p>
+<pre><code>dataStream.rebalance();</code></pre></li>
+<li><p>rescale<br>DataStream→DataStream</p>
+</li>
+</ul>
+<p>如果上游 算子操作具有并行性2并且下游算子操作具有并行性6，则一个上游 算子操作将分配元件到三个下游算子操作，而另一个上游算子操作将分配到其他三个下游 算子操作。另一方面，如果下游算子操作具有并行性2而上游 算子操作具有并行性6，则三个上游 算子操作将分配到一个下游算子操作，而其他三个上游算子操作将分配到另一个下游算子操作。</p>
+<p>在不同并行度不是彼此的倍数的情况下，一个或多个下游 算子操作将具有来自上游 算子操作的不同数量的输入。</p>
+<p>请参阅此图以获取上例中连接模式的可视化：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="evernotecid://DF961740-2AB0-48AB-AAE7-53BB9D286C7A/appyinxiangcom/12131181/ENResource/p1410" alt="5bd63a6c99ad06ba3d96d03be3cb25ff.svg+xml"></p>
+<pre><code>dataStream.rescale();</code></pre><ul>
+<li>广播<br>DataStream→DataStream<br>向每个分区广播数据元。<pre><code>dataStream.broadcast();</code></pre></li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -967,7 +1080,7 @@ Hash Shuffle 2.0以后移除
                     </span>
                     <a href="https://hualei.online" class="b-link-green">烂人不该拥有</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/posts/d31f.html" class="b-link-green">Spark的shuffle介绍</a>
+                    <a href="/posts/26bb.html" class="b-link-green">Flink从入门到放弃(入门篇4)-DataStreamAPI</a>
                 </p>
             </div>
 
@@ -1291,24 +1404,24 @@ Hash Shuffle 2.0以后移除
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/6bb1.html">
+                <a href="/posts/c749.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Flink从入门到放弃 -Flink是什么?">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Flink从入门到放弃(入门篇3)-DataSetAPI">
                         
-                        <span class="card-title">Flink从入门到放弃 -Flink是什么?</span>
+                        <span class="card-title">Flink从入门到放弃(入门篇3)-DataSetAPI</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Apache Flink是一个面向分布式数据流处理和批量数据处理的开源计算平台，提供支持流处理和批处理两种类型应用的功能。
+                            数据源创建初始数据集，例如来自文件或Java集合,数据转换将一个或多个DataSet转换为新的DataSet,将计算结果存储或返回
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-01
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
                         </span>
                         <span class="publish-author">
                             
@@ -1348,24 +1461,24 @@ Hash Shuffle 2.0以后移除
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/9c96.html">
+                <a href="/posts/3ce2.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="MapReduce编程模型和计算框架架构原理">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Flink从入门到放弃(入门篇2)-本地环境搭建&构建第一个Flink应用">
                         
-                        <span class="card-title">MapReduce编程模型和计算框架架构原理</span>
+                        <span class="card-title">Flink从入门到放弃(入门篇2)-本地环境搭建&构建第一个Flink应用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Hadoop解决大规模数据分布式计算的方案是MapReduce。MapReduce既是一个编程模型，又是一个计算框架。也就是说，开发人员必须基于MapReduce编程模型进行编程开发，然后将程序通过MapReduce计算框架分发到Hadoop集群中运行。我们先看一下作为编程模型的MapReduce。
+                            一般来说，线上都是集群模式，那么单机模式方便我们测试和学习。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-08
                             </span>
                         <span class="publish-author">
                             
@@ -1390,8 +1503,8 @@ Hash Shuffle 2.0以后移除
                         <span class="chip bg-color">互联网</span>
                     </a>
                     
-                    <a href="/tags/Hadoop/" target="_blank">
-                        <span class="chip bg-color">Hadoop</span>
+                    <a href="/tags/Flink/" target="_blank">
+                        <span class="chip bg-color">Flink</span>
                     </a>
                     
                 </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hualei.online/"/>
-  <updated>2020-09-27T13:12:08.323Z</updated>
+  <updated>2020-09-27T13:29:58.720Z</updated>
   <id>https://hualei.online/</id>
   
   <author>
@@ -17,11 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Flink从入门到放弃(入门篇3)-DataSetAPI</title>
+    <link href="https://hualei.online/posts/c749.html"/>
+    <id>https://hualei.online/posts/c749.html</id>
+    <published>2020-07-20T13:30:02.000Z</published>
+    <updated>2020-09-27T13:29:58.720Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;编程结构&quot;&gt;&lt;a href=&quot;#编程结构&quot; class=&quot;headerlink&quot; title=&quot;编程结构&quot;&gt;&lt;/a&gt;编程结构&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;public class SocketTextStreamWordCount {
+
+    public
+        
+      
+    
+    </summary>
+    
+      <category term="技术学习" scheme="https://hualei.online/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="大数据" scheme="https://hualei.online/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="互联网" scheme="https://hualei.online/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+      <category term="Flink" scheme="https://hualei.online/tags/Flink/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Flink从入门到放弃(入门篇4)-DataStreamAPI</title>
-    <link href="https://hualei.online/posts/d31f.html"/>
-    <id>https://hualei.online/posts/d31f.html</id>
+    <link href="https://hualei.online/posts/26bb.html"/>
+    <id>https://hualei.online/posts/26bb.html</id>
     <published>2020-07-15T13:30:02.000Z</published>
-    <updated>2020-09-27T13:12:08.323Z</updated>
+    <updated>2020-09-27T13:29:25.331Z</updated>
     
     <summary type="html">
     
@@ -49,10 +81,10 @@
   
   <entry>
     <title>Flink从入门到放弃(入门篇2)-本地环境搭建&amp;构建第一个Flink应用</title>
-    <link href="https://hualei.online/posts/d31f.html"/>
-    <id>https://hualei.online/posts/d31f.html</id>
+    <link href="https://hualei.online/posts/3ce2.html"/>
+    <id>https://hualei.online/posts/3ce2.html</id>
     <published>2020-07-08T13:30:02.000Z</published>
-    <updated>2020-09-27T13:07:49.046Z</updated>
+    <updated>2020-09-27T13:29:25.327Z</updated>
     
     <summary type="html">
     
@@ -78,11 +110,11 @@
   </entry>
   
   <entry>
-    <title>Flink从入门到放弃(入门篇1)-Flink是什么?</title>
-    <link href="https://hualei.online/posts/6c2c.html"/>
-    <id>https://hualei.online/posts/6c2c.html</id>
+    <title>Flink从入门到放弃 -Flink是什么?</title>
+    <link href="https://hualei.online/posts/6bb1.html"/>
+    <id>https://hualei.online/posts/6bb1.html</id>
     <published>2020-07-01T10:30:02.000Z</published>
-    <updated>2020-09-27T13:16:00.683Z</updated>
+    <updated>2020-09-27T13:29:25.328Z</updated>
     
     <summary type="html">
     

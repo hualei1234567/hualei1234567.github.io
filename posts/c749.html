@@ -6,14 +6,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Spark的shuffle介绍, BigData IT DeepLearning MachineLearning 华磊 hualei Java开发">
+    <meta name="keywords" content="Flink从入门到放弃(入门篇3)-DataSetAPI, BigData IT DeepLearning MachineLearning 华磊 hualei Java开发">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="spark的shuffle介绍spark中的shuffle主要有3种:
+    <meta name="description" content="编程结构public class SocketTextStreamWordCount {
 
-Hash Shuffle 2.0以后移除
-
-在map阶段(shuffle write)，每个map都会为下游stage的每个partition写一个临时文件，假如下游">
+    public static void main(String[] args) throws Exception {
+        if (">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +20,7 @@ Hash Shuffle 2.0以后移除
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Spark的shuffle介绍 | 烂人不该拥有</title>
+    <title>Flink从入门到放弃(入门篇3)-DataSetAPI | 烂人不该拥有</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -580,13 +579,13 @@ Hash Shuffle 2.0以后移除
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Spark的shuffle介绍
+                        Flink从入门到放弃(入门篇3)-DataSetAPI
                     </div>
                 </div>
             </div>
@@ -706,8 +705,8 @@ Hash Shuffle 2.0以后移除
                                 <span class="chip bg-color">互联网</span>
                             </a>
                         
-                            <a href="/tags/Spark/" target="_blank">
-                                <span class="chip bg-color">Spark</span>
+                            <a href="/tags/Flink/" target="_blank">
+                                <span class="chip bg-color">Flink</span>
                             </a>
                         
                     </div>
@@ -730,7 +729,7 @@ Hash Shuffle 2.0以后移除
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-07-20
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -744,14 +743,14 @@ Hash Shuffle 2.0以后移除
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1k
+                        3.4k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        15 分
                     </div>
                     
                 
@@ -768,37 +767,336 @@ Hash Shuffle 2.0以后移除
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="spark的shuffle介绍"><a href="#spark的shuffle介绍" class="headerlink" title="spark的shuffle介绍"></a>spark的shuffle介绍</h2><p><strong>spark中的shuffle主要有3种:</strong></p>
+                <h2 id="编程结构"><a href="#编程结构" class="headerlink" title="编程结构"></a>编程结构</h2><pre><code>public class SocketTextStreamWordCount {
+
+    public static void main(String[] args) throws Exception {
+        if (args.length != 2){
+System.err.println("USAGE:\nSocketTextStreamWordCount &lt;hostname&gt; &lt;port&gt;");
+            return;
+        }
+        String hostName = args[0];
+        Integer port = Integer.parseInt(args[1]);
+        final StreamExecutionEnvironment env = StreamExecutionEnvironment
+                .getExecutionEnvironment();
+        DataStream&lt;String&gt; text = env.socketTextStream(hostName, port);
+
+        DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; counts 
+        text.flatMap(new LineSplitter())
+                .keyBy(0)
+                .sum(1);
+        counts.print();
+        env.execute("Java WordCount from SocketTextStream Example");
+    }</code></pre><p>上面的<code>SocketTextStreamWordCount</code>是一个典型的Flink程序，他由一下及格部分构成：</p>
 <ul>
-<li><p><strong>Hash Shuffle</strong> 2.0以后移除</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/spark-shuffle-v1.png" alt></p>
-<p>在map阶段(shuffle write)，每个map都会为下游stage的每个partition写一个临时文件，假如下游stage有1000个partition，那么每个map都会生成1000个临时文件，一般来说一个executor上会运行多个map task，这样下来，一个executor上会有非常多的临时文件，假如一个executor上运行M个map task，下游stage有N个partition，那么一个executor上会生成M<em>N个文件。另一方面，如果一个executor上有K个core，那么executor同时可运行K个task，这样一来，就会同时申请K</em>N个文件描述符，一旦partition数较多，势必会耗尽executor上的文件描述符，同时生成K*N个write handler也会带来大量内存的消耗。</p>
-<p>在reduce阶段(shuffle read)，每个reduce task都会拉取所有map对应的那部分partition数据，那么executor会打开所有临时文件准备网络传输，这里又涉及到大量文件描述符，另外，如果reduce阶段有combiner操作，那么它会把网络中拉到的数据保存在一个<code>HashMap</code>中进行合并操作，如果数据量较大，很容易引发OOM操作。</p>
+<li>获得一个execution environment，</li>
+<li>加载/创建初始数据，</li>
+<li>指定此数据的转换，</li>
+<li>指定放置计算结果的位置，</li>
+<li>触发程序执行</li>
+</ul>
+<h2 id="DataSet-API"><a href="#DataSet-API" class="headerlink" title="DataSet API"></a>DataSet API</h2><p>分类：</p>
+<ul>
+<li>Source: 数据源创建初始数据集，例如来自文件或Java集合</li>
+<li>Transformation: 数据转换将一个或多个DataSet转换为新的DataSet</li>
+<li>Sink: 将计算结果存储或返回</li>
+</ul>
+<h3 id="DataSet-Sources"><a href="#DataSet-Sources" class="headerlink" title="DataSet Sources"></a>DataSet Sources</h3><h4 id="基于文件的"><a href="#基于文件的" class="headerlink" title="基于文件的"></a>基于文件的</h4><ul>
+<li><p><code>readTextFile(path)/ TextInputFormat</code>- 按行读取文件并将其作为字符串返回。</p>
 </li>
-<li><p><strong>Sort Shuffle</strong> 1.1开始(sort shuffle也经历过优化升级,详细见参考文章1)</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/spark-shuffle-v3.png" alt></p>
-<p>在map阶段(shuffle write)，会按照partition id以及key对记录进行排序，将所有partition的数据写在同一个文件中，该文件中的记录首先是按照partition id排序一个一个分区的顺序排列，每个partition内部是按照key进行排序存放，map task运行期间会顺序写每个partition的数据，并通过一个索引文件记录每个partition的大小和偏移量。这样一来，每个map task一次只开两个文件描述符，一个写数据，一个写索引，大大减轻了Hash Shuffle大量文件描述符的问题，即使一个executor有K个core，那么最多一次性开K*2个文件描述符。</p>
-<p>在reduce阶段(shuffle read)，reduce task拉取数据做combine时不再是采用<code>HashMap</code>，而是采用<code>ExternalAppendOnlyMap</code>，该数据结构在做combine时，如果内存不足，会刷写磁盘，很大程度的保证了鲁棒性，避免大数据情况下的OOM。</p>
+<li><p><code>readTextFileWithValue(path)/ TextValueInputFormat</code>- 按行读取文件并将它们作为StringValues返回。StringValues是可变字符串。</p>
 </li>
-<li><p><strong>Unsafe Shuffle</strong> 1.5开始, 1.6与Sort shuffle合并</p>
-<p>从spark 1.5.0开始，spark开始了钨丝计划(Tungsten)，目的是优化内存和CPU的使用，进一步提升spark的性能。为此，引入Unsafe Shuffle，它的做法是将数据记录用二进制的方式存储，直接在序列化的二进制数据上sort而不是在java 对象上，这样一方面可以减少memory的使用和GC的开销，另一方面避免shuffle过程中频繁的序列化以及反序列化。在排序过程中，它提供cache-efficient sorter，使用一个8 bytes的指针，把排序转化成了一个指针数组的排序，极大的优化了排序性能.</p>
+<li><p><code>readCsvFile(path)/ CsvInputFormat</code>- 解析逗号（或其他字符）分隔字段的文件。返回元组或POJO的DataSet。支持基本java类型及其Value对应作为字段类型。</p>
+</li>
+<li><p><code>readFileOfPrimitives(path, Class)/ PrimitiveInputFormat</code>- 解析新行（或其他字符序列）分隔的原始数据类型（如String或）的文件Integer。</p>
+</li>
+<li><p><code>readFileOfPrimitives(path, delimiter, Class)/ PrimitiveInputFormat</code>- 解析新行（或其他字符序列）分隔的原始数据类型的文件，例如String或Integer使用给定的分隔符。</p>
+</li>
+<li><p><code>readSequenceFile(Key, Value, path)/ SequenceFileInputFormat</code>- 创建一个JobConf并从类型为SequenceFileInputFormat，Key class和Value类的指定路径中读取文件，并将它们作为Tuple2 &lt;Key，Value&gt;返回。</p>
 </li>
 </ul>
-<hr>
-<p><strong>现在2.1 分为三种writer， 分为 BypassMergeSortShuffleWriter， SortShuffleWriter 和 UnsafeShuffleWriter</strong></p>
-<h4 id="三种Writer的分类"><a href="#三种Writer的分类" class="headerlink" title="三种Writer的分类"></a>三种Writer的分类</h4><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://hualei.online/medias/pictures/sparkShuffleWriter.jpg" alt></p>
-<p>上面是使用哪种 writer 的判断依据， 是否开启 mapSideCombine 这个判断，是因为有些算子会在 map 端先进行一次 combine， 减少传输数据。 因为 BypassMergeSortShuffleWriter 会临时输出Reducer个（分区数目）小文件，所以分区数必须要小于一个阀值，默认是小于200</p>
-<p>UnsafeShuffleWriter需要Serializer支持relocation，Serializer支持relocation：原始数据首先被序列化处理，并且再也不需要反序列，在其对应的元数据被排序后，需要Serializer支持relocation，在指定位置读取对应数据</p>
-<p><a href="http://sharkdtu.com/posts/spark-shuffle.html" target="_blank" rel="noopener">参考文章1</a></p>
-<p><a href="http://spark.coolplayer.net/?p=576" target="_blank" rel="noopener">参考文章2</a></p>
-<p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
+<h4 id="基于集合"><a href="#基于集合" class="headerlink" title="基于集合"></a>基于集合</h4><ul>
+<li><p><code>fromCollection(Collection)</code> - 从Java Java.util.Collection创建数据集。集合中的所有数据元必须属于同一类型。</p>
+</li>
+<li><p><code>fromCollection(Iterator, Class)</code> - 从迭代器创建数据集。该类指定迭代器返回的数据元的数据类型。</p>
+</li>
+<li><p><code>fromElements(T ...)</code> - 根据给定的对象序列创建数据集。所有对象必须属于同一类型。</p>
+</li>
+<li><p><code>fromParallelCollection(SplittableIterator, Class)</code>- 并行地从迭代器创建数据集。该类指定迭代器返回的数据元的数据类型。</p>
+</li>
+<li><p><code>generateSequence(from, to)</code> - 并行生成给定间隔中的数字序列。</p>
+</li>
+</ul>
+<h4 id="通用方法"><a href="#通用方法" class="headerlink" title="通用方法"></a>通用方法</h4><ul>
+<li><p><code>readFile(inputFormat, path)/ FileInputFormat</code>- 接受文件输入格式。</p>
+</li>
+<li><p><code>createInput(inputFormat)/ InputFormat</code>- 接受通用输入格式。</p>
+</li>
+</ul>
+<h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><pre><code>ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
-<table>
-  <tbody><tr>
-    <td><img width="100" src="https://hualei.online/medias/reward/alipay.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/wechat.bmp"></td>    <td><img width="100" src="https://hualei.online/medias/reward/zan.png"></td>   
-  </tr>
-</tbody></table>
+// 从本地文件系统读
+DataSet&lt;String&gt; localLines = env.readTextFile("file:///path/to/my/textfile");
 
+// 读取HDFS文件
+DataSet&lt;String&gt; hdfsLines = env.readTextFile("hdfs://nnHost:nnPort/path/to/my/textfile");
+
+// 读取CSV文件
+DataSet&lt;Tuple3&lt;Integer, String, Double&gt;&gt; csvInput = env.readCsvFile("hdfs:///the/CSV/file").types(Integer.class, String.class, Double.class);
+
+// 读取CSV文件中的部分
+DataSet&lt;Tuple2&lt;String, Double&gt;&gt; csvInput = env.readCsvFile("hdfs:///the/CSV/file").includeFields("10010").types(String.class, Double.class);
+
+// 读取CSV映射为一个java类
+DataSet&lt;Person&gt;&gt; csvInput = env.readCsvFile("hdfs:///the/CSV/file").pojoType(Person.class, "name", "age", "zipcode");
+
+// 读取一个指定位置序列化好的文件
+DataSet&lt;Tuple2&lt;IntWritable, Text&gt;&gt; tuples =
+ env.readSequenceFile(IntWritable.class, Text.class, "hdfs://nnHost:nnPort/path/to/file");
+
+// 从输入字符创建
+DataSet&lt;String&gt; value = env.fromElements("Foo", "bar", "foobar", "fubar");
+
+// 创建一个数字序列
+DataSet&lt;Long&gt; numbers = env.generateSequence(1, 10000000);
+
+// 从关系型数据库读取
+DataSet&lt;Tuple2&lt;String, Integer&gt; dbData =
+env.createInput(JDBCInputFormat.buildJDBCInputFormat()                    .setDrivername("org.apache.derby.jdbc.EmbeddedDriver")                   .setDBUrl("jdbc:derby:memory:persons")
+.setQuery("select name, age from persons")
+.setRowTypeInfo(new RowTypeInfo(BasicTypeInfo.STRING_TYPE_INFO, BasicTypeInfo.INT_TYPE_INFO))
+.finish());</code></pre><h3 id="DataSet-Transformation"><a href="#DataSet-Transformation" class="headerlink" title="DataSet Transformation"></a>DataSet Transformation</h3><blockquote>
+<p>详细可以参考官网:<a href="https://flink.sojb.cn/dev/batch/dataset_transformations.html#filter" target="_blank" rel="noopener">https://flink.sojb.cn/dev/batch/dataset_transformations.html#filter</a></p>
+</blockquote>
+<ul>
+<li>Map    </li>
+</ul>
+<p>采用一个数据元并生成一个数据元。</p>
+<pre><code>data.map(new MapFunction&lt;String, Integer&gt;() {
+  public Integer map(String value) { return Integer.parseInt(value); }
+});</code></pre><ul>
+<li>FlatMap    </li>
+</ul>
+<p>采用一个数据元并生成零个，一个或多个数据元。</p>
+<pre><code>data.flatMap(new FlatMapFunction&lt;String, String&gt;() {
+  public void flatMap(String value, Collector&lt;String&gt; out) {
+    for (String s : value.split(" ")) {
+      out.collect(s);
+    }
+  }
+});</code></pre><ul>
+<li>MapPartition</li>
+</ul>
+<p>在单个函数调用中转换并行分区。该函数将分区作为Iterable流来获取，并且可以生成任意数量的结果值。每个分区中的数据元数量取决于并行度和先前的 算子操作。</p>
+<pre><code>data.mapPartition(new MapPartitionFunction&lt;String, Long&gt;() {
+  public void mapPartition(Iterable&lt;String&gt; values, Collector&lt;Long&gt; out) {
+    long c = 0;
+    for (String s : values) {
+      c++;
+    }
+    out.collect(c);
+  }
+});</code></pre><ul>
+<li>Filter</li>
+</ul>
+<p>计算每个数据元的布尔函数，并保存函数返回true的数据元。<br>重要信息：系统假定该函数不会修改应用谓词的数据元。违反此假设可能会导致错误的结果。</p>
+<pre><code>data.filter(new FilterFunction&lt;Integer&gt;() {
+  public boolean filter(Integer value) { return value &gt; 1000; }
+});</code></pre><ul>
+<li>Reduce    </li>
+</ul>
+<p>通过将两个数据元重复组合成一个数据元，将一组数据元组合成一个数据元。Reduce可以应用于完整数据集或分组数据集。</p>
+<pre><code>data.reduce(new ReduceFunction&lt;Integer&gt; {
+  public Integer reduce(Integer a, Integer b) { return a + b; }
+});</code></pre><p>如果将reduce应用于分组数据集，则可以通过提供CombineHintto 来指定运行时执行reduce的组合阶段的方式 setCombineHint。在大多数情况下，基于散列的策略应该更快，特别是如果不同键的数量与输入数据元的数量相比较小（例如1/10）。</p>
+<ul>
+<li>ReduceGroup    </li>
+</ul>
+<p>将一组数据元组合成一个或多个数据元。ReduceGroup可以应用于完整数据集或分组数据集。</p>
+<pre><code>data.reduceGroup(new GroupReduceFunction&lt;Integer, Integer&gt; {
+  public void reduce(Iterable&lt;Integer&gt; values, Collector&lt;Integer&gt; out) {
+    int prefixSum = 0;
+    for (Integer i : values) {
+      prefixSum += i;
+      out.collect(prefixSum);
+    }
+  }
+});</code></pre><ul>
+<li>Aggregate    </li>
+</ul>
+<p>将一组值聚合为单个值。聚合函数可以被认为是内置的reduce函数。聚合可以应用于完整数据集或分组数据集。</p>
+<pre><code>Dataset&lt;Tuple3&lt;Integer, String, Double&gt;&gt; input = // [...]
+DataSet&lt;Tuple3&lt;Integer, String, Double&gt;&gt; output = input.aggregate(SUM, 0).and(MIN, 2);</code></pre><p>您还可以使用简写语法进行最小，最大和总和聚合。</p>
+<pre><code>Dataset&lt;Tuple3&lt;Integer, String, Double&gt;&gt; input = // [...]
+DataSet&lt;Tuple3&lt;Integer, String, Double&gt;&gt; output = input.sum(0).andMin(2);</code></pre><ul>
+<li>Distinct    </li>
+</ul>
+<p>返回数据集的不同数据元。它相对于数据元的所有字段或字段子集从输入DataSet中删除重复条目。</p>
+<pre><code>data.distinct();</code></pre><p>使用reduce函数实现Distinct。您可以通过提供CombineHintto 来指定运行时执行reduce的组合阶段的方式 setCombineHint。在大多数情况下，基于散列的策略应该更快，特别是如果不同键的数量与输入数据元的数量相比较小（例如1/10）。</p>
+<ul>
+<li>Join    </li>
+</ul>
+<p>通过创建在其键上相等的所有数据元对来连接两个数据集。可选地使用JoinFunction将数据元对转换为单个数据元，或使用FlatJoinFunction将数据元对转换为任意多个（包括无）数据元。请参阅键部分以了解如何定义连接键。</p>
+<pre><code>result = input1.join(input2)
+               .where(0)       // key of the first input (tuple field 0)
+               .equalTo(1);    // key of the second input (tuple field 1)</code></pre><p>您可以通过Join Hints指定运行时执行连接的方式。提示描述了通过分区或广播进行连接，以及它是使用基于排序还是基于散列的算法。<br>如果未指定提示，系统将尝试估算输入大小，并根据这些估计选择最佳策略。</p>
+<pre><code>// This executes a join by broadcasting the first data set
+// using a hash table for the broadcast data
+result = input1.join(input2, JoinHint.BROADCAST_HASH_FIRST)
+               .where(0).equalTo(1);</code></pre><p>请注意，连接转换仅适用于等连接。其他连接类型需要使用OuterJoin或CoGroup表示。</p>
+<ul>
+<li>OuterJoin    </li>
+</ul>
+<p>在两个数据集上执行左，右或全外连接。外连接类似于常规（内部）连接，并创建在其键上相等的所有数据元对。此外，如果在另一侧没有找到匹配的Keys，则保存“外部”侧（左侧，右侧或两者都满）的记录。匹配数据元对（或一个数据元和null另一个输入的值）被赋予JoinFunction以将数据元对转换为单个数据元，或者转换为FlatJoinFunction以将数据元对转换为任意多个（包括无）数据元。请参阅键部分以了解如何定义连接键。</p>
+<pre><code>input1.leftOuterJoin(input2) // rightOuterJoin or fullOuterJoin for right or full outer joins
+      .where(0)              // key of the first input (tuple field 0)
+      .equalTo(1)            // key of the second input (tuple field 1)
+      .with(new JoinFunction&lt;String, String, String&gt;() {
+          public String join(String v1, String v2) {
+             // NOTE:
+             // - v2 might be null for leftOuterJoin
+             // - v1 might be null for rightOuterJoin
+             // - v1 OR v2 might be null for fullOuterJoin
+          }
+      });
+</code></pre><ul>
+<li>CoGroup    </li>
+</ul>
+<p>reduce 算子操作的二维变体。将一个或多个字段上的每个输入分组，然后关联组。每对组调用转换函数。</p>
+<pre><code>data1.coGroup(data2)
+     .where(0)
+     .equalTo(1)
+     .with(new CoGroupFunction&lt;String, String, String&gt;() {
+         public void coGroup(Iterable&lt;String&gt; in1, Iterable&lt;String&gt; in2, Collector&lt;String&gt; out) {
+           out.collect(...);
+         }
+      });</code></pre><ul>
+<li>Cross    </li>
+</ul>
+<p>构建两个输入的笛卡尔积（交叉乘积），创建所有数据元对。可选择使用CrossFunction将数据元对转换为单个数据元</p>
+<pre><code>DataSet&lt;Integer&gt; data1 = // [...]
+DataSet&lt;String&gt; data2 = // [...]
+DataSet&lt;Tuple2&lt;Integer, String&gt;&gt; result = data1.cross(data2);</code></pre><p>注：交叉是一个潜在的非常计算密集型 算子操作它甚至可以挑战大的计算集群！建议使用crossWithTiny（）和crossWithHuge（）来提示系统的DataSet大小。</p>
+<ul>
+<li>Union    </li>
+</ul>
+<p>生成两个数据集的并集。</p>
+<pre><code>DataSet&lt;String&gt; data1 = // [...]
+DataSet&lt;String&gt; data2 = // [...]
+DataSet&lt;String&gt; result = data1.union(data2);</code></pre><ul>
+<li>Rebalance    </li>
+</ul>
+<p>均匀地Rebalance 数据集的并行分区以消除数据偏差。只有类似Map的转换可能会遵循Rebalance 转换。</p>
+<pre><code>DataSet&lt;String&gt; in = // [...]
+DataSet&lt;String&gt; result = in.rebalance()
+                           .map(new Mapper());
+</code></pre><ul>
+<li>Hash-Partition</li>
+</ul>
+<p>散列分区给定键上的数据集。键可以指定为位置键，表达键和键选择器函数。</p>
+<pre><code>DataSet&lt;Tuple2&lt;String,Integer&gt;&gt; in = // [...]
+DataSet&lt;Integer&gt; result = in.partitionByHash(0)
+                            .mapPartition(new PartitionMapper());</code></pre><ul>
+<li>Range-Partition</li>
+</ul>
+<p>Range-Partition给定键上的数据集。键可以指定为位置键，表达键和键选择器函数。</p>
+<pre><code>DataSet&lt;Tuple2&lt;String,Integer&gt;&gt; in = // [...]
+DataSet&lt;Integer&gt; result = in.partitionByRange(0)
+                            .mapPartition(new PartitionMapper());</code></pre><ul>
+<li>Custom Partitioning</li>
+</ul>
+<p>手动指定数据分区。<br>注意：此方法仅适用于单个字段键。</p>
+<pre><code>DataSet&lt;Tuple2&lt;String,Integer&gt;&gt; in = // [...]
+DataSet&lt;Integer&gt; result = in.partitionCustom(Partitioner&lt;K&gt; partitioner, key)</code></pre><ul>
+<li>Sort Partition    </li>
+</ul>
+<p>本地按指定顺序对指定字段上的数据集的所有分区进行排序。可以将字段指定为元组位置或字段表达式。通过链接sortPartition（）调用来完成对多个字段的排序。</p>
+<pre><code>DataSet&lt;Tuple2&lt;String,Integer&gt;&gt; in = // [...]
+DataSet&lt;Integer&gt; result = in.sortPartition(1, Order.ASCENDING)
+                            .mapPartition(new PartitionMapper());</code></pre><ul>
+<li>First-n    </li>
+</ul>
+<p>返回数据集的前n个（任意）数据元。First-n可以应用于常规数据集，分组数据集或分组排序数据集。分组键可以指定为键选择器函数或字段位置键。</p>
+<pre><code>DataSet&lt;Tuple2&lt;String,Integer&gt;&gt; in = // [...]
+// regular data set
+DataSet&lt;Tuple2&lt;String,Integer&gt;&gt; result1 = in.first(3);
+// grouped data set
+DataSet&lt;Tuple2&lt;String,Integer&gt;&gt; result2 = in.groupBy(0)                                     .first(3);
+// grouped-sorted data set
+DataSet&lt;Tuple2&lt;String,Integer&gt;&gt; result3 = in.groupBy(0)                                     .sortGroup(1, Order.ASCENDING)                     .first(3);
+</code></pre><h3 id="DataSet-Sink"><a href="#DataSet-Sink" class="headerlink" title="DataSet Sink"></a>DataSet Sink</h3><p>数据接收器使用DataSet用于存储或返回。使用OutputFormat描述数据接收器算子操作 。Flink带有各种内置输出格式，这些格式封装在DataSet上的算子操作中：</p>
+<ul>
+<li>writeAsText()/ TextOutputFormat- 按字符串顺序写入数据元。通过调用每个数据元的toString（）方法获得字符串。</li>
+<li>writeAsFormattedText()/ TextOutputFormat- 按字符串顺序写数据元。通过为每个数据元调用用户定义的format（）方法来获取字符串。</li>
+<li>writeAsCsv(…)/ CsvOutputFormat- 将元组写为逗号分隔值文件。行和字段分隔符是可配置的。每个字段的值来自对象的toString（）方法。</li>
+<li>print()/ printToErr()/ print(String msg)/ printToErr(String msg)- 在标准输出/标准错误流上打印每个数据元的toString（）值。可选地，可以提供前缀（msg），其前缀为输出。这有助于区分不同的打印调用。如果并行度大于1，则输出也将与生成输出的任务的标识符一起添加。</li>
+<li>write()/ FileOutputFormat- 自定义文件输出的方法和基类。支持自定义对象到字节的转换。</li>
+<li>output()/ OutputFormat- 大多数通用输出方法，用于非基于文件的数据接收器（例如将结果存储在数据库中）。</li>
+</ul>
+<p>可以将DataSet输入到多个 算子操作。程序可以编写或打印数据集，同时对它们执行其他转换。</p>
+<p>示例：</p>
+<pre><code>// text data
+DataSet&lt;String&gt; textData = // [...]
+
+// write DataSet to a file on the local file system
+textData.writeAsText("file:///my/result/on/localFS");
+
+// write DataSet to a file on a HDFS with a namenode running at nnHost:nnPort
+textData.writeAsText("hdfs://nnHost:nnPort/my/result/on/localFS");
+
+// write DataSet to a file and overwrite the file if it exists
+textData.writeAsText("file:///my/result/on/localFS", WriteMode.OVERWRITE);
+
+// tuples as lines with pipe as the separator "a|b|c"
+DataSet&lt;Tuple3&lt;String, Integer, Double&gt;&gt; values = // [...]
+values.writeAsCsv("file:///path/to/the/result/file", "\n", "|");
+
+// this writes tuples in the text formatting "(a, b, c)", rather than as CSV lines
+values.writeAsText("file:///path/to/the/result/file");
+
+// this writes values as strings using a user-defined TextFormatter object
+values.writeAsFormattedText("file:///path/to/the/result/file",
+    new TextFormatter&lt;Tuple2&lt;Integer, Integer&gt;&gt;() {
+        public String format (Tuple2&lt;Integer, Integer&gt; value) {
+            return value.f1 + " - " + value.f0;
+        }
+    });</code></pre><p>使用自定义输出格式：</p>
+<pre><code>DataSet&lt;Tuple3&lt;String, Integer, Double&gt;&gt; myResult = [...]
+
+// write Tuple DataSet to a relational database
+myResult.output(
+    // build and configure OutputFormat
+    JDBCOutputFormat.buildJDBCOutputFormat()
+                    .setDrivername("org.apache.derby.jdbc.EmbeddedDriver")
+                    .setDBUrl("jdbc:derby:memory:persons")
+                    .setQuery("insert into persons (name, age, height) values (?,?,?)")
+                    .finish()
+    );</code></pre><h2 id="序列化器"><a href="#序列化器" class="headerlink" title="序列化器"></a>序列化器</h2><ul>
+<li>Flink自带了针对诸如int，long，String等标准类型的序列化器</li>
+</ul>
+<ul>
+<li>针对Flink无法实现序列化的数据类型，我们可以交给Avro和Kryo</li>
+</ul>
+<ul>
+<li>使用方法：ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();</li>
+</ul>
+<pre><code>使用avro序列化：env.getConfig().enableForceAvro();
+使用kryo序列化：env.getConfig().enableForceKryo();
+使用自定义序列化：env.getConfig().addDefaultKryoSerializer(Class&lt;?&gt; type, Class&lt;? extends Serializer&lt;?&gt;&gt; serializerClass)
+</code></pre><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li><p>Java Tuple 和 Scala case class</p>
+</li>
+<li><p>Java POJOs：java实体类</p>
+</li>
+<li><p>Primitive Types<br>默认支持java和scala基本数据类型</p>
+</li>
+<li><p>General Class Types<br>默认支持大多数java和scala class</p>
+</li>
+<li><p>Hadoop Writables<br>支持hadoop中实现了org.apache.hadoop.Writable的数据类型</p>
+</li>
+</ul>
+<ul>
+<li>Special Types<br>例如scala中的Either Option 和Try</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -967,7 +1265,7 @@ Hash Shuffle 2.0以后移除
                     </span>
                     <a href="https://hualei.online" class="b-link-green">烂人不该拥有</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/posts/d31f.html" class="b-link-green">Spark的shuffle介绍</a>
+                    <a href="/posts/c749.html" class="b-link-green">Flink从入门到放弃(入门篇3)-DataSetAPI</a>
                 </p>
             </div>
 
@@ -1287,29 +1585,30 @@ Hash Shuffle 2.0以后移除
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/6bb1.html">
+                <a href="/posts/c749.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Flink从入门到放弃 -Flink是什么?">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Flink从入门到放弃(入门篇3)-DataSetAPI">
                         
-                        <span class="card-title">Flink从入门到放弃 -Flink是什么?</span>
+                        <span class="card-title">Flink从入门到放弃(入门篇3)-DataSetAPI</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Apache Flink是一个面向分布式数据流处理和批量数据处理的开源计算平台，提供支持流处理和批处理两种类型应用的功能。
+                            数据源创建初始数据集，例如来自文件或Java集合,数据转换将一个或多个DataSet转换为新的DataSet,将计算结果存储或返回
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1322,6 +1621,7 @@ Hash Shuffle 2.0以后移除
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1348,24 +1648,24 @@ Hash Shuffle 2.0以后移除
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/9c96.html">
+                <a href="/posts/26bb.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="MapReduce编程模型和计算框架架构原理">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Flink从入门到放弃(入门篇4)-DataStreamAPI">
                         
-                        <span class="card-title">MapReduce编程模型和计算框架架构原理</span>
+                        <span class="card-title">Flink从入门到放弃(入门篇4)-DataStreamAPI</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Hadoop解决大规模数据分布式计算的方案是MapReduce。MapReduce既是一个编程模型，又是一个计算框架。也就是说，开发人员必须基于MapReduce编程模型进行编程开发，然后将程序通过MapReduce计算框架分发到Hadoop集群中运行。我们先看一下作为编程模型的MapReduce。
+                            DataStream算子将一个或多个DataStream转换为新DataStream。程序可以将多个转换组合成复杂的数据流拓扑。DataStreamAPI和DataSetAPI主要的区别在于Transformation部分。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-15
                             </span>
                         <span class="publish-author">
                             
@@ -1390,8 +1690,8 @@ Hash Shuffle 2.0以后移除
                         <span class="chip bg-color">互联网</span>
                     </a>
                     
-                    <a href="/tags/Hadoop/" target="_blank">
-                        <span class="chip bg-color">Hadoop</span>
+                    <a href="/tags/Flink/" target="_blank">
+                        <span class="chip bg-color">Flink</span>
                     </a>
                     
                 </div>
